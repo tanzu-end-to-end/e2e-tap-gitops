@@ -1,0 +1,81 @@
+---
+tap_install:
+  values:
+    # Non-sensitive TAP Values go here
+    profile: full
+    ceip_policy_disclosed: true
+    shared:
+      ingress_domain: "foo.workshop.amer.end2end.link"
+      ingress_issuer: ""
+    supply_chain: basic
+
+    accelerator:
+      ingress:
+        include: true
+        enable_tls: true
+      tls:
+        namespace: default
+        secret_name: default-cert
+
+    cnrs:
+      default_tls_secret: default/default-cert
+      domain_template: |-
+        {{if index .Annotations "custom-hostname" -}}
+          {{- index .Annotations "custom-hostname" -}}
+        {{else -}}
+          {{- .Name}}-{{.Namespace -}}
+        {{end -}}
+        .{{.Domain}}
+      ingress:
+        external:
+          namespace: tanzu-system-ingress
+        internal:
+          namespace: tanzu-system-ingress
+    contour:
+      contour:
+        replicas: 3
+      infrastructure_provider: aws
+      envoy:
+        service:
+          annotations:
+            external-dns.alpha.kubernetes.io/hostname: '*.foo.workshop.amer.end2end.link'
+        workload:
+          type: Deployment
+          replicas: 3
+
+    learningcenter:
+      ingressSecret:
+        secretName: default-cert
+
+    tap_gui:
+      service_type: ClusterIP
+      ingressEnabled: "true"
+      tls:
+        namespace: default
+        secretName: default-cert
+      app_config:
+        app:
+          baseUrl: https://tap-gui.workshop.amer.end2end.link
+        catalog:
+          locations:
+            - type: url
+              target: https://github.com/Tanzu-Solutions-Engineering/waas-tap-gui-catalog/blob/main/catalog-info.yaml
+            - type: url
+              target: https://github.com/tanzu-end-to-end/tap-workshop/blob/main/install/backstage/catalog-info.yaml
+    metadata_store:
+      ns_for_export_app_cert: "*"
+      app_service_type: ClusterIP
+    appliveview_connector:
+      backend:
+        host: appliveview.contour.e2e.corby.cc
+        ingressEnabled: true
+    namespace_provisioner:
+      controller: true
+      namespace_selector:
+        matchExpressions:
+        - key: apps.tanzu.vmware.com/tap-ns
+          operator: Exists
+    package_overlays:
+    - name: cert-manager
+      secrets:
+      - name: cert-manager-overlay

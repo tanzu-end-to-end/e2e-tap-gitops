@@ -1,0 +1,45 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: external-dns
+    kapp.k14s.io/change-rule.cert-manager: "upsert after upserting cert-manager" 
+    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting tanzu-sync"
+  name: external-dns
+  namespace: tanzu-sync
+spec:
+  packageRef:
+    refName: external-dns.tanzu.vmware.com
+    versionSelection:
+      constraints: ">0.8.0"
+      prereleases: {}
+  serviceAccountName: sync-sa
+  values:
+  - secretRef:
+      name: external-dns-values
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: external-dns-values
+  namespace: tanzu-sync
+stringData:
+  values.yaml: |
+    namespace: tanzu-system-service-discovery
+    deployment:
+      args:
+      - --source=service
+      - --domain-filter=foo.workshop.amer.end2end.link
+      - --policy=upsert-only
+      - --registry=txt
+      - --txt-owner-id=Z058827839E1KJS2IN09B
+      - --txt-prefix=txt
+      - --provider=aws
+      - --aws-zone-type=public
+      - --aws-prefer-cname
+    serviceaccount:
+      annotations:
+        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/sa-external-dns
