@@ -1,0 +1,9 @@
+151208085bbdfff8b46fcc5cc06c566733057c9c:clusters/appref-1/SETUP-SECRETS.md:private-key:43
+151208085bbdfff8b46fcc5cc06c566733057c9c:clusters/appref-1/SETUP-SECRETS.md:generic-api-key:21
+465e564529a2e8008891a9de61af5fad71d0098c:.catalog/tanzu-sync/0.0.2/eso/docs/SETUP-SECRETS.md:private-key:29
+465e564529a2e8008891a9de61af5fad71d0098c:.catalog/tanzu-sync/0.0.2/sops/docs/SETUP-SECRETS.md:private-key:43
+465e564529a2e8008891a9de61af5fad71d0098c:.catalog/tanzu-sync/0.0.2/sops/docs/SETUP-SECRETS.md:generic-api-key:21
+465e564529a2e8008891a9de61af5fad71d0098c:clusters/e2e-tap-build-cluster/SETUP-SECRETS.md:generic-api-key:21
+465e564529a2e8008891a9de61af5fad71d0098c:clusters/e2e-tap-build-cluster/SETUP-SECRETS.md:private-key:43
+465e564529a2e8008891a9de61af5fad71d0098c:clusters/workshop/SETUP-SECRETS.md:generic-api-key:21
+465e564529a2e8008891a9de61af5fad71d0098c:clusters/workshop/SETUP-SECRETS.md:private-key:43
