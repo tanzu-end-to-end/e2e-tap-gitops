@@ -90,7 +90,7 @@ tap_install:
       ns_for_export_app_cert: "*"
 
     namespace_provisioner:
-      controller: false
+      controller: true
       gitops_install:
         ref: origin/appref
         subPath: clusters/appref-1/cluster-config/namespace-provisioner/namespaces
