@@ -1,0 +1,8 @@
+custom:
+  gitops:
+    url: "https://github.com/tanzu-end-to-end/e2e-tap-gitops"
+    ref: "origin/appref"
+  supply_chain:
+    gitops:
+      server_address: tanzu-end-to-end
+      repository_owner: https://github.com

@@ -1,0 +1,34 @@
+#@ load("@ytt:data", "data")
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: canary
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: dev-ns-canary
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-rule: "upsert after upserting tap"
+spec:
+  serviceAccountName: sync-sa
+  syncPeriod: 1m
+  fetch:
+  - git:
+      url: #@ data.values.custom.gitops.url
+      ref: #@ data.values.custom.gitops.ref
+  template:
+  - sops:
+      age:
+        privateKeysSecretRef:
+          name: sync-age-identity
+  - ytt:
+      paths:
+      - clusters/common/namespaces/dev-namespace
+      - clusters/common/namespaces/test-scan-namespace
+  deploy:
+  - kapp: 
+      intoNs: canary
