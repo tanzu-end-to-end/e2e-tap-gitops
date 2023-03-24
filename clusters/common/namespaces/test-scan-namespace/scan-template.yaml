@@ -158,4 +158,4 @@ spec:
         name: cache
       - name: metadata-store-ca-cert
         secret:
-          secretName: store-ca-cert
+          secretName: app-tls-cert
