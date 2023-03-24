@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: canary2
   labels:
-    apps.tanzu.vmware.com/tap-ns: true
+   "apps.tanzu.vmware.com/tap-ns": true
