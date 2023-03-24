@@ -21,7 +21,7 @@ spec:
           - name: source-revision
         steps:
           - name: test
-            image: registry.gcp.ellin.net/library/gradle
+            image: gradle
             script: |-
               #!/bin/bash -x
               pwd
