@@ -95,6 +95,12 @@ tap_install:
         matchExpressions:
         - key: apps.tanzu.vmware.com/tap-ns
           operator: Exists
+      additional_sources:
+        - git:
+            ref: origin/main
+            subPath: clusters/appref-1/cluster-config/namespace-provisioner/namespace-resources
+            url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+          path: _ytt_lib/namespace-resources
 
     scanning:
       metadataStore:
