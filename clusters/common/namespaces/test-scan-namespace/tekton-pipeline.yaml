@@ -21,7 +21,7 @@ spec:
           - name: source-revision
         steps:
           - name: test
-            image: gradle
+            image: gradle:8.0.2-jdk11
             script: |-
               #!/bin/bash -x
               pwd
