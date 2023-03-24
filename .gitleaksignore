@@ -1,0 +1,7 @@
+.catalog/tanzu-sync/0.0.2/eso/docs/SETUP-SECRETS.md:private-key:29
+.catalog/tanzu-sync/0.0.2/sops/docs/SETUP-SECRETS.md:generic-api-key:21
+.catalog/tanzu-sync/0.0.2/sops/docs/SETUP-SECRETS.md:private-key:43
+clusters/e2e-tap-build-cluster/SETUP-SECRETS.md:generic-api-key:21
+clusters/e2e-tap-build-cluster/SETUP-SECRETS.md:private-key:43
+clusters/workshop/SETUP-SECRETS.md:generic-api-key:21
+clusters/workshop/SETUP-SECRETS.md:private-key:43
