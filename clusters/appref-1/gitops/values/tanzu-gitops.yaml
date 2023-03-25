@@ -4,6 +4,9 @@
 ---
 #@ def config():
 custom:
+  gitops:
+    url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+    ref: origin/appref
   tap:
     cert:
       cn: "*.appref1.amer.end2end.link"
