@@ -17,7 +17,7 @@ custom:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: tanzu-gitops
+  name: tanzu-gitops2
   namespace: tanzu-sync
 stringData:
   values.yaml: #@ yaml.encode(config())
