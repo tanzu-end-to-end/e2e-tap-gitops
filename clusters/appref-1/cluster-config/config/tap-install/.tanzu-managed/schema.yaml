@@ -9,6 +9,3 @@ tap_install:
     oci_repository: ""
   #@schema/type any=True
   values: {}
-#@schema/type any=True
-#! hack, we need a place to add some customizations
-custom: {}

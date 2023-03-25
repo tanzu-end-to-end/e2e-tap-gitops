@@ -22,6 +22,6 @@ spec:
       - clusters/appref-1/gitops/data
       valuesFrom:
        - secretRef:
-           name: tanzu-gitops2
+           name: tanzu-gitops
   deploy:
   - kapp: {}
