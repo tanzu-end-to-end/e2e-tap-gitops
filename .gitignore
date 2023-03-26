@@ -1,1 +1,2 @@
 **/cluster-config/values/*sensitive-values.yaml
+apply.sh
