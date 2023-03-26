@@ -4,22 +4,22 @@
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
-  name: gitops-config-app
+  name: cert-config-app
   namespace: tanzu-sync
   annotations:
-    kapp.k14s.io/change-group: gitops-config-app/app
+    kapp.k14s.io/change-group: cert-config-app/app
     kapp.k14s.io/change-rule: "upsert after upserting tap"
 spec:
   serviceAccountName: sync-sa
   syncPeriod: 1m
   fetch:
   - git:
-      url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-      ref: origin/appref
+      url: #@ data.values.custom.gitops.url
+      ref: #@ data.values.custom.gitops.ref
   template:
   - ytt:
       paths:
-      - clusters/appref-view/gitops/apps
+      - clusters/common/app-contents/common/certs
       valuesFrom:
        - secretRef:
            name: tanzu-gitops
