@@ -5,11 +5,12 @@ tap_install:
     excluded_packages:
       - learningcenter.tanzu.vmware.com
       - workshops.learningcenter.tanzu.vmware.com
+      - ootb-delivery-basic.tanzu.vmware.com
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
     shared:
-      ingress_domain: appref.e2e.ellin.net
-      ingress_issuer: ""
+      ingress_domain: appref1.amer.end2end.link
+      ingress_issuer: letsencrypt-contour-cluster-issuer
       image_registry:
         project_path: registry.gcp.ellin.net/tap/tbs
 
@@ -20,15 +21,9 @@ tap_install:
       ingress:
         include: true
         enable_tls: true
-      tls:
-        namespace: contour-tls
-        secret_name: tls
 
     appliveview:
       ingressEnabled: true
-      tls:
-        namespace: contour-tls
-        secretName: tls
 
     supply_chain: testing_scanning
 
@@ -74,19 +69,14 @@ tap_install:
         service:
           type: LoadBalancer
 
-    cnrs:
-      default_tls_secret: contour-tls/tls
-      domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+   # cnrs:
+   #   default_tls_secret: contour-tls/tls
+   #   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"
-      tls:
-        namespace: contour-tls
-        secretName: tls
       app_config:
-        app:
-          baseUrl: https://tap-gui.appref.e2e.ellin.net
         catalog:
           locations:
             - type: url
@@ -94,9 +84,9 @@ tap_install:
             - type: url
               target: https://github.com/cpage-pivotal/tanzu-java-web-app/blob/main/catalog-info.yaml
         backend:
-          baseUrl: https://tap-gui.appref.e2e.ellin.net
+          baseUrl: https://tap-gui.appref1.amer.end2end.link
           cors:
-            origin: https://tap-gui.appref.e2e.ellin.net
+            origin: https://tap-gui.appref1.amer.end2end.link
         proxy:
           /metadata-store:
             target: https://metadata-store-app.metadata-store:8443/api/v1
@@ -125,3 +115,8 @@ tap_install:
     grype:
       namespace: "default" # (optional) Defaults to default namespace.
       targetImagePullSecret: "registry-credentials"
+
+    package_overlays:
+    - name:  cert-manager
+      secrets:
+      - name: cert-manager-overlay
