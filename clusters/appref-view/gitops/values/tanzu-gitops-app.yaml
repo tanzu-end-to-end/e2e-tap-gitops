@@ -19,7 +19,7 @@ spec:
   template:
   - ytt:
       paths:
-      - clusters/appref-view/gitops/apps
+      - clusters/appref-view/gitops/app
       valuesFrom:
        - secretRef:
            name: tanzu-gitops
