@@ -125,8 +125,3 @@ tap_install:
     grype:
       namespace: "default" # (optional) Defaults to default namespace.
       targetImagePullSecret: "registry-credentials"
-
-    package_overlays:
-    - name:  cert-manager
-      secrets:
-      - name: cert-manager-overlay%  
