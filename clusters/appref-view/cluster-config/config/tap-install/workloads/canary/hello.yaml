@@ -14,6 +14,10 @@ spec:
         autoscaling.knative.dev/minScale: "1"
     - name: gitops_repository_name
       value: "trp-gitops-canary"
+  build:
+    env:
+    - name: BP_JVM_VERSION
+      value: '17'
   source:
     git:
       url: https://github.com/tanzu-end-to-end/trp-tanzu-java-web-app.git
