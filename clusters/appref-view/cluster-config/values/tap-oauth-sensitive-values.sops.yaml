@@ -1,19 +1,20 @@
 tap_install:
     sensitive_values:
         tap_gui:
-            auth:
-                allowGuestAccess: ENC[AES256_GCM,data:YxtaJg==,iv:R1m+T0LAvuJvSVgYgehKTdtMKR3ZoxqUrYVo8w4e+xY=,tag:2EKzRvUoG8XktOeX4XNAPg==,type:bool]
-                environment: ENC[AES256_GCM,data:GKneWESnqLjbzHU=,iv:nTrxusM1NaE1EA6hsrXOd/JY6H9bVtv5S0hOcSQ+PAg=,tag:1/zsC1eKRA+vNt4TuZFqPg==,type:str]
-                providers:
-                    okta:
-                        development:
-                            clientId: ENC[AES256_GCM,data:uZnRMxuh5/5qjt6egGkjuiVE+3o=,iv:Yez+o39AzaxhfuhwNqyE2Qetf81K44DE1b82vwSDfRM=,tag:k482MEEoFLhAx/zBvjB4XQ==,type:str]
-                            clientSecret: ENC[AES256_GCM,data:/yTtjqlvIJJN3HNkJSFN6+3ShBSW0KN+CnaQVLxzZ22Ockibq/JC2g==,iv:OVL9qGRRGm1g1BMtB8eSqYoq2QWZlh/OHpEbgUcSEc8=,tag:2dlv+lHBFWkValGO8GzyIA==,type:str]
-                            audience: ENC[AES256_GCM,data:OAp9rMhCJSb2BJzcoLU4VB2bphohkL6t3HAQ8WFe,iv:RHWUsFBZsImb9U7OnWEjuV5QwC//lq3b7MCmWTX+RR0=,tag:O4XsPKpiK80dUEM+Pzd02Q==,type:str]
-                    github:
-                        development:
-                            clientId: ENC[AES256_GCM,data:34KpurYhZ5ovgCS3l0xxvXwxM/Y=,iv:Wk/GWWCU7Oo/9JIS0q9yvqZGHkGREM9NGG8qtM/4pUY=,tag:gGfy3W5zsIqh7NNmPhVK3g==,type:str]
-                            clientSecret: ENC[AES256_GCM,data:iWoh/t+XFkkVHahVQ9NdYepbQkxpR/8u0O8/5NldgxI6dqvDr3QmKA==,iv:qKYCFLoIBFw8PxScLVSeSOHv6s8K9uoL6FjW8K20ytg=,tag:dniRTOWNflrri0n2q5rpuA==,type:str]
+            app_config:
+                auth:
+                    allowGuestAccess: ENC[AES256_GCM,data:L7ZrIQ==,iv:7XOW4W1aWZeuG9gukoD5chAgniAq0XHw1+O592hyoiM=,tag:XWZ7bbjDaGsK6nF5sTKUjw==,type:bool]
+                    environment: ENC[AES256_GCM,data:ratZoAu6lAnX/pg=,iv:0I0ctWBILwATUEaaVIsljBgc38BcEnaBV/vuMFb5hJ4=,tag:VO4Qu2kguo/PBejibfHmhQ==,type:str]
+                    providers:
+                        okta:
+                            development:
+                                clientId: ENC[AES256_GCM,data:0RkEENpGeH34N3AqZn5e7a16C+A=,iv:SsvfkW4DnkX47eH3wFT8o5BMhi+Gz8gAmlBsim5Czm4=,tag:PFpMbEieK0Kh5vzMLd1QSg==,type:str]
+                                clientSecret: ENC[AES256_GCM,data:hSTXjKn0wuuMOEJqp1xE5iS6OJfSgeHWJAGh0FhDIUP1S62SbtaeHw==,iv:zOuO8kAmQS3oALdPFzuVSzfufpjZvpgIlGrqHFT5G0Y=,tag:PL7aRHWAMI0nEphIR4b0iA==,type:str]
+                                audience: ENC[AES256_GCM,data:6BzgnMv9W0d6MY1xz0rT+oC8V8SAh7wHXV3EtlbR,iv:BwgETsX7niZ1yY4LUNfMn3JkTat/Tivz0NPX7AXzs68=,tag:IidqZPwWyE35BVg4lfkGww==,type:str]
+                        github:
+                            development:
+                                clientId: ENC[AES256_GCM,data:WTz0SQdKcNXMZgns5t6gtBLyXiw=,iv:+tfart0wyVTumFBg7iJN3hiN5a/Uq/xnsNQVqTPUTn8=,tag:vsvmRLFhON0UBvm5jedBgg==,type:str]
+                                clientSecret: ENC[AES256_GCM,data:HpPaGFwRS0Kt4qE7P5o5CaYep/I3beSmyowMn2xN+10Y0Jy12wxz4Q==,iv:JROnJduSyIU4+hrInTCu3NdadBP4EbTXdo0y5u7jaQQ=,tag:tGsQi2df4zcK7Sij5IF31A==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -23,14 +24,14 @@ sops:
         - recipient: age1k0jq2plycmkw4l38aak9cth6v4xvn3wp0kgyj0m0da086ygv2clstfn25y
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBEeUVzZ0tNT1VjazV5a3B4
-            ZlBEVlpHZFppcEEyc3o1VXBQVEF6Wi9aNkZvCm9kVGZhNk43cWV0NGcyOEZtRGxn
-            ZkFFOWxhbHRmT3Y3NXhQUXFjMjcwKzQKLS0tIGlVVHoyYjhFRkROWnNMRXZRYXk5
-            dG9zbXVjSHNsa0o4UFJQaEY5dEQxRFEK/lR9fUsj09XrVpKqrgHmiQsNHOJLbtR0
-            F3RDJSfD6RZ66J+3QS8IxHteeQIMq1Mz+T9S52YOaEIQA1KnQHKTbw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBybmhpOFlEYWJTTDA0c29q
+            bDNQQUR1N1lmNnVyQTZmbDUxdDFxRFRnYmkwCnF2YTdScVdXckIxWUhoVmlGaHR2
+            MGtkNUhWelFrb2lTcytybUFpdFN0NmsKLS0tIGwrK0NSZHdHOU5iOTgrbysrdHVl
+            My9yTmhiTXhUUjBqN1g1amtjWTVuejQKqsVc7ouNR3ORExsy8xdmh1KBckp/FXS8
+            /OPosD0yWM33INbEKAlhOvU1xYi+gaONsNDF4DSe0GeMbmKWETrhPg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-03-27T16:30:49Z"
-    mac: ENC[AES256_GCM,data:u1wBwBnmA/9nGRuZwrabAQhUJHw3cLknT/8aTdB85HI1TkJaZOgo+cXMcnU7d4ontrGosc1L9hLvV1+/QRuCLnMkAz/1GD/kigAntPy27BXYjuUHu7dikcMq3Kd/3ubS39/lv1dJ9gBQbe75xbV3MQj6jUzFw3w8yRz3zR9ImZM=,iv:iyp5wivI3qAP+yyUbO7CcfVb/zCmCqTGc156CBbAzgw=,tag:BFnx+j4YM51b1cOjJi+mjA==,type:str]
+    lastmodified: "2023-03-27T16:36:22Z"
+    mac: ENC[AES256_GCM,data:fSruqqrCcyKHdrjSBlO8w29bxiyVfNsvnYtp1Fg1cN620z+V6+Q1CLCOI2HGpEEtLJOediryh70wA3L1tANhPt1zVOVoXlE8KeRH64M/QJYaRCqNpr/+YTkDcohiQaFcpCi5IPiHbPG+GZo13iasS9liqfi22eUdshWezrjzdGM=,iv:byDiq/n+7yVoLqXm4d99Yk9Ygpy6Ai+gnVZcXNVUuQU=,tag:W1FZWx3QvEWEZBRbHBGZPQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3
