@@ -110,24 +110,21 @@ tap_install:
 
     namespace_provisioner:
       controller: true
-      namespace_selector:
-        matchExpressions:
-        - key: apps.tanzu.vmware.com/tap-ns
-          operator: Exists
       additional_sources:
-        - git:
-            ref: origin/main
-            subPath: clusters/common/namespaces/dev-namespace
-            url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-          path: _ytt_lib/namespace-resources
+      - git:
+          ref: origin/main
+          subPath: ns-provisioner-samples/credentials
+          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+        path: _ytt_lib/credentials-setup
       import_data_values_secrets:
-        - name: workload-git-auth
-          namespace: tap-install
-          create_export: true
+      - name: workload-git-auth
+        namespace: tap-install
+        create_export: true
       overlay_secrets:
-        - name: workload-git-auth-overlay
-          namespace: tap-install
-          create_export: true
+      - name: workload-git-auth-overlay
+        namespace: tap-install
+        create_export: true
+
     scanning:
       metadataStore:
         url: "" # Disable embedded integration since it's deprecated
