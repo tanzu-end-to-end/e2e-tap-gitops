@@ -108,26 +108,32 @@ tap_install:
       app_service_type: ClusterIP # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
       ns_for_export_app_cert: "*"
 
-     namespace_provisioner:
-       controller: true
-       namespace_selector:
-         matchExpressions:
-         - key: apps.tanzu.vmware.com/tap-ns
-           operator: Exists
-       additional_sources:
-         - git:
-             ref: origin/main
-             subPath: clusters/common/namespaces/dev-namespace
-             url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-           path: _ytt_lib/namespace-resources
-       import_data_values_secrets:
-         - name: workload-git-auth
-           namespace: tap-install
-           create_export: true
-       overlay_secrets:
-         - name: workload-git-auth-overlay
-           namespace: tap-install
-           create_export: true
+    namespace_provisioner:
+      controller: false
+      gitops_install:
+        ref: origin/main
+        subPath: clusters/e2e-tap-build-cluster/cluster-config/namespace-provisioner/namespaces
+        url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+      namespace_provisioner:
+        controller: true
+        namespace_selector:
+          matchExpressions:
+          - key: apps.tanzu.vmware.com/tap-ns
+            operator: Exists
+        additional_sources:
+          - git:
+              ref: origin/main
+              subPath: clusters/common/namespaces/dev-namespace
+              url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+            path: _ytt_lib/namespace-resources
+        import_data_values_secrets:
+          - name: workload-git-auth
+            namespace: tap-install
+            create_export: true
+        overlay_secrets:
+          - name: workload-git-auth-overlay
+            namespace: tap-install
+            create_export: true
     scanning:
       metadataStore:
         url: "" # Disable embedded integration since it's deprecated
