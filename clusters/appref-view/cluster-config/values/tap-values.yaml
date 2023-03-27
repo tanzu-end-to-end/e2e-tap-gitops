@@ -121,6 +121,10 @@ tap_install:
             subPath: clusters/common/namespaces/dev-namespace
             url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
           path: _ytt_lib/namespace-resources
+      import_data_values_secrets:
+         - name: git-ssh
+           namespace: tap-install
+           create_export: true
     scanning:
       metadataStore:
         url: "" # Disable embedded integration since it's deprecated
