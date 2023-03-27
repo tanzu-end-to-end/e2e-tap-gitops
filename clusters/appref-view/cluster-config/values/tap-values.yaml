@@ -118,7 +118,7 @@ tap_install:
       additional_sources:
         - git:
             ref: origin/appref
-            subPath: clusters/common/namespaces/dev-namespaces
+            subPath: clusters/common/namespaces/dev-namespace
             url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
           path: _ytt_lib/namespace-resources
 
