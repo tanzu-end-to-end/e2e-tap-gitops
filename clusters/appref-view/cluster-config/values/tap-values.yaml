@@ -121,7 +121,11 @@ tap_install:
             subPath: clusters/common/namespaces/dev-namespace
             url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
           path: _ytt_lib/namespace-resources
-
+        - git:
+            ref: origin/appref
+            subPath: clusters/common/namespaces/test-scan-namespace
+            url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+          path: _ytt_lib/namespace-resources
     scanning:
       metadataStore:
         url: "" # Disable embedded integration since it's deprecated
