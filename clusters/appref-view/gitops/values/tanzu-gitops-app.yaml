@@ -15,7 +15,7 @@ spec:
   fetch:
   - git:
       url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-      ref: origin/appref
+      ref: origin/main
   template:
   - ytt:
       paths:

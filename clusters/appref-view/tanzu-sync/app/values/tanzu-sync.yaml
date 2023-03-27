@@ -1,7 +1,7 @@
 ---
 git:
   url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-  ref: origin/appref
+  ref: origin/main
   sub_path: clusters/appref-view/cluster-config
 tap_package_repository:
   oci_repository: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
