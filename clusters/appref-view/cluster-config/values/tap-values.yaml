@@ -108,6 +108,20 @@ tap_install:
       app_service_type: ClusterIP # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
       ns_for_export_app_cert: "*"
 
+
+    namespace_provisioner:
+      controller: true
+      namespace_selector:
+        matchExpressions:
+        - key: apps.tanzu.vmware.com/tap-ns
+          operator: Exists
+      additional_sources:
+        - git:
+            ref: origin/appref
+            subPath: clusters/common/namespaces/dev-namespaces
+            url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+          path: _ytt_lib/namespace-resources
+
     scanning:
       metadataStore:
         url: "" # Disable embedded integration since it's deprecated

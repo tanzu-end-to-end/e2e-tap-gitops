@@ -89,10 +89,6 @@ tap_install:
 
     namespace_provisioner:
       controller: true
-      gitops_install:
-        ref: origin/appref
-        subPath: clusters/appref-1/cluster-config/namespace-provisioner/namespaces
-        url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
       namespace_selector:
         matchExpressions:
         - key: apps.tanzu.vmware.com/tap-ns
