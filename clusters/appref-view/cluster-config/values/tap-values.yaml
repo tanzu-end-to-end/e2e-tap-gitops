@@ -142,3 +142,6 @@ tap_install:
     - name:  cert-manager
       secrets:
       - name: cert-manager-overlay
+    - name: tap-gui
+      secrets:
+      - name: tapgui-manager-overlay

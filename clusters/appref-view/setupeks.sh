@@ -17,3 +17,6 @@ eksctl create iamserviceaccount --name cert-manager --namespace cert-manager --c
 eksctl create iamserviceaccount --name external-dns --namespace tanzu-system-service-discovery --cluster appref-1 --role-name "appref1-external-dns" \
     --attach-policy-arn arn:aws:iam::XXX:policy/external-dns-policy --role-only --approve
 
+eksctl create iamserviceaccount --name tap-gui --namespace tap-gui --cluster appref-1 --role-name "appref1-read-techdocs" \
+    --attach-policy-arn arn:aws:iam::XXX:policy/ReadTapTechdocs --role-only --approve
+
