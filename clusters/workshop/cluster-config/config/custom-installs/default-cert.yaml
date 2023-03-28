@@ -4,6 +4,10 @@ kind: Certificate
 metadata:
   name: default-cert
   namespace: default
+  annotations:
+    kapp.k14s.io/change-group: certificate
+    kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+    kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
 spec:
   commonName: "*.foo.workshop.amer.end2end.link"
   dnsNames:
@@ -27,6 +31,10 @@ kind: SecretExport
 metadata:
   name: default-cert
   namespace: default
+  annotations:
+    kapp.k14s.io/change-group: certificate
+    kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+    kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
 spec:
   toNamespaces:
   - '*'
@@ -36,6 +44,10 @@ kind: TLSCertificateDelegation
 metadata:
   name: default-cert
   namespace: default
+  annotations:
+    kapp.k14s.io/change-group: certificate
+    kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+    kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
 spec:
   delegations:
   - secretName: default-cert
