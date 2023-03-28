@@ -114,15 +114,16 @@ tap_install:
           serviceLocatorMethod:
             type: 'multiTenant'
 
-        # techdocs:
-        #   builder: 'external'
-        #   publisher:
-        #     type: 'awsS3'
-        #     awsS3:
-        #       bucketName: e2e-tap-techdocs
-        #       credentials:
-        #         roleArn: arn:aws:iam::377668981663:role/ReadTapTechdocs
-
+        techdocs:
+          builder: 'external'
+          publisher:
+            type: 'awsS3'
+            awsS3:
+              bucketName: e2e-tap-techdocs
+              credentials:
+                roleArn: arn:aws:iam::377668981663:role/appref1-read-techdocs
+              s3ForcePathStyle: false
+              region: us-east-2
     metadata_store:
       app_service_type: ClusterIP # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
       ns_for_export_app_cert: "*"
