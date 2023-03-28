@@ -5,11 +5,11 @@ tap_install:
       tap_gui:
          app_config:
           proxy:
-          /metadata-store:
-            target: https://metadata-store-app.metadata-store.svc.cluster.local:8443/api/v1
-            changeOrigin: true
-            secure: true
-            ca: #@ base64.decode(data.values.clusters.view.metadatastore.app_ca)
-            headers:
-              Authorization: #@ "Bearer " + data.values.clusters.view.metadatastore.auth_token
-              X-Custom-Source: project-star
+            /metadata-store:
+              target: https://metadata-store-app.metadata-store.svc.cluster.local:8443/api/v1
+              changeOrigin: true
+              secure: true
+              ca: #@ base64.decode(data.values.clusters.view.metadatastore.app_ca)
+              headers:
+                Authorization: #@ "Bearer " + data.values.clusters.view.metadatastore.auth_token
+                X-Custom-Source: project-star
