@@ -120,8 +120,6 @@ tap_install:
             type: 'awsS3'
             awsS3:
               bucketName: e2e-tap-techdocs
-              credentials:
-                roleArn: arn:aws:iam::377668981663:role/appref1-read-techdocs
               s3ForcePathStyle: false
               region: us-east-2
     metadata_store:
