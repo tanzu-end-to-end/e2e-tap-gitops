@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: aws-auth
   namespace: kube-system
+  annotations:
+    kapp.k14s.io/delete-strategy: orphan
 data:
   mapRoles: |
     - groups:
