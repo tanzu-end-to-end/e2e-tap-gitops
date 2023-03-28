@@ -5,7 +5,7 @@ tap_install:
       tap_gui:
          app_config:
           proxy:
-            /metadata-store:
+            "/metadata-store":
               target: https://metadata-store-app.metadata-store.svc.cluster.local:8443/api/v1
               changeOrigin: true
               secure: true
