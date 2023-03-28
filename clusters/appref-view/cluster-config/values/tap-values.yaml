@@ -110,14 +110,10 @@ tap_install:
           baseUrl: https://tap-gui.appref1.amer.end2end.link
           cors:
             origin: https://tap-gui.appref1.amer.end2end.link
-        proxy:
-          /metadata-store:
-            target: https://metadata-store-app.metadata-store:8443/api/v1
-            changeOrigin: true
-            secure: false
         kubernetes:
           serviceLocatorMethod:
             type: 'multiTenant'
+
         # techdocs:
         #   builder: 'external'
         #   publisher:
