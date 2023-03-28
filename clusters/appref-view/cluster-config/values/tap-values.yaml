@@ -120,8 +120,9 @@ tap_install:
             type: 'awsS3'
             awsS3:
               bucketName: e2e-tap-techdocs
-              s3ForcePathStyle: false
               region: us-east-2
+              credentials:
+                roleArn: arn:aws:iam::377668981663:role/ReadTapTechdocs
     metadata_store:
       app_service_type: ClusterIP # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
       ns_for_export_app_cert: "*"
