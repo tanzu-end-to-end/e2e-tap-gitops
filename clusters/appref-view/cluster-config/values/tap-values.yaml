@@ -55,8 +55,8 @@ tap_install:
       gitops:
         commit_strategy: pull_request
         branch: test
-        server_address: "no"
-        repository_owner: "none"
+        repository_owner: tanzu-end-to-end
+        server_address: https://github.com
         ssh_secret: git-https
         pull_request:
           commit_branch: supply-chain
