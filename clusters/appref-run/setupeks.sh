@@ -11,12 +11,13 @@ export GIT_KNOWN_HOSTS=$(yq eval '.GIT_KNOWN_HOSTS' $PARAMS_YAML)
 export AGE_KEY=$(yq eval '.AGE_KEY' $PARAMS_YAML)
 export AWS_ACCOUNT=$(yq eval '.AWS_ACCOUNT' $PARAMS_YAML)
 
-eksctl utils associate-iam-oidc-provider --cluster appref-1 --approve
-eksctl create iamserviceaccount --name cert-manager --namespace cert-manager --cluster appref-1 --role-name "appref1-cert-manager" \
-    --attach-policy-arn arn:aws:iam::XXX:policy/cert-manager --role-only --approve
-eksctl create iamserviceaccount --name external-dns --namespace tanzu-system-service-discovery --cluster appref-1 --role-name "appref1-external-dns" \
-    --attach-policy-arn arn:aws:iam::XXX:policy/external-dns-policy --role-only --approve
+eksctl utils associate-iam-oidc-provider --cluster appref-2 --approve
 
-eksctl create iamserviceaccount --name tap-gui --namespace tap-gui --cluster appref-1 --role-name "appref1-read-techdocs" \
+# This runs a cloud formation template,  only run once otherwise remove the cf template first
+eksctl create iamserviceaccount --name cert-manager --namespace cert-manager --cluster appref-2 --role-name "appref2-cert-manager" \
+    --attach-policy-arn arn:aws:iam::377668981663:policy/cert-manager --role-only --approve
+eksctl create iamserviceaccount --name external-dns --namespace tanzu-system-service-discovery --cluster appref-2 --role-name "appref2-external-dns" \
+    --attach-policy-arn arn:aws:iam::377668981663:policy/external-dns-policy --role-only --approve
+eksctl create iamserviceaccount --name tap-gui --namespace tap-gui --cluster appref-1 --role-name "appref2-read-techdocs" \
     --attach-policy-arn arn:aws:iam::377668981663:policy/ReadTapTechdocs --role-only --approve
 

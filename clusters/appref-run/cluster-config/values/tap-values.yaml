@@ -3,9 +3,20 @@ tap_install:
   values:
     profile: full
     excluded_packages:
-      - learningcenter.tanzu.vmware.com
-      - workshops.learningcenter.tanzu.vmware.com
-      - ootb-delivery-basic.tanzu.vmware.com
+    - tap-gui.tanzu.vmware.com
+    - learningcenter.tanzu.vmware.com
+    - api-portal.tanzu.vmware.com
+    - accelerator.apps.tanzu.vmware.com
+    - workshops.learningcenter.tanzu.vmware.com
+    - cert-manager.tanzu.vmware.com
+    - contour.tanzu.vmware.com
+    - ootb-supply-chain-testing-scanning.tanzu.vmware.com
+    - ootb-supply-chain-testing.tanzu.vmware.com
+    - metadata-store.apps.tanzu.vmware.com
+    - scanning.apps.tanzu.vmware.com
+    - backend.appliveview.tanzu.vmware.com
+    - grype.scanning.apps.tanzu.vmware.com
+    - policy.apps.tanzu.vmware.com
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
     shared:
@@ -38,15 +49,10 @@ tap_install:
     buildservice:
       kp_default_repository: "registry.gcp.ellin.net/tap/build"
 
-    accelerator:
-      ingress:
-        include: true
-        enable_tls: true
-
     appliveview:
       ingressEnabled: true
 
-    supply_chain: testing_scanning
+    supply_chain: basic
 
     ootb_supply_chain_testing_scanning:
       registry:
@@ -72,46 +78,8 @@ tap_install:
    #   default_tls_secret: contour-tls/tls
    #   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 
-    tap_gui:
-      service_type: ClusterIP
-      ingressEnabled: "true"
-      app_config:
-        catalog:
-          locations:
-            - type: url
-              target: https://github.com/cpage-pivotal/spring-sensors/blob/main/catalog/catalog-info.yaml
-            - type: url
-              target: https://github.com/cpage-pivotal/tanzu-java-web-app/blob/main/catalog-info.yaml
-            - type: url
-              target: https://github.com/tanzu-end-to-end/acme-catalog/blob/main/catalog-info.yaml
-        backend:
-          baseUrl: https://tap-gui.appref2.amer.end2end.link
-          cors:
-            origin: https://tap-gui.appref2.amer.end2end.link
-        kubernetes:
-          serviceLocatorMethod:
-            type: 'multiTenant'
-
- 
-
-    metadata_store:
-      app_service_type: ClusterIP # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
-      ns_for_export_app_cert: "*"
-
-    
-
-    scanning:
-      metadataStore:
-        url: "" # Disable embedded integration since it's deprecated
-
-    grype:
-      namespace: "default" # (optional) Defaults to default namespace.
-      targetImagePullSecret: "registry-credentials"
 
     package_overlays:
     - name:  cert-manager
       secrets:
       - name: cert-manager-overlay
-    - name: tap-gui
-      secrets:
-      - name: tapgui-manager-overlay
