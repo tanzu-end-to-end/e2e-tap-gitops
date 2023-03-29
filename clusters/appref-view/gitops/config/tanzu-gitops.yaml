@@ -22,5 +22,8 @@ kind: Secret
 metadata:
   name: tanzu-gitops
   namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-group: gitops-config-app/app
+    kapp.k14s.io/change-rule: "upsert before upserting tap"
 stringData:
   values.yaml: #@ yaml.encode(config())
