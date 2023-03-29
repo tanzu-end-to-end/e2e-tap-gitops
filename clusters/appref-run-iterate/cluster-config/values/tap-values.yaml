@@ -1,0 +1,85 @@
+---
+tap_install:
+  values:
+    profile: full
+    excluded_packages:
+    - tap-gui.tanzu.vmware.com
+    - learningcenter.tanzu.vmware.com
+    - api-portal.tanzu.vmware.com
+    - accelerator.apps.tanzu.vmware.com
+    - workshops.learningcenter.tanzu.vmware.com
+    - cert-manager.tanzu.vmware.com
+    - contour.tanzu.vmware.com
+    - ootb-supply-chain-testing-scanning.tanzu.vmware.com
+    - ootb-supply-chain-testing.tanzu.vmware.com
+    - metadata-store.apps.tanzu.vmware.com
+    - scanning.apps.tanzu.vmware.com
+    - backend.appliveview.tanzu.vmware.com
+    - grype.scanning.apps.tanzu.vmware.com
+    - policy.apps.tanzu.vmware.com
+    ceip_policy_disclosed: true # Installation fails if this is set to 'false'
+
+    shared:
+      ingress_domain: appref2.amer.end2end.link
+      ingress_issuer: letsencrypt-contour-cluster-issuer
+      image_registry:
+        project_path: registry.gcp.ellin.net/tap/tbs
+
+    namespace_provisioner:
+      controller: false
+      gitops_install:
+        ref: origin/main
+        subPath: clusters/appref-run/cluster-config/namespace-provisioner/namespaces
+        url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+      additional_sources:
+      - git:
+          ref: origin/main
+          subPath: clusters/common/namespaces/dev-namespace
+          url: https://github.com/tanzu-end-to-end/e2e-tap-gitops.git
+        path: _ytt_lib/dev-namespace-setup
+      import_data_values_secrets:
+      - name: workload-git-auth
+        namespace: tap-install
+        create_export: true
+      overlay_secrets:
+      - name: workload-git-auth-overlay
+        namespace: tap-install
+        create_export: true
+
+    buildservice:
+      kp_default_repository: "registry.gcp.ellin.net/tap/build"
+
+    appliveview:
+      ingressEnabled: true
+
+    supply_chain: basic
+
+    ootb_supply_chain_testing_scanning:
+      registry:
+        server: "registry.gcp.ellin.net"
+        repository: "tap/supply-chain"
+      gitops:
+        commit_strategy: pull_request
+        branch: test
+        repository_owner: tanzu-end-to-end
+        server_address: https://github.com
+        ssh_secret: git-https
+        pull_request:
+          commit_branch: supply-chain
+          server_kind: github
+          pull_request_title: Ready for review
+          pull_request_body: Pull Request by TAP
+    contour:
+      envoy:
+        service:
+          type: LoadBalancer
+
+   # cnrs:
+   #   default_tls_secret: contour-tls/tls
+   #   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+
+
+    package_overlays:
+    - name:  cert-manager
+      secrets:
+      - name: cert-manager-overlay
