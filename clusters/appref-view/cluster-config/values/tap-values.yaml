@@ -108,7 +108,7 @@ tap_install:
               target: https://github.com/tanzu-end-to-end/acme-catalog/blob/main/catalog-info.yaml
         backend:
           csp:
-            connect-src: ["'self'", 'http:', 'https:']
+            connect-src: ['self', 'http:', 'https:']
             img-src: false
           baseUrl: https://tap-gui.appref1.amer.end2end.link
           cors:
