@@ -1,4 +1,5 @@
 *sensitive-values.yaml
+!**/.tanzu-managed/*
 apply.sh
 params.yaml
 .DS_Store
