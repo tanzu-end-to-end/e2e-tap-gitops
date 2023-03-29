@@ -9,7 +9,7 @@ tap_install:
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
     shared:
-      ingress_domain: appref1.amer.end2end.link
+      ingress_domain: view.amer.end2end.link
       ingress_issuer: letsencrypt-contour-cluster-issuer
       image_registry:
         project_path: registry.gcp.ellin.net/tap/tbs
@@ -107,9 +107,9 @@ tap_install:
             - type: url
               target: https://github.com/tanzu-end-to-end/acme-catalog/blob/main/catalog-info.yaml
         backend:
-          baseUrl: https://tap-gui.appref1.amer.end2end.link
+          baseUrl: https://tap-gui.view.amer.end2end.link
           cors:
-            origin: https://tap-gui.appref1.amer.end2end.link
+            origin: https://tap-gui.view.amer.end2end.link
         kubernetes:
           serviceLocatorMethod:
             type: 'multiTenant'
