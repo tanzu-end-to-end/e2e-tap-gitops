@@ -78,8 +78,3 @@ tap_install:
    #   default_tls_secret: contour-tls/tls
    #   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 
-
-    package_overlays:
-    - name:  cert-manager
-      secrets:
-      - name: cert-manager-overlay
