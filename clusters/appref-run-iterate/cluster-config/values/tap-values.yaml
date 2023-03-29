@@ -8,8 +8,6 @@ tap_install:
     - api-portal.tanzu.vmware.com
     - accelerator.apps.tanzu.vmware.com
     - workshops.learningcenter.tanzu.vmware.com
-    - cert-manager.tanzu.vmware.com
-    - contour.tanzu.vmware.com
     - ootb-supply-chain-testing-scanning.tanzu.vmware.com
     - ootb-supply-chain-testing.tanzu.vmware.com
     - metadata-store.apps.tanzu.vmware.com
