@@ -19,4 +19,6 @@ stringData:
     ---
     #@overlay/match missing_ok=True
     #@overlay/match-child-defaults missing_ok=True
-    (@= yaml.encode(overlay_data()) @)
+    metadata:
+      annotations:
+        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/appref1-read-techdocs
