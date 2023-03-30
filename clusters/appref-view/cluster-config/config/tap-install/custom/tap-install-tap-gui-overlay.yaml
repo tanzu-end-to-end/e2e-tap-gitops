@@ -12,7 +12,6 @@ metadata:
   namespace: tap-install
 type: Opaque
 stringData:
-  #@yaml/text-templated-strings
   overlay.yaml: |
     #@ load("@ytt:overlay", "overlay")
     #@overlay/match by=overlay.subset({"kind": "ServiceAccount", "metadata": {"name": "tap-gui"}})
@@ -21,4 +20,4 @@ stringData:
     #@overlay/match-child-defaults missing_ok=True
     metadata:
       annotations:
-        (@= yaml.encode(overlay_data()) @)
+        'eks.amazonaws.com/role-arn:': arn:aws:iam::377668981663:role/appref1-cert-manager
