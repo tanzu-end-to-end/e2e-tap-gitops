@@ -1,6 +1,0 @@
-#@data/values
----
-namespaces:
-  - name: canary
-  - name: prod
-  - name: test
