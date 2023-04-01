@@ -44,7 +44,7 @@ tap_install:
       additional_sources:
       - git:
           ref: origin/main
-          subPath: clusters/common/namespaces/dev-namespace
+          subPath: clusters/common/namespaces/qa-namespace
           url: https://github.com/tanzu-end-to-end/e2e-tap-gitops.git
         path: _ytt_lib/dev-namespace-setup
       import_data_values_secrets:
