@@ -1,0 +1,24 @@
+#@ load("@ytt:data", "data")
+
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: app-prod-deliverables
+  namespace: tanzu-sync
+spec:
+  serviceAccountName: sync-sa
+  syncPeriod: 1m
+  fetch:
+  - git:
+      url: #@ data.values.custom.gitops.url
+      ref: #@ data.values.custom.gitops.ref
+  template:
+  - ytt:
+      paths:
+      - clusters/common/app-contents/common/run-cluster-deliverables
+      valuesFrom:
+       - secretRef:
+           name: tanzu-gitops
+  deploy:
+  - kapp: {}
