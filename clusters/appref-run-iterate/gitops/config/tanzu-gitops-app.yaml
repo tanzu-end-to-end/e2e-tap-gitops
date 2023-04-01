@@ -8,7 +8,9 @@ metadata:
   namespace: tanzu-sync
   annotations:
     kapp.k14s.io/change-group: gitops-config-app/app
-    kapp.k14s.io/change-rule: "upsert before upserting tap"
+    kapp.k14s.io/change-rule.installtapfirst: "upsert before upserting tanzu-sync"
+    kapp.k14s.io/change-rule.deletebeforetap: "delete before deleting tanzu-sync" 
+
 spec:
   serviceAccountName: sync-sa
   syncPeriod: 1m

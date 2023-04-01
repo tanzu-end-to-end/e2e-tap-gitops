@@ -18,7 +18,18 @@ tap_install:
     - namespace-provisioner.apps.tanzu.vmware.com
     
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
-
+    appliveview_connector:
+      backend: 
+        #! host: appliveview.ref.appref.end2end.link
+        ingressEnabled: true
+        caCertData: ""
+    cnrs:
+      domain_name: "appref2.amer.end2end.link"
+      ingress:
+        internal:
+          namespace: tanzu-system-ingress
+        external:
+          namespace: tanzu-system-ingress
     shared:
       ingress_domain: appref2.amer.end2end.link
       ingress_issuer: letsencrypt-contour-cluster-issuer
@@ -49,32 +60,16 @@ tap_install:
     buildservice:
       kp_default_repository: "registry.gcp.ellin.net/tap/build"
 
-    appliveview:
-      ingressEnabled: true
-
     supply_chain: basic
 
-    ootb_supply_chain_testing_scanning:
-      registry:
+    ootb_supply_chain_basic:
+      registry: //fix
         server: "registry.gcp.ellin.net"
         repository: "tap/supply-chain"
       gitops:
-        commit_strategy: pull_request
-        branch: test
-        repository_owner: tanzu-end-to-end
-        server_address: https://github.com
-        ssh_secret: git-https
-        pull_request:
-          commit_branch: supply-chain
-          server_kind: github
-          pull_request_title: Ready for review
-          pull_request_body: Pull Request by TAP
-    contour:
-      envoy:
-        service:
-          type: LoadBalancer
-
-   # cnrs:
-   #   default_tls_secret: contour-tls/tls
-   #   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+        ssh_secret: ""
+   
+   #! cnrs:
+   #!   default_tls_secret: contour-tls/tls
+   #!   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 

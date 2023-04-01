@@ -1,4 +1,0 @@
-tap_install:
-  custom:
-    aws: 
-      arn: "arn:aws:iam::377668981663:role/appref1-cert-manager"

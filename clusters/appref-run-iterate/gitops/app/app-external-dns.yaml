@@ -6,9 +6,6 @@ kind: App
 metadata:
   name: external-dns-config-app
   namespace: tanzu-sync
-  annotations:
-    kapp.k14s.io/change-group: external-dns-config-app/app
-    kapp.k14s.io/change-rule: "upsert after upserting tap"
 spec:
   serviceAccountName: sync-sa
   syncPeriod: 1m

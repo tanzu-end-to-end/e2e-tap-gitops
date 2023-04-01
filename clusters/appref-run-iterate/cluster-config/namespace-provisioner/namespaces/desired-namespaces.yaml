@@ -1,6 +1,6 @@
 #@data/values
 ---
 namespaces:
-  - name: workload-corby
-  - name: workloads
+  - name: test
+  - name: prod
   - name: canary
