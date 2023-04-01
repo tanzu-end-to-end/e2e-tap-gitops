@@ -1,0 +1,25 @@
+#@ load("@ytt:data", "data")
+
+---
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+metadata:
+  labels:
+    app.kubernetes.io/component: deliverable
+    app.kubernetes.io/part-of: hello
+    app.tanzu.vmware.com/deliverable-type: web
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/workload-name: hello
+    carto.run/workload-namespace: canary
+  name: hello
+  namespace: canary-prod
+spec:
+  params:
+  - name: gitops_sub_path
+    value: config/canary/hello
+  source:
+    git:
+      ref:
+        branch: prod
+      url: https://github.com/tanzu-end-to-end/trp-gitops-canary
+    subPath: config/canary/hello
