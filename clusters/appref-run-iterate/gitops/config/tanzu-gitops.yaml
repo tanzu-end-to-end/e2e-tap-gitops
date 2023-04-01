@@ -13,7 +13,7 @@ custom:
   externalDns:
     aws:
       ownerId: Z058827839E1KJS2IN09B
-      roleArn: arn:aws:iam::377668981663:role/appref1-external-dns
+      roleArn: arn:aws:iam::377668981663:role/appref2-external-dns
       domainFilter: appref.amer.end2end.link
 #@ end      
 ---
