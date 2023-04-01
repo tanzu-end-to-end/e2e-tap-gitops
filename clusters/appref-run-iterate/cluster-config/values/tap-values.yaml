@@ -73,7 +73,7 @@ tap_install:
    #!   default_tls_secret: contour-tls/tls
    #!   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 
-package_overlays:
-- name:  cnrs
-  secrets:
-  - name: cnrs-network-config-overlay
+    package_overlays:
+    - name:  cnrs
+      secrets:
+      - name: cnrs-network-config-overlay
