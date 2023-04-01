@@ -63,7 +63,7 @@ tap_install:
     supply_chain: basic
 
     ootb_supply_chain_basic:
-      registry: //fix
+      registry: 
         server: "registry.gcp.ellin.net"
         repository: "tap/supply-chain"
       gitops:
