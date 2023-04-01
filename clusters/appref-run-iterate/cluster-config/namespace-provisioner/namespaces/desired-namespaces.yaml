@@ -3,4 +3,4 @@
 namespaces:
   - name: test
   - name: prod
-  - name: canary
+  - name: canary-prod
