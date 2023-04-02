@@ -16,7 +16,7 @@ tap_install:
                 authProvider: serviceAccount
                 serviceAccountToken: #@ data.values.clusters.tap_gui.appref1.sa_token
                 #! skipMetricsLookup per https://vmware.slack.com/archives/C02D60T1ZDJ/p1661527343469509
-                skipTLSVerify: false
+                skipTLSVerify: true
                 skipMetricsLookup: true
                 caData: #@ data.values.clusters.tap_gui.appref1.api_server_ca
               - url:  #@ data.values.clusters.tap_gui.appref2.api_server_url
@@ -24,6 +24,6 @@ tap_install:
                 authProvider: serviceAccount
                 serviceAccountToken: #@ data.values.clusters.tap_gui.appref2.sa_token
                 #! skipMetricsLookup per https://vmware.slack.com/archives/C02D60T1ZDJ/p1661527343469509
-                skipTLSVerify: false
+                skipTLSVerify: true
                 skipMetricsLookup: true
                 caData: #@ data.values.clusters.tap_gui.appref2.api_server_ca
