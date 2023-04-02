@@ -2,28 +2,28 @@
 #@ load("@ytt:base64", "base64")
 
 tap_install:
-    sensitive_values:
-      tap_gui:
-         app_config:
-           kubernetes:
-             serviceLocatorMethod:
-               type: multiTenant
-             clusterLocatorMethods:
-             - type: config
-               clusters:
-               - url:  #@ data.values.clusters.tap_gui.appref1.api_server_url
-                 name: tap-view
-                 authProvider: serviceAccount
-                 serviceAccountToken: #@ data.values.clusters.tap_gui.appref1.sa_token
-                 #! skipMetricsLookup per https://vmware.slack.com/archives/C02D60T1ZDJ/p1661527343469509
-                 skipTLSVerify: false
-                 skipMetricsLookup: true
-                 caData: #@ data.values.clusters.tap_gui.appref1.api_server_ca
-               - url:  #@ data.values.clusters.tap_gui.appref2.api_server_url
-                 name: tap-run
-                 authProvider: serviceAccount
-                 serviceAccountToken: #@ data.values.clusters.tap_gui.appref2.sa_token
-                 #! skipMetricsLookup per https://vmware.slack.com/archives/C02D60T1ZDJ/p1661527343469509
-                 skipTLSVerify: false
-                 skipMetricsLookup: true
-                 caData: #@ data.values.clusters.tap_gui.appref2.api_server_ca
+  sensitive_values:
+    tap_gui:
+        app_config:
+          kubernetes:
+            serviceLocatorMethod:
+              type: multiTenant
+            clusterLocatorMethods:
+              - type: config
+                clusters:
+                - url:  #@ data.values.clusters.tap_gui.appref1.api_server_url
+                  name: tap-view
+                  authProvider: serviceAccount
+                  serviceAccountToken: #@ data.values.clusters.tap_gui.appref1.sa_token
+                  #! skipMetricsLookup per https://vmware.slack.com/archives/C02D60T1ZDJ/p1661527343469509
+                  skipTLSVerify: false
+                  skipMetricsLookup: true
+                  caData: #@ data.values.clusters.tap_gui.appref1.api_server_ca
+                - url:  #@ data.values.clusters.tap_gui.appref2.api_server_url
+                  name: tap-run
+                  authProvider: serviceAccount
+                  serviceAccountToken: #@ data.values.clusters.tap_gui.appref2.sa_token
+                  #! skipMetricsLookup per https://vmware.slack.com/archives/C02D60T1ZDJ/p1661527343469509
+                  skipTLSVerify: false
+                  skipMetricsLookup: true
+                  caData: #@ data.values.clusters.tap_gui.appref2.api_server_ca
