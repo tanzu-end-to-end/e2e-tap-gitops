@@ -77,3 +77,6 @@ tap_install:
     - name:  cnrs
       secrets:
       - name: cnrs-network-config-overlay
+    - name:  cert-manager
+      secrets:
+      - name: cert-manager-overlay
