@@ -122,9 +122,6 @@ tap_install:
           baseUrl: https://tap-gui.view.amer.end2end.link
           cors:
             origin: https://tap-gui.view.amer.end2end.link
-        kubernetes:
-          serviceLocatorMethod:
-            type: 'multiTenant'
 
  
 
