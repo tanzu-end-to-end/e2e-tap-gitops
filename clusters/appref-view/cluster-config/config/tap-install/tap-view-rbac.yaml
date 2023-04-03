@@ -10,7 +10,7 @@ metadata:
   name: tap-gui-viewer-tapview
   namespace: tap-gui
   annotations:
-    kubernetes.io/service-account.name: tap-gui-viewer-tapview
+    kubernetes.io/service-account.name: tap-gui-viewer
 type: kubernetes.io/service-account-token
 data:
   # You can include additional key value pairs as you do with Opaque Secrets
