@@ -17,7 +17,7 @@ spec:
     versionSelection:
       constraints: #@ data.values.postgres_operator.version
       prereleases: {}
-  serviceAccountName: tap-install-gitops-sa
+  serviceAccountName: tap-install-sa
   values:
   - secretRef:
       name: postgres-operator-values
