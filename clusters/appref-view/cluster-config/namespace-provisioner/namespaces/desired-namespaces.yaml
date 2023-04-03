@@ -4,3 +4,4 @@ namespaces:
   - name: workload-corby
   - name: workloads
   - name: canary
+  - name: dotnet-todos
