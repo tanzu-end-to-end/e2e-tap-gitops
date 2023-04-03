@@ -1,0 +1,14 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: hello
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: hello
+  namespace: workloads
+spec:
+  source:
+    git:
+      url: https://github.com/tanzu-end-to-end/trp-tanzu-java-web-app.git
+      ref:
+        branch: main
