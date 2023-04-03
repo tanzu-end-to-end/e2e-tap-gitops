@@ -3,7 +3,7 @@
 
 ---
 #@ def config():
-dockerRegistrySecretName: tap-registry
+dockerRegistrySecretName: install-registry-dockerconfig
 #@ end
 ---
 apiVersion: v1
