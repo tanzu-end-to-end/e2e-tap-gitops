@@ -3,6 +3,8 @@
 #@ load("@ytt:base64", "base64")
 ---
 #@ def config():
+postgres_operator:
+  version: 1.7.3
 custom:
   gitops:
     url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
