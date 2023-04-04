@@ -5,3 +5,4 @@ namespaces:
   - name: workloads
   - name: canary
   - name: dotnet-todos
+  - name: petclinic
