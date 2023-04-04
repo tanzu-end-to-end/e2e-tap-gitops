@@ -19,7 +19,7 @@ tap_install:
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
     appliveview_connector:
       backend: 
-        #! host: appliveview.ref.appref.end2end.link
+        host: appliveview.amer.appref.end2end.link
         ingressEnabled: true
         caCertData: ""
     cnrs:
