@@ -36,5 +36,5 @@ spec:
     - name: postgres-db
       ref:
         apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ClassClaim
+        kind: ResourceClaim
         name: petclinic-db

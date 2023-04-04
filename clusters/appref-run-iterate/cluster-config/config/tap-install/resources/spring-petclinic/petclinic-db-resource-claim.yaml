@@ -1,5 +1,5 @@
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-kind: ClassClaim
+kind: ResourceClaim
 metadata:
   name: petclinic-db
   namespace: spring-petclinic
