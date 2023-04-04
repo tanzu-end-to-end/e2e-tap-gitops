@@ -6,3 +6,4 @@ namespaces:
   - name: canary
   - name: dotnet-todos
   - name: spring-petclinic
+    scanpolicy: scanpolicy
