@@ -46,9 +46,6 @@ tap_install:
         include: true
         enable_tls: true
 
-  appliveview:
-    ingressEnabled: true
-  
     supply_chain: testing_scanning
     ootb_supply_chain_testing_scanning:
       registry:
