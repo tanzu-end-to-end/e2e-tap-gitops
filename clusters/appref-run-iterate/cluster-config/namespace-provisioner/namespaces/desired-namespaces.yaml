@@ -5,3 +5,4 @@ namespaces:
   - name: prod
   - name: canary-prod
   - name: canary-test
+  - name: spring-petclinic
