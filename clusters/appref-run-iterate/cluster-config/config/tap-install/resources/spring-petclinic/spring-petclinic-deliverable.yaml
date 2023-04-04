@@ -1,0 +1,23 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+metadata:
+  labels:
+    app.kubernetes.io/component: deliverable
+    app.kubernetes.io/part-of: spring-petclinic
+    app.tanzu.vmware.com/deliverable-type: web
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/workload-name: spring-petclinic
+    carto.run/workload-namespace: spring-petclinic
+  name: spring-petclinic
+  namespace: canary-test
+spec:
+  params:
+    - name: gitops_sub_path
+      value: config/spring-petclinic/spring-petclinic
+  source:
+    git:
+      ref:
+        branch: test
+      url: https://github.com/tanzu-end-to-end/trp-gitops-spring-petclinic

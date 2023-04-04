@@ -4,3 +4,4 @@ namespaces:
   - name: test
   - name: prod
   - name: canary-prod
+  - name: canary-test
