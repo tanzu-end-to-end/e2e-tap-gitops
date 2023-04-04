@@ -116,3 +116,7 @@ rules:
   resources:
   - podintents
   verbs: ['get', 'watch', 'list']
+- apiGroups: ['appliveview.apps.tanzu.vmware.com']
+  resources:
+  - resourceinspectiongrants
+  verbs: ['get', 'watch', 'list', 'create']

@@ -7,10 +7,13 @@ tap_install:
       - workshops.learningcenter.tanzu.vmware.com
       - ootb-delivery-basic.tanzu.vmware.com
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
-
+    appliveview_connector:
+      backend:
+        host: appliveview.view.amer.end2end.link
+        ingressEnabled: true
     shared:
       ingress_domain: view.amer.end2end.link
-      ingress_issuer: letsencrypt-contour-cluster-issuer
+      ingress_issuer: letsencrypt-`con`tour-cluster-issuer
       image_registry:
         project_path: registry.gcp.ellin.net/tap/tbs
 
@@ -43,11 +46,10 @@ tap_install:
         include: true
         enable_tls: true
 
-    appliveview:
-      ingressEnabled: true
-
+  appliveview:
+    ingressEnabled: true
+  
     supply_chain: testing_scanning
-
     ootb_supply_chain_testing_scanning:
       registry:
         server: "registry.gcp.ellin.net"
