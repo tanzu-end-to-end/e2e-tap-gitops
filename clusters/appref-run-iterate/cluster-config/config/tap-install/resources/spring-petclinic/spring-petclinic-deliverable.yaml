@@ -11,7 +11,7 @@ metadata:
     carto.run/workload-name: spring-petclinic
     carto.run/workload-namespace: spring-petclinic
   name: spring-petclinic
-  namespace: canary-test
+  namespace: spring-petclinic
 spec:
   params:
     - name: gitops_sub_path
