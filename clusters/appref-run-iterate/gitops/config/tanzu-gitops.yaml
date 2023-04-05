@@ -3,6 +3,11 @@
 #@ load("@ytt:base64", "base64")
 ---
 #@ def config():
+#! appsso:
+#!   clientId: #@ data.values.clusters.appsso.clientId
+#!   clientSecret: #@ data.values.clusters.appsso.clientSecret
+#!   audience: #@ data.values.clusters.appsso.audience
+#!   baseUrl: #@ data.values.clusters.tap_gui.appref2.baseUrl
 postgres_operator:
   version: 1.7.3
 custom:
