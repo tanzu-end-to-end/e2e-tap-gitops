@@ -9,6 +9,7 @@ metadata:
   annotations:
     kapp.k14s.io/change-group: services-config-app/app
     kapp.k14s.io/change-rule: "upsert after upserting tap"
+    kapp.k14s.io/change-rule.delete: "delete before deleting tap"
 spec:
   serviceAccountName: sync-sa
   syncPeriod: 1m
