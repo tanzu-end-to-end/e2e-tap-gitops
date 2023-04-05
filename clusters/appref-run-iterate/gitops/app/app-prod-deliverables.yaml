@@ -20,7 +20,7 @@ spec:
   template:
   - ytt:
       paths:
-      - clusters/common/app-contents/common/run-cluster-deliverables
+      - clusters/common/app-contents/common/run-cluster
       valuesFrom:
        - secretRef:
            name: tanzu-gitops
