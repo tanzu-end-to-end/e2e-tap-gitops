@@ -14,6 +14,11 @@ spec:
       url: #@ data.values.custom.gitops.url
       ref: #@ data.values.custom.gitops.ref
   template:
+  - template:
+    - sops:
+      age:
+        privateKeysSecretRef:
+           name: sync-age-identity
   - ytt:
       paths:
       - clusters/common/app-contents/common/app-sso
