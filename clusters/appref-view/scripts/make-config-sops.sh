@@ -1,0 +1,2 @@
+#do this for every file in  /Users/jeff/dev/tap/e2e-tap-gitops/clusters/appref-view/scripts/templates/config
+sops -e --input-type yaml --output-type yaml <(ytt -f /Users/jeff/dev/tap/e2e-tap-gitops/clusters/appref-view/scripts/templates/config/default-auth-server.yaml  --data-values-file $PARAMS_YAML) > cluster-config/config/default-auth-server.sops.yaml
