@@ -3,7 +3,7 @@
 export SOPS_AGE_RECIPIENTS=$(yq eval '.AGE_RECIPIENTS' $PARAMS_YAML)
 BASEDIR=$(git rev-parse --show-toplevel)
 
-if [ "$PWD" != "$BASEDIR" ]; 
+if [ "$PWD" != "$BASEDIR/clusters/appref-view/scripts" ]; 
 then 
   cd $BASEDIR/clusters/appref-view/scripts
 fi

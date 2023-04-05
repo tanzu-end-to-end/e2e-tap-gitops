@@ -2,29 +2,21 @@
 
 : ${PARAMS_YAML?"Need to set PARAMS_YAML environment variable"}
 
-if [ ! $# -eq 1 ]; then
+if [ ! $# -eq 2 ]; then
   echo "Must cluster name as args"
   exit 1
 fi
+CONTEXT=$1
+CLUSTER_NAME=$2
 
-CLUSTER_NAME=$1
+kubectl config use-context $1
 
-#kubectl config use-context $CLUSTER_NAME
+export CA=$(kubectl get secret -n metadata-store app-tls-cert -o json | jq -r ".data.\"ca.crt\"")
+yq e -i '.clusters.metadatastore.app_ca = env(CA)' $PARAMS_YAML
 
-#export CA=$(kubectl get secret -n metadata-store app-tls-cert -o json | jq -r ".data.\"ca.crt\"")
-#yq e -i '.clusters.view.metadatastore.app_ca = env(CA)' $PARAMS_YAML
+export AUTH_TOKEN=`kubectl get secret metadata-store-read-write-client -n metadata-store -ojsonpath="{.data.token}" | base64 -d`
+yq e -i '.clusters.view.metadatastore.auth_token = env(AUTH_TOKEN)' $PARAMS_YAML
 
-#export AUTH_TOKEN=`kubectl get secret metadata-store-read-write-client -n metadata-store -ojsonpath="{.data.token}" | base64 -d`
-#yq e -i '.clusters.view.metadatastore.auth_token = env(AUTH_TOKEN)' $PARAMS_YAML
-export SOPS_AGE_RECIPIENTS=$(yq eval '.AGE_RECIPIENTS' $PARAMS_YAML)
-#sops -e --input-type yaml --output-type yaml <(ytt -f meta-data-store-token-sensitive-values-template.yaml --data-values-file $PARAMS_YAML) > ../cluster-config/config/tap-install/meta-data-store-token-sensitive-values.sops.yaml
+echo "use sops to update template"
 
-echo "commit new file to git to force update"
-
-for f in ./templates/config/*.yaml;
-do 
-    echo "Processing $f file...";
-    newfile=$(basename $f)
-    barefile=$"${newfile%.*}"
-    sops -e --input-type yaml --output-type yaml <(ytt -f $f --data-values-file $PARAMS_YAML) > ../cluster-config/values/$barefile.sops.yaml
-done
+sops -e --input-type yaml --output-type yaml <(ytt -f meta-data-store-token-sensitive-values-template.yaml  --data-values-file $PARAMS_YAML) > ../cluster-config/values/meta-data-store-token-sensitive-values-template.sops.yaml
