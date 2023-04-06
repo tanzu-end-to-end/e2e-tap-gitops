@@ -13,7 +13,7 @@ tap_install:
         ingressEnabled: true
     shared:
       ingress_domain: view.amer.end2end.link
-      ingress_issuer: letsencrypt-`con`tour-cluster-issuer
+      ingress_issuer: letsencrypt-contour-cluster-issuer
       image_registry:
         project_path: registry.gcp.ellin.net/tap/tbs
 
