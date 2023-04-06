@@ -9,7 +9,7 @@ tap_install:
               target: https://metadata-store-app.metadata-store.svc.cluster.local:8443/api/v1
               changeOrigin: true
               secure: true
-              ca: #@ base64.decode(data.values.clusters.view.metadatastore.app_ca)
+              ca: #@ base64.decode(data.values.clusters.metadatastore.app_ca)
               headers:
-                Authorization: #@ "Bearer " + data.values.clusters.view.metadatastore.auth_token
+                Authorization: #@ "Bearer " + data.values.clusters.metadatastore.auth_token
                 X-Custom-Source: project-star
