@@ -1,3 +1,3 @@
 tap_install:
   package_repository:
-    oci_repository: registry.gcp.ellin.net/tapbits
+    oci_repository: registry.gcp.ellin.net/tapbits/tap-packages
