@@ -19,7 +19,7 @@ spec:
   template:
   - ytt:
       paths:
-      - clusters/common/app-contents/common/build-cluster-resources
+      - clusters/common/app-contents/common/build-cluster/resources
       valuesFrom:
        - secretRef:
            name: tanzu-gitops
