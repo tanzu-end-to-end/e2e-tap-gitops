@@ -10,6 +10,6 @@ metadata:
 spec:
   fetch:
     imgpkgBundle:
-      image: "registry.tanzu.vmware.com/packages-for-vmware-tanzu-data-services/tds-packages:1.0.2"
+      image: "registry.gcp.ellin.net/tapbits/tds-packages:1.0.2"
       secretRef:
         name: install-registry-dockerconfig
