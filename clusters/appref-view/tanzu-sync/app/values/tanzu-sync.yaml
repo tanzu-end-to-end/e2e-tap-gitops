@@ -4,4 +4,4 @@ git:
   ref: origin/main
   sub_path: clusters/appref-view/cluster-config
 tap_package_repository:
-  oci_repository: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
+  oci_repository: registry.gcp.ellin.net/tapbits
