@@ -10,6 +10,7 @@ export GIT_SSH_PRIVATE_KEY=$(yq eval '.GIT_SSH_PRIVATE_KEY' $PARAMS_YAML)
 export GIT_KNOWN_HOSTS=$(yq eval '.GIT_KNOWN_HOSTS' $PARAMS_YAML)
 export AGE_KEY=$(yq eval '.AGE_KEY' $PARAMS_YAML)
 export AWS_ACCOUNT=$(yq eval '.AWS_ACCOUNT' $PARAMS_YAML)
+export TAP_PKGR_REPO=registry.gcp.ellin.net/tapbits/tap-packages
 
 eksctl utils associate-iam-oidc-provider --cluster appref-1 --approve
 eksctl create iamserviceaccount --name cert-manager --namespace cert-manager --cluster appref-1 --role-name "appref1-cert-manager" \
