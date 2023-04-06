@@ -1,9 +1,14 @@
+#@ load("@ytt:data", "data")
+#! tap gui isn't installed in all clusters but it is where we are putting the 
+#! serviceAccount
 
-#! apiVersion: v1
-#! kind: Namespace
-#! metadata:
-#!   name: tap-gui
-#!  ---
+#@ if hasattr(data.values, 'createTapGuiNamespace') and data.values.createTapGuiNamespace==True: 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tap-gui
+#@ end
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -19,7 +24,7 @@ metadata:
     kubernetes.io/service-account.name: tap-gui-viewer
 type: kubernetes.io/service-account-token
 data:
-  # You can include additional key value pairs as you do with Opaque Secrets
+  #! You can include additional key value pairs as you do with Opaque Secrets
   extra: YmFyCg==
 ---
 apiVersion: rbac.authorization.k8s.io/v1
