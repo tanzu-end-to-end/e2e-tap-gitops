@@ -13,7 +13,7 @@ spec:
       app.kubernetes.io/component: authorization-server
   authorizationGrantTypes:
     - authorization_code
-  clientAuthenticationMethod: basic
+  clientAuthenticationMethod: client_secret_basic
   requireUserConsent: true
   redirectURIs:
     #! Final portion of the url needs to match the serviceClaim name in the workload
