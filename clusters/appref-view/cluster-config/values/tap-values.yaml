@@ -17,6 +17,8 @@ tap_install:
       image_registry:
         project_path: registry.gcp.ellin.net/tap/tbs
 
+    appliveview:
+      ingressEnabled: true
     namespace_provisioner:
       controller: false
       gitops_install:
