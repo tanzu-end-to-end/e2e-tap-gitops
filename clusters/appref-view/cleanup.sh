@@ -1,6 +1,10 @@
 #!/usr/bin/env bash 
 set -o errexit -o nounset -o pipefail
 
+
+kubectl delete providerconfig/bitnami-services-provider-helm
+
+
 kubectl delete clusterrolebinding/external-dns-viewer
 kubectl delete clusterrole/external-dns
 kubectl delete clusterrole crossplane-admin
@@ -15,7 +19,7 @@ kubectl delete clusterrole tap-telemetry-admin                                  
 
 kubectl delete clusterrole crossplane-admin
 
-kubectl delete clusterrol crossplane-provider-helm
+kubectl delete clusterrole crossplane-provider-helm
 kubectl delete clusterrole crossplane
 kubectl delete clusterrole crossplane:system:aggregate-to-crossplane
 kubectl delete clusterrole crossplane-provider-kubernetes
