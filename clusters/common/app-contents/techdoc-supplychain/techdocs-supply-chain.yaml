@@ -1,0 +1,32 @@
+apiVersion: carto.run/v1alpha1
+kind: ClusterSupplyChain
+metadata:
+  annotations:
+  name: source-to-techdocs
+spec:
+  resources:
+  - name: source-provider
+    params:
+    - default: default
+      name: serviceAccount
+    - default: go-git
+      name: gitImplementation
+    templateRef:
+      kind: ClusterSourceTemplate
+      name: source-template  
+  - name: source-tester
+    sources:
+    - name: source
+      resource: source-provider
+    templateRef:
+      kind: ClusterSourceTemplate
+      name: techdocs-pipeline
+  selector:
+    apps.tanzu.vmware.com/has-techdocs: "true"
+  selectorMatchExpressions:
+  - key: apps.tanzu.vmware.com/workload-type
+    operator: In
+    values:
+    - web
+    - server
+    - worker
