@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: techdocs-tekton-pipeline
+  namespace: canary
   labels:
     apps.tanzu.vmware.com/pipeline: techdocs     # (!) required
 spec:
