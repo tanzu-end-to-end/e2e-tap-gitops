@@ -17,7 +17,6 @@ spec:
     - name: techdocs_pipeline_matching_labels
       default: 
         apps.tanzu.vmware.com/pipeline: techdocs
-  
   ytt: |
     #@ load("@ytt:data", "data")
 
@@ -39,13 +38,14 @@ spec:
     #@   end
     #@   params.append({ "name": "source-url", "value": data.values.source.url })
     #@   params.append({ "name": "source-revision", "value": data.values.source.revision })
+    #@   params.append({ "name": "component-name", "value": data.values.workload.metadata.name})
     #@   return params
     #@ end
     ---
     apiVersion: carto.run/v1alpha1
     kind: Runnable
     metadata:
-      name: #@ test-foo
+      name: #@ "techdocs-"+data.values.workload.metadata.name
       labels: #@ merge_labels({ "app.kubernetes.io/component": "test" })
     spec:
       #@ if/end hasattr(data.values.workload.spec, "serviceAccountName"):
@@ -60,8 +60,8 @@ spec:
           apiVersion: tekton.dev/v1beta1
           kind: Pipeline
 
-        #@ not hasattr(data.values, "testing_pipeline_matching_labels") or fail("testing_pipeline_matching_labels param is required")
-        matchingLabels: #@ data.values.params["testing_pipeline_matching_labels"] or fail("testing_pipeline_matching_labels param cannot be empty")
+        #@ not hasattr(data.values, "techdocs_pipeline_matching_labels") or fail("techdocs_pipeline_matching_labels param is required")
+        matchingLabels: #@ data.values.params["techdocs_pipeline_matching_labels"] or fail("techdocs_pipeline_matching_labels param cannot be empty")
 
       inputs: 
         tekton-params: #@ merged_tekton_params()
