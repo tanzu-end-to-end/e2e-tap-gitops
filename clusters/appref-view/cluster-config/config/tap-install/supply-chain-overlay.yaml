@@ -18,7 +18,7 @@ stringData:
           resource: source-scanner
         templateRef:
           kind: ClusterSourceTemplate
-          name: testing-pipeline
+          name: techdocs-pipeline
     #! Each edit requires two parts:
     #! 1. which item(s) in the collection to target (match)
     #! 2. what operation to perform (here, insert)
