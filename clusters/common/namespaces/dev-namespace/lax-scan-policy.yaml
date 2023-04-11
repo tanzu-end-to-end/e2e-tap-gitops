@@ -2,7 +2,7 @@
 #@ def in_list(key, list):
 #@  return hasattr(data.values.tap_values, key) and (data.values.tap_values[key] in list)
 #@ end
-#@ if/end in_list('supply_chain', ['testing_scanning']) and in_list('profile', ['full', 'iterate', 'build']):
+#@ if/end in_list('supply_chain', ['testing_scanning']) and in_list('profile', ['full', 'iterate', 'build'])and hasattr(data.values, 'scanpolicy') and data.values.scanpolicy == 'lax':
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
