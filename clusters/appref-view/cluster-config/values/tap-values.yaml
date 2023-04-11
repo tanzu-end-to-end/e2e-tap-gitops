@@ -147,3 +147,6 @@ tap_install:
     - name: tap-gui
       secrets:
       - name: tapgui-manager-overlay
+    - name: ootb-supply-chain-testing-scanning
+      secrets:
+      - name: supply-chain-overlay
