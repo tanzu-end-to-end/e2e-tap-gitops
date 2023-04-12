@@ -94,7 +94,9 @@ tap_install:
    # cnrs:
    #   default_tls_secret: contour-tls/tls
    #   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
-
+    api_portal:
+      apiPortalServer:
+        sourceUrls: "https://bookstore-api-demo-test.appref2.amer.end2end.link/v3/api-docs"
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"
