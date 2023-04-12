@@ -1,0 +1,45 @@
+apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
+kind: APIDescriptor
+metadata:
+  name: bookstore-api-demo-ref
+spec:
+  type: openapi
+  description: A set of API endpoints to manage the resources within the petclinic app.
+  system: bookstore-api-demo
+  owner: dev-team-1
+  location:
+    path: "/v3/api-docs"
+    baseURL:
+      ref:
+        apiVersion: serving.knative.dev/v1
+        kind: Service
+        name: bookstore-api-demo
+        namespace: test # optional
+---
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: workloads
+    kapp.k14s.io/change-rule.0: "upsert after upserting pkgr"
+    kapp.k14s.io/change-rule.1: "delete before deleting pkgr"
+  labels:
+    app.kubernetes.io/component: deliverable
+    app.kubernetes.io/part-of: bookstore-api-demo
+    app.tanzu.vmware.com/deliverable-type: web
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/workload-name: bookstore-api-demo
+    carto.run/workload-namespace: canary
+  name: bookstore-api-demo
+  namespace: test
+spec:
+  params:
+  - name: gitops_sub_path
+    value: config/canary/bookstore-api-demo
+  source:
+    git:
+      ref:
+        branch: test
+      url: https://github.com/tanzu-end-to-end/trp-gitops-canary
+    subPath: config/canary/bookstore-api-demo
