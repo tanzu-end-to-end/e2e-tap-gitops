@@ -61,7 +61,9 @@ tap_install:
       kp_default_repository: "registry.gcp.ellin.net/tap/build"
 
     supply_chain: basic
-
+    apis:
+      sync_period: 1m
+      tap_gui_url: https://tap-gui.view.amer.end2end.link/
     ootb_supply_chain_basic:
       registry: 
         server: "registry.gcp.ellin.net"
