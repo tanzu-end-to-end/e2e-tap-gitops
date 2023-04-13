@@ -1,0 +1,15 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: apix-repository
+  namespace: tap-install
+  annotations:
+    kapp.k14s.io/change-group: apix
+spec:
+  fetch:
+    imgpkgBundle:
+      image: "registry.gcp.ellin.net/tapbits/apix-packages:0.2.5"
+      secretRef:
+        name: install-registry-dockerconfig

@@ -5,13 +5,15 @@
 #@ def config():
 postgres_operator:
   version: 1.7.3
+apix:
+  version: 0.2.5
 custom:
   gitops:
     url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
     ref: origin/main
   tap:
     cert:
-      cn: "*.appref1.amer.end2end.link"
+      cn: "*.run.amer.end2end.link"
   externalDns:
     aws:
       ownerId: Z058827839E1KJS2IN09B
