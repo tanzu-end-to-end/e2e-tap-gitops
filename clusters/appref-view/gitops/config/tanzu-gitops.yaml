@@ -13,7 +13,7 @@ custom:
     ref: origin/main
   tap:
     cert:
-      cn: "*.run.amer.end2end.link"
+      cn: "*.view.amer.end2end.link"
   externalDns:
     aws:
       ownerId: Z058827839E1KJS2IN09B
