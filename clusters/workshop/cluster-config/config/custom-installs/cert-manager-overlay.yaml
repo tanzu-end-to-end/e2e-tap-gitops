@@ -8,10 +8,66 @@ type: Opaque
 stringData:
   overlay.yaml: |
     #@ load("@ytt:overlay", "overlay")
+    #@ load("@ytt:data", "data")
     #@overlay/match by=overlay.subset({"kind": "ServiceAccount", "metadata": {"name": "cert-manager"}})
     ---
     #@overlay/match missing_ok=True
     #@overlay/match-child-defaults missing_ok=True
     metadata:
       annotations:
-        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/cert-manager
+        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/workshop-cert-manager
+    ---
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: default-cert
+      namespace: default
+      annotations:
+        kapp.k14s.io/change-group: certificate
+        kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+        kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
+    spec:
+      commonName: #@ "*.{}".format(data.values.tap_install.shared.ingress_domain)
+      dnsNames:
+      - #@ "*.{}".format(data.values.tap_install.shared.ingress_domain)
+      duration: 2160h0m0s
+      issuerRef:
+        kind: ClusterIssuer
+        name: letsencrypt-contour-cluster-issuer
+      privateKey:
+        algorithm: RSA
+        encoding: PKCS1
+        size: 2048
+      renewBefore: 360h0m0s
+      secretName: default-cert
+      subject:
+        organizations:
+        - vmware
+    ---
+    apiVersion: secretgen.carvel.dev/v1alpha1
+    kind: SecretExport
+    metadata:
+      name: default-cert
+      namespace: default
+      annotations:
+        kapp.k14s.io/change-group: certificate
+        kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+        kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
+    spec:
+      toNamespaces:
+      - '*'
+    ---
+    apiVersion: projectcontour.io/v1
+    kind: TLSCertificateDelegation
+    metadata:
+      name: default-cert
+      namespace: default
+      annotations:
+        kapp.k14s.io/change-group: certificate
+        kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+        kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
+    spec:
+      delegations:
+      - secretName: default-cert
+        targetNamespaces:
+        - "*"
