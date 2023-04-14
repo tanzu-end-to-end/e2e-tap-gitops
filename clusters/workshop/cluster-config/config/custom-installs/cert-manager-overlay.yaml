@@ -18,6 +18,26 @@ stringData:
         eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/workshop-cert-manager
     ---
     apiVersion: cert-manager.io/v1
+    kind: ClusterIssuer
+    metadata:
+      name: letsencrypt-contour-cluster-issuer
+      annotations:
+        kapp.k14s.io/change-group: certificate
+        kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+        kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
+    spec:
+      acme:
+        email: cdelashmutt@vmware.com
+        privateKeySecretRef:
+          name: acme-account-key
+        server: https://acme-v02.api.letsencrypt.org/directory
+        solvers:
+        - dns01:
+            route53:
+              region: us-east-2
+              hostedZoneID: Z058827839E1KJS2IN09B
+    ---
+    apiVersion: cert-manager.io/v1
     kind: Certificate
     metadata:
       name: default-cert
