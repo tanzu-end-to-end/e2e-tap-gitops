@@ -35,7 +35,7 @@ stringData:
       - --source=service
       - --source=ingress
       - --source=httpproxy
-      - --domain-filter=(@-= data.values.tap_install.shared.ingress_domain @-)
+      - --domain-filter=(@=- data.values.tap_install.shared.ingress_domain @-)
       - --policy=upsert-only
       - --registry=txt
       - --txt-owner-id=Z058827839E1KJS2IN09B
