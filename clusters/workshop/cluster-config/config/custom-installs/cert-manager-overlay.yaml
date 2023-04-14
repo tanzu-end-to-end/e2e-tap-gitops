@@ -47,9 +47,9 @@ stringData:
         kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
         kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
     spec:
-      commonName: #@ "*.{}".format(data.values.tap_install.shared.ingress_domain)
+      commonName: #@ "*.{}".format(data.values.shared.ingress_domain)
       dnsNames:
-      - #@ "*.{}".format(data.values.tap_install.shared.ingress_domain)
+      - #@ "*.{}".format(data.values.shared.ingress_domain)
       duration: 2160h0m0s
       issuerRef:
         kind: ClusterIssuer
