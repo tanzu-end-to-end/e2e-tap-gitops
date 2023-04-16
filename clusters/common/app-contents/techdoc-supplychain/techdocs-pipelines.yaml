@@ -46,9 +46,9 @@ spec:
     #@   params.append({ "name": "source-url", "value": data.values.source.url })
     #@   params.append({ "name": "source-revision", "value": data.values.source.revision })
     #@   params.append({ "name": "component-name", "value": data.values.workload.metadata.name})
-    #@   params.append({ "techdocs-type": "techdocs-type", "value": param("techdoc_type"))
+    #@   params.append({ "techdocs-type": "techdocs-type", "value": param("techdoc_type")})
     #@   if hasattr(data.values.workload.spec.source, "subPath"):
-    #@        params.append({ "techdocs-type": "subPath", "value": #@ data.values.workload.spec.source.subPath
+    #@        params.append({ "techdocs-type": "subPath", "value": #@ data.values.workload.spec.source.subPath})
     #@   end
     #@   params.append({ "name": "subPath", "value": data.values.workload.metadata.name})
     #@   return params
