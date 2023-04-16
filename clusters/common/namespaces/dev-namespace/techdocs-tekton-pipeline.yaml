@@ -27,6 +27,8 @@ spec:
           - name: source-url
           - name: source-revision
           - name: component-name
+          - name: techdocs-type
+          - name: subPath
         steps:
           - name: test
             image: registry.gcp.ellin.net/library/techdocs-builder
