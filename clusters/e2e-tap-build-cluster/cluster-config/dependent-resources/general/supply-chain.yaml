@@ -2,8 +2,6 @@ apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
   name: source-scan-to-url
-  annotations:
-    kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
 spec:
   params:
   - name: maven_repository_url

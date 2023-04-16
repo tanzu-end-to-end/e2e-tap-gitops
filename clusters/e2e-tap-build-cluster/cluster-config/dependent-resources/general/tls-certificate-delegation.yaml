@@ -3,8 +3,6 @@ kind: TLSCertificateDelegation
 metadata:
   name: contour-delegation
   namespace: contour-tls
-  annotations:
-    kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
 spec:
   delegations:
     - secretName: tls

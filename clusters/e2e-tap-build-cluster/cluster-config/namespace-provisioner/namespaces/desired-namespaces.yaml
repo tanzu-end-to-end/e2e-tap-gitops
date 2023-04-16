@@ -1,5 +1,4 @@
 #@data/values
 ---
 namespaces:
-  - name: workload-corby
   - name: workloads
