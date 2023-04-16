@@ -1,3 +1,9 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: purge-git
+---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
