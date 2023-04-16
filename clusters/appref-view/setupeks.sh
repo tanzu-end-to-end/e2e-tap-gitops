@@ -21,3 +21,5 @@ eksctl create iamserviceaccount --name external-dns --namespace tanzu-system-ser
 eksctl create iamserviceaccount --name tap-gui --namespace tap-gui --cluster appref-1 --role-name "appref1-read-techdocs" \
     --attach-policy-arn arn:aws:iam::377668981663:policy/ReadTapTechdocs --role-only --approve
 
+eksctl create iamserviceaccount --name techdocs --namespace canary --cluster appref-1 --role-name "appref1-write-techdocs" \
+    --attach-policy-arn arn:aws:iam::377668981663:policy/ReadTapTechdocs --role-only --approve

@@ -32,8 +32,6 @@ spec:
               ENTITY_NAMESPACE=default
               ENTITY_KIND=component
               ENTITY_NAME=$(params.component-name)
-              #ENTITY_SUBPATH=$(params.subPath)
-              #ENTITY_TYPE=$(params.techdocs-type)
               
               wget -qO- $(params.source-url) | tar xvz -m
               if [ -f 'mkdocs.yml' ]; then
