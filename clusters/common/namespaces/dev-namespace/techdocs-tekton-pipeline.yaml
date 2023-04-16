@@ -11,7 +11,7 @@ spec:
     - name: component-name
     - name: techdocs-type 
     - name: techdocs-subpath                # (!) required
-
+      default: "."
   tasks:
     - name: test
       params:
@@ -24,7 +24,7 @@ spec:
         - name: techdocs-type                # (!) required
           value: $(params.techdocs-type)
         - name: techdocs-subpath                # (!) required
-          value: $(params.techdocs-type)
+          value: $(params.techdocs-subpath)
       taskSpec:
         params:
           - name: source-url
