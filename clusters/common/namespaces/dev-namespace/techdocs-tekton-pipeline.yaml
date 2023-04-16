@@ -42,7 +42,7 @@ spec:
               ENTITY_KIND=component
               ENTITY_NAME=$(params.component-name)
               ENTITY_TYPE=$(params.techdocs-type)
-              ENTITY_SUBPATH=$params.techdocs-subpath) 
+              ENTITY_SUBPATH=$(params.techdocs-subpath) 
               wget -qO- $(params.source-url) | tar xvz -m
               if [ -f 'mkdocs.yml' ]; then
                 techdocs-cli generate --no-docker --verbose
