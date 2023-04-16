@@ -9,8 +9,6 @@ spec:
     - name: source-url                        # (!) required
     - name: source-revision                   # (!) required
     - name: component-name
-    - name: techdocs-type
-    - name: subPath
   tasks:
     - name: test
       params:
@@ -20,16 +18,10 @@ spec:
           value: $(params.source-revision)
         - name: component-name
           value: $(params.component-name)
-        - name: techdocs-type
-          value: $(params.techdocs-type)
-        - name: subPath
-          value: $(params.subPath)
       taskSpec:
         params:
           - name: source-url
           - name: source-revision
-          - name: component-name
-          - name: techdocs-type
           - name: component-name
         steps:
           - name: test
@@ -40,8 +32,8 @@ spec:
               ENTITY_NAMESPACE=default
               ENTITY_KIND=component
               ENTITY_NAME=$(params.component-name)
-              ENTITY_SUBPATH=$(params.subPath)
-              ENTITY_TYPE=$(params.techdocs-type)
+              #ENTITY_SUBPATH=$(params.subPath)
+              #ENTITY_TYPE=$(params.techdocs-type)
               
               wget -qO- $(params.source-url) | tar xvz -m
               if [ -f 'mkdocs.yml' ]; then
