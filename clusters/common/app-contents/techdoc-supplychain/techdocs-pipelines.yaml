@@ -28,7 +28,14 @@ spec:
     #@   labels.update(fixed_values)
     #@   return labels
     #@ end
-
+    
+    #@ def param(key):
+    #@   if not key in data.values.params:
+    #@     return None
+    #@   end
+    #@   return data.values.params[key]
+    #@ end
+    
     #@ def merged_tekton_params():
     #@   params = []
     #@   if hasattr(data.values, "params") and hasattr(data.values.params, "techdocs_pipeline_matching_labels"):
@@ -39,6 +46,11 @@ spec:
     #@   params.append({ "name": "source-url", "value": data.values.source.url })
     #@   params.append({ "name": "source-revision", "value": data.values.source.revision })
     #@   params.append({ "name": "component-name", "value": data.values.workload.metadata.name})
+    #@   params.append({ "techdocs-type": "techdocs-type", "value": param("techdoc_type"))
+    #@   if/end hasattr(data.values.workload.spec.source, "subPath"):
+    #@        params.append({ "techdocs-type": "subPath", "value": #@ data.values.workload.spec.source.subPath
+    #@   end
+    #@   params.append({ "name": "subPath", "value": data.values.workload.metadata.name})
     #@   return params
     #@ end
     ---

@@ -21,12 +21,8 @@ spec:
     templateRef:
       kind: ClusterSourceTemplate
       name: techdocs-pipeline
-  selector:
-    apps.tanzu.vmware.com/has-techdocs: "true"
   selectorMatchExpressions:
   - key: apps.tanzu.vmware.com/workload-type
     operator: In
     values:
-    - web
-    - server
-    - worker
+    - techdocs

@@ -1,0 +1,18 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: techdocs-tsalm
+  labels:
+    apps.tanzu.vmware.com/workload-type: techdocs
+    app.kubernetes.io/part-of: hello
+  namespace: workloads
+spec:
+  params:
+    - name: techdoc_type
+      value: "system"
+  source:
+    git:
+      url: https://github.com/tsalm-vmware/spring-cloud-demo-tap
+      ref:
+        branch: main
+    subPath: tap/catalog
