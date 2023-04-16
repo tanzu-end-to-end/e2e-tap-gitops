@@ -9,6 +9,8 @@ spec:
     - name: source-url                        # (!) required
     - name: source-revision                   # (!) required
     - name: component-name
+    - name: techdocs-type
+    - name: subPath
   tasks:
     - name: test
       params:
@@ -28,7 +30,7 @@ spec:
           - name: source-revision
           - name: component-name
           - name: techdocs-type
-          - name: subPath
+          - name: component-name
         steps:
           - name: test
             image: registry.gcp.ellin.net/library/techdocs-builder
