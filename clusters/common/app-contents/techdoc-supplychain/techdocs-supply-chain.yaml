@@ -14,7 +14,7 @@ spec:
     templateRef:
       kind: ClusterSourceTemplate
       name: source-template  
-  - name: source-tester
+  - name: techdocs-creator
     sources:
     - name: source
       resource: source-provider
