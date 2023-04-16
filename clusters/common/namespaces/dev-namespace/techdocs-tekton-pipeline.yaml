@@ -9,6 +9,8 @@ spec:
     - name: source-url                        # (!) required
     - name: source-revision                   # (!) required
     - name: component-name
+    - name: techdocs-type                # (!) required
+
   tasks:
     - name: test
       params:
@@ -18,11 +20,15 @@ spec:
           value: $(params.source-revision)
         - name: component-name
           value: $(params.component-name)
+        - name: techdocs-type                # (!) required
+          value: $(params.techdocs-type)
+ 
       taskSpec:
         params:
           - name: source-url
           - name: source-revision
           - name: component-name
+          - name: techdocs-type 
         steps:
           - name: test
             image: registry.gcp.ellin.net/library/techdocs-builder
@@ -32,7 +38,7 @@ spec:
               ENTITY_NAMESPACE=default
               ENTITY_KIND=component
               ENTITY_NAME=$(params.component-name)
-              
+              ENTITY_TYPE=$(params.techdocs-type)
               wget -qO- $(params.source-url) | tar xvz -m
               if [ -f 'mkdocs.yml' ]; then
                 techdocs-cli generate --no-docker --verbose
@@ -40,4 +46,4 @@ spec:
               else 
                 echo "file does not exist."
               fi
-              env
+              echo $ENTITY_TYPE
