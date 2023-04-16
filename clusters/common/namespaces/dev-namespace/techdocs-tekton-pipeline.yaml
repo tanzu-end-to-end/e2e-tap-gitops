@@ -18,6 +18,10 @@ spec:
           value: $(params.source-revision)
         - name: component-name
           value: $(params.component-name)
+        - name: techdocs-type
+          value: $(params.techdocs-type)
+        - name: subPath
+          value: $(params.subPath)
       taskSpec:
         params:
           - name: source-url
@@ -32,6 +36,9 @@ spec:
               ENTITY_NAMESPACE=default
               ENTITY_KIND=component
               ENTITY_NAME=$(params.component-name)
+              ENTITY_SUBPATH=$(params.subPath)
+              ENTITY_TYPE=$(params.techdocs-type)
+              env
               wget -qO- $(params.source-url) | tar xvz -m
               if [ -f 'mkdocs.yml' ]; then
                 techdocs-cli generate --no-docker --verbose
