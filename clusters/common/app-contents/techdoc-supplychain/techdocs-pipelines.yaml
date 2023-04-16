@@ -29,7 +29,7 @@ spec:
     #@   return labels
     #@ end
     
-    #@ def param(key):
+    #@ def get_param(key):
     #@   if not key in data.values.params:
     #@     return None
     #@   end
@@ -46,9 +46,9 @@ spec:
     #@   params.append({ "name": "source-url", "value": data.values.source.url })
     #@   params.append({ "name": "source-revision", "value": data.values.source.revision })
     #@   params.append({ "name": "component-name", "value": data.values.workload.metadata.name})
-    #@   params.append({ "name": "techdocs-type", "value": param("techdoc_type")})
+    #@   params.append({ "name": "techdocs-type", "value": get_param("techdoc_type")})
     #@   if hasattr(data.values.workload.spec.source, "subPath"):
-    #@        params.append({ "name": "subPath", "value": #@ data.values.workload.spec.source.subPath})
+    #@        params.append({ "name": "subPath", "value": data.values.workload.spec.source.subPath})
     #@   end
     #@   return params
     #@ end
