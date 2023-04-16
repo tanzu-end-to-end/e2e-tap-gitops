@@ -25,7 +25,7 @@ tap_install:
         secret_name: tls
       domain: contour.e2e.corby.cc
       samples:
-        include: false
+        include: true
 
     appliveview:
       ingressEnabled: true
