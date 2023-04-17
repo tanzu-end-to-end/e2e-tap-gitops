@@ -15,6 +15,9 @@ spec:
       kind: ClusterSourceTemplate
       name: source-template  
   - name: techdocs-creator
+    params:
+    - default: component
+      name: techdocs_type
     sources:
     - name: source
       resource: source-provider
