@@ -1,55 +1,77 @@
 ---
-apiVersion: cert-manager.io/v1
-kind: Certificate
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
 metadata:
-  name: default-cert
-  namespace: default
+  name: sync
+  namespace: tanzu-sync
   annotations:
-    kapp.k14s.io/change-group: certificate
-    kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
-    kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
+    kapp.k14s.io/change-group: custom-certs
+    kapp.k14s.io/change-rule.0: "upsert after upserting tanzu-sync"
+    kapp.k14s.io/change-rule.3: "delete before deleting tanzu-sync"
 spec:
-  commonName: "*.foo.workshop.amer.end2end.link"
-  dnsNames:
-  - "*.foo.workshop.amer.end2end.link"
-  duration: 2160h0m0s
-  issuerRef:
-    kind: ClusterIssuer
-    name: letsencrypt-contour-cluster-issuer
-  privateKey:
-    algorithm: RSA
-    encoding: PKCS1
-    size: 2048
-  renewBefore: 360h0m0s
-  secretName: default-cert
-  subject:
-    organizations:
-    - vmware
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretExport
-metadata:
-  name: default-cert
-  namespace: default
-  annotations:
-    kapp.k14s.io/change-group: certificate
-    kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
-    kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
-spec:
-  toNamespaces:
-  - '*'
----
-apiVersion: projectcontour.io/v1
-kind: TLSCertificateDelegation
-metadata:
-  name: default-cert
-  namespace: default
-  annotations:
-    kapp.k14s.io/change-group: certificate
-    kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
-    kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
-spec:
-  delegations:
-  - secretName: default-cert
-    targetNamespaces:
-    - "*"
+  serviceAccountName: sync-sa
+  fetch:
+    - inline:
+        paths:
+          cert-and-delegation.yaml: |
+            ---
+            apiVersion: cert-manager.io/v1
+            kind: Certificate
+            metadata:
+              name: default-cert
+              namespace: default
+              annotations:
+                kapp.k14s.io/change-group: certificate
+                kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+                kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
+            spec:
+              commonName: "*.foo.workshop.amer.end2end.link"
+              dnsNames:
+              - "*.foo.workshop.amer.end2end.link"
+              duration: 2160h0m0s
+              issuerRef:
+                kind: ClusterIssuer
+                name: letsencrypt-contour-cluster-issuer
+              privateKey:
+                algorithm: RSA
+                encoding: PKCS1
+                size: 2048
+              renewBefore: 360h0m0s
+              secretName: default-cert
+              subject:
+                organizations:
+                - vmware
+            ---
+            apiVersion: secretgen.carvel.dev/v1alpha1
+            kind: SecretExport
+            metadata:
+              name: default-cert
+              namespace: default
+              annotations:
+                kapp.k14s.io/change-group: certificate
+                kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+                kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
+            spec:
+              toNamespaces:
+              - '*'
+            ---
+            apiVersion: projectcontour.io/v1
+            kind: TLSCertificateDelegation
+            metadata:
+              name: default-cert
+              namespace: default
+              annotations:
+                kapp.k14s.io/change-group: certificate
+                kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
+                kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
+            spec:
+              delegations:
+              - secretName: default-cert
+                targetNamespaces:
+                - "*"
+  template:
+    - ytt:
+        paths: 
+        - .
+  deploy:
+    - kapp: {}
