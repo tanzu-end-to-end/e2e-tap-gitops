@@ -39,21 +39,6 @@ tap_install:
         workload:
           type: Deployment
           replicas: 3
-    cert_manager:
-      issuers:
-      - apiVersion: cert-manager.io/v1
-        kind: ClusterIssuer
-        metadata:
-          name: letsencrypt-contour-cluster-issuer
-        spec:
-          acme:
-            email: cdelashmutt@vmware.com
-            server: https://acme-v02.api.letsencrypt.org/directory
-            solvers:
-            - dns01:
-                route53:
-                  region: us-east-2
-                  hostedZoneID: Z058827839E1KJS2IN09B
     learningcenter:
       ingressSecret:
         secretName: default-cert
