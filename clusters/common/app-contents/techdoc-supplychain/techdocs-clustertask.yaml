@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: ClusterTask
+metadata:
+  name: techdocs-task
+spec:
+  params:
+    - name: source-url
+    - name: component-name
+    - name: techdocs-type
+    - name: techdocs-subpath
+    - name: source-revision
+
+  steps:
+    - name: publish-techdocs
+      image: ubuntu # contains bash
+      script: |
+        #!/usr/bin/env bash
+        echo "Hello from Bash!"
+        echo $(params.source-url)
+        echo $(params.component-name)
+        echo $(params.techdocs-type)
+        echo $(params.techdocs-subpath)
+        echo $(params.source-revision)
+    

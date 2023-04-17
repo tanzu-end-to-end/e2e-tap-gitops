@@ -22,8 +22,8 @@ spec:
     - name: source
       resource: source-provider
     templateRef:
-      kind: ClusterSourceTemplate
-      name: techdocs-pipeline
+      kind: ClusterTemplate
+      name: techdocs-pipeline-task
   selectorMatchExpressions:
   - key: apps.tanzu.vmware.com/workload-type
     operator: In
