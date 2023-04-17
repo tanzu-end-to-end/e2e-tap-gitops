@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: techdocs-tsalm
+  name: sc-architecture-system
   labels:
     apps.tanzu.vmware.com/workload-type: techdocs
     app.kubernetes.io/part-of: hello
