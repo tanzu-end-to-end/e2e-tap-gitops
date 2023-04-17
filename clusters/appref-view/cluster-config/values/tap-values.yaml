@@ -122,7 +122,7 @@ tap_install:
             font-src: ['self', "https:", "data:"]
             form-action: ['self']
             frame-ancestors: ['self']
-            img-src: ['self', 'data:']
+            img-src: ['self', 'data:','https']
             object-src: ["'none'"]
             script-src: ["'self'"]
             script-src-attr: ["'none'"]
