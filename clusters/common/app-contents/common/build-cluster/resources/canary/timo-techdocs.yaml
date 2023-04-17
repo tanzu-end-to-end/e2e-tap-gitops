@@ -8,7 +8,7 @@ metadata:
   namespace: workloads
 spec:
   params:
-    - name: techdoc_type
+    - name: techdocs_type
       value: "system"
   source:
     git:
