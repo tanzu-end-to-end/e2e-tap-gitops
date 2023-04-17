@@ -43,6 +43,7 @@ spec:
               ENTITY_TYPE=$(params.techdocs-type)
               ENTITY_SUBPATH=$(params.techdocs-subpath) 
               wget -qO- $(params.source-url) | tar xvz -m
+              echo changing dir to $ENTITY_SUBPATH
               cd $ENTITY_SUBPATH
               if [ -f 'mkdocs.yml' ]; then
                 techdocs-cli generate --no-docker --verbose
