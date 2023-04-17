@@ -40,7 +40,7 @@ tap_install:
           type: Deployment
           replicas: 3
     cert_manager:
-      cluster_issuers:
+      issuers:
       - apiVersion: cert-manager.io/v1
         kind: ClusterIssuer
         metadata:
