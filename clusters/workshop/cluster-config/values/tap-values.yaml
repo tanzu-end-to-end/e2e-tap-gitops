@@ -54,8 +54,6 @@ tap_install:
                 route53:
                   region: us-east-2
                   hostedZoneID: Z058827839E1KJS2IN09B
-
-
     learningcenter:
       ingressSecret:
         secretName: default-cert
