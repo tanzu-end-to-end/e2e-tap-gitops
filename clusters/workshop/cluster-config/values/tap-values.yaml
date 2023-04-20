@@ -51,7 +51,7 @@ tap_install:
         secretName: default-cert
       app_config:
         app:
-          baseUrl: https://tap-gui.workshop.amer.end2end.link
+          baseUrl: https://tap-gui.foo.workshop.amer.end2end.link
         catalog:
           locations:
             - type: url
