@@ -34,7 +34,6 @@ stringData:
       args:
       - --source=service
       - --source=ingress
-      - --source=contour-httpproxy
       - --domain-filter=(@-= data.values.tap_install.values.shared.ingress_domain @)
       - --policy=upsert-only
       - --registry=txt
