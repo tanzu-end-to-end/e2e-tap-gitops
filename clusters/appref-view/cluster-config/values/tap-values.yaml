@@ -97,15 +97,12 @@ tap_install:
    #   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 
     tap_gui:
+      metadataStoreAutoconfiguration: true #! Create the app service account new in 1.5
       service_type: ClusterIP
       ingressEnabled: "true"
       app_config:
         catalog:
           locations:
-            - type: url
-              target: https://github.com/cpage-pivotal/spring-sensors/blob/main/catalog/catalog-info.yaml
-            - type: url
-              target: https://github.com/cpage-pivotal/tanzu-java-web-app/blob/main/catalog-info.yaml
             - type: url
               target: https://github.com/tanzu-end-to-end/acme-catalog/blob/main/catalog-info.yaml
         techdocs:
@@ -122,7 +119,7 @@ tap_install:
             font-src: ['self', "https:", "data:"]
             form-action: ['self']
             frame-ancestors: ['self']
-            img-src: ['self', 'data:']
+            img-src: ['self', 'data:','https:']
             object-src: ["'none'"]
             script-src: ["'self'"]
             script-src-attr: ["'none'"]

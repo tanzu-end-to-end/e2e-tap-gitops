@@ -17,6 +17,9 @@ spec:
     - name: techdocs_pipeline_matching_labels
       default: 
         apps.tanzu.vmware.com/pipeline: techdocs
+    - name: techdocs_type
+      default:
+        component
   ytt: |
     #@ load("@ytt:data", "data")
 
@@ -29,13 +32,6 @@ spec:
     #@   return labels
     #@ end
     
-    #@ def get_param(key):
-    #@   if not key in data.values.params:
-    #@     return None
-    #@   end
-    #@   return data.values.params[key]
-    #@ end
-    
     #@ def merged_tekton_params():
     #@   params = []
     #@   if hasattr(data.values, "params") and hasattr(data.values.params, "techdocs_pipeline_matching_labels"):
@@ -46,9 +42,9 @@ spec:
     #@   params.append({ "name": "source-url", "value": data.values.source.url })
     #@   params.append({ "name": "source-revision", "value": data.values.source.revision })
     #@   params.append({ "name": "component-name", "value": data.values.workload.metadata.name})
-    #@   params.append({ "name": "techdocs-type", "value": get_param("techdoc_type")})
+    #@   params.append({ "name": "techdocs-type", "value": data.values.params.techdocs_type})
     #@   if hasattr(data.values.workload.spec.source, "subPath"):
-    #@        params.append({ "name": "subPath", "value": data.values.workload.spec.source.subPath})
+    #@        params.append({ "name": "techdocs-subpath", "value": data.values.workload.spec.source.subPath})
     #@   end
     #@   return params
     #@ end

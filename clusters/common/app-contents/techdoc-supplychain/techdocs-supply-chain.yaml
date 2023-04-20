@@ -15,12 +15,15 @@ spec:
       kind: ClusterSourceTemplate
       name: source-template  
   - name: techdocs-creator
+    params:
+    - default: component
+      name: techdocs_type
     sources:
     - name: source
       resource: source-provider
     templateRef:
-      kind: ClusterSourceTemplate
-      name: techdocs-pipeline
+      kind: ClusterTemplate
+      name: techdocs-pipeline-task
   selectorMatchExpressions:
   - key: apps.tanzu.vmware.com/workload-type
     operator: In

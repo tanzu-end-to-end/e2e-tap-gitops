@@ -39,7 +39,6 @@ tap_install:
         workload:
           type: Deployment
           replicas: 3
-
     learningcenter:
       ingressSecret:
         secretName: default-cert
