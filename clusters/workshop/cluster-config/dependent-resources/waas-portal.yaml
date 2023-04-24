@@ -1,10 +1,5 @@
 #@ load("@ytt:data", "data")
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: waas-portal
----
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretImport
 metadata:

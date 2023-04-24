@@ -66,11 +66,17 @@ tap_install:
         host: appliveview.contour.e2e.corby.cc
         ingressEnabled: true
     namespace_provisioner:
-      controller: true
-      namespace_selector:
-        matchExpressions:
-        - key: apps.tanzu.vmware.com/tap-ns
-          operator: Exists
+      controller: false
+      gitops_install:
+        ref: origin/main
+        subPath: clusters/workshop/cluster-config/namespace-provisioner/namespaces
+        url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+      additional_sources:
+        - git:
+            ref: origin/main
+            subPath: clusters/workshop/cluster-config/namespace-provisioner/namespace-resources
+            url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
+          path: _ytt_lib/namespace-resources
     package_overlays:
     - name: cert-manager
       secrets:
