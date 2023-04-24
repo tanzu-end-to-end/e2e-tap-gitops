@@ -80,6 +80,7 @@ tap_install:
 
     tap_gui:
       service_type: ClusterIP
+      metadataStoreAutoconfiguration: true
       ingressEnabled: "true"
       tls:
         namespace: contour-tls
