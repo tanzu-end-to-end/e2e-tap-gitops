@@ -5,7 +5,7 @@ metadata:
   finalizers:
   - finalizers.packagerepository.packaging.carvel.dev/delete
   name: cdelashmutt-repository
-  namespace: waas-install
+  namespace: tanzu-sync
 spec:
   fetch:
     imgpkgBundle:

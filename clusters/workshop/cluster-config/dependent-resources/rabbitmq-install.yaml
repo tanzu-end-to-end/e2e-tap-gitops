@@ -5,7 +5,7 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
   name: tanzu-rabbitmq-repo
-  namespace: waas-install
+  namespace: tanzu-sync
 spec:
   fetch:
     imgpkgBundle:
@@ -15,11 +15,11 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
   name: tanzu-rabbitmq
-  namespace: waas-install
+  namespace: tanzu-sync
   annotations:
     ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: rabbit-overlay
 spec:
-  serviceAccountName: waas-install-sa
+  serviceAccountName: sync-sa
   packageRef:
     refName: rabbitmq.tanzu.vmware.com
     versionSelection:
@@ -46,7 +46,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: rabbit-overlay
-  namespace: waas-install
+  namespace: tanzu-sync
 stringData:
   fix-validating-webhook.yaml: |
     #@ load("@ytt:overlay", "overlay")

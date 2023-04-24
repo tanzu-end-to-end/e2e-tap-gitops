@@ -8,10 +8,10 @@ metadata:
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretImport
 metadata:
-  name: eduk8s-cert-tls
+  name: default-cert
   namespace: waas-portal
 spec:
-  fromNamespace: waas-install
+  fromNamespace: default
 ---
 apiVersion: v1
 kind: Secret
