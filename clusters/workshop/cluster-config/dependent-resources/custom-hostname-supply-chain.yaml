@@ -30,8 +30,8 @@ spec:
     params:
     - name: registry
       value:
-        repository: tap/supply-chain
-        server: harbor.workshop.amer.end2end.link
+        repository: pa-cdelashmutt/tap/supply-chain
+        server: gcr.io
     templateRef:
       kind: ClusterTemplate
       name: deliverable-template
@@ -43,8 +43,8 @@ spec:
       value: default
     - name: registry
       value:
-        repository: tap/supply-chain
-        server: harbor.workshop.amer.end2end.link
+        repository: pa-cdelashmutt/tap/supply-chain
+        server: gcr.io
     sources:
     - name: source
       resource: source-provider
@@ -77,8 +77,8 @@ spec:
       value: default
     - name: registry
       value:
-        repository: tap/supply-chain
-        server: harbor.workshop.amer.end2end.link
+        repository: pa-cdelashmutt/tap/supply-chain
+        server: gcr.io
     templateRef:
       kind: ClusterTemplate
       name: config-writer-template

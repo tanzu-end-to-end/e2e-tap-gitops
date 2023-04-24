@@ -41,7 +41,7 @@ spec:
               value: #@ data.values.gitea.ingress_domain
             - name: NUM_DAYS
               value: "1"
-            image: harbor.workshop.amer.end2end.link/tanzu-e2e/purge-gitrepo:latest
+            image: gcr.io/pa-cdelashmutt/tanzu-e2e/purge-gitrepo:latest
             name: purge
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File

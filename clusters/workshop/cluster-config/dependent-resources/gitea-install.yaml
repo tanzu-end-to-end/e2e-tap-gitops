@@ -5,9 +5,7 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
   annotations:
-    kapp.k14s.io/change-group: harbor-project-controller
-    kapp.k14s.io/change-rule.cert-manager: "upsert after upserting metacontroller" 
-    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting serviceaccount"
+    kapp.k14s.io/change-group: gitea
     ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: gitea-overlay
   name: gitea
   namespace: tanzu-sync

@@ -8,7 +8,7 @@ tap_install:
       ingress_domain: "foo.workshop.amer.end2end.link"
       ingress_issuer: ""
       image_registry:
-        project_path: "gcr.io/tap/workloads"
+        project_path: "gcr.io/pa-cdelashmutt/tap/supply-chain"
     supply_chain: basic
 
     accelerator:
