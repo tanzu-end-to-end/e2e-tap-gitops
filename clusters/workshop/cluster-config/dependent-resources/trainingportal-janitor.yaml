@@ -1,6 +1,5 @@
 #@ load("@ytt:data", "data")
 #@ load("@ytt:yaml", "yaml")
-#@ load("_helpers.star", "helpers")
 
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
