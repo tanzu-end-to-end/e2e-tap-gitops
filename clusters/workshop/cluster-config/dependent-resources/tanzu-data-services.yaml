@@ -1,0 +1,24 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: tanzu-data-services-repository
+  namespace: tanzu-sync
+spec:
+  fetch:
+    imgpkgBundle:
+      image: harbor.workshop.amer.end2end.link/registry-tanzu/tds-packages:1.2.0
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: tanzu-mysql-operator
+  namespace: tanzu-sync
+spec:
+  serviceAccountName: sync-sa
+  packageRef:
+    refName: mysql-operator.with.sql.tanzu.vmware.com
+    versionSelection:
+      constraints: ">=1.5.0 <1.6.0"

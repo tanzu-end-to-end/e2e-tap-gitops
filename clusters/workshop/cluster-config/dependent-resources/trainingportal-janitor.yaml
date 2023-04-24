@@ -1,0 +1,49 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: trainingportal-janitor
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-group: trainingportal-janitor
+    kapp.k14s.io/change-rule.cert-manager: "upsert after upserting cert-manager" 
+    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting serviceaccount"
+spec:
+  serviceAccountName: sync-sa
+  packageRef:
+    refName: trainingportal-janitor.vmware.com
+    versionSelection:
+      constraints: "0.0.1"
+      prereleases: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: trainingportal-reg-creds
+  namespace: tanzu-sync
+type: kubernetes.io/dockerconfigjson
+stringData:
+  #@yaml/text-templated-strings
+  .dockerconfigjson: |
+    {
+      "auths": {
+        "ghcr.io": {
+          "username": "(@= data.values.trainingportal_janitor.pull_secret.username @)",
+          "password": "(@= data.values.trainingportal_janitor.pull_secret.password @)",
+          "auth": ""
+        }
+      }
+    }    
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretExport
+metadata:
+  name: trainingportal-reg-creds
+  namespace: tanzu-sync
+spec:
+  toNamespaces:
+  - "trainingportal-janitor"
+  - "tanzu-sync"

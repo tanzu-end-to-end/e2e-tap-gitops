@@ -1,0 +1,56 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: tanzu-rabbitmq-repo
+  namespace: tanzu-sync
+spec:
+  fetch:
+    imgpkgBundle:
+      image: harbor.workshop.amer.end2end.link/registry-tanzu/tanzu-rabbitmq-package-repo:1.2.0
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: tanzu-rabbitmq
+  namespace: tanzu-sync
+  annotations:
+    ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: rabbit-overlay
+spec:
+  serviceAccountName: sync-sa
+  packageRef:
+    refName: rabbitmq.tanzu.vmware.com
+    versionSelection:
+      constraints: "1.2.0"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    resourceclaims.services.apps.tanzu.vmware.com/controller: "true"
+  name: resource-claims-rmq
+rules:
+- apiGroups:
+  - rabbitmq.com
+  resources:
+  - rabbitmqclusters
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rabbit-overlay
+  namespace: tanzu-sync
+stringData:
+  fix-validating-webhook.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind": "ValidatingWebhookConfiguration", "metadata": {"name": "validating-webhook-configuration"}})
+    ---
+    metadata:
+      name: rabbitmq-validating-webhook-configuration
