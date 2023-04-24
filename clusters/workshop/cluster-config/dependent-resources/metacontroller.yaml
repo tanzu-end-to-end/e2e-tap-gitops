@@ -1,0 +1,16 @@
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: metacontroller
+    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting serviceaccount"
+  name: metacontroller
+  namespace: waas-install
+spec:
+  packageRef:
+    refName: metacontroller.vmware.com
+    versionSelection:
+      constraints: 2.0.12+0
+      prereleases: {}
+  serviceAccountName: waas-install-sa
