@@ -38,7 +38,7 @@ stringData:
       - --domain-filter=amer.end2end.link
       - --policy=upsert-only
       - --registry=txt
-      - --txt-owner-id=Z058827839E1KJS2IN09B
+      - --txt-owner-id=eks.map-pas-global-house-worldwide-sales.us-east-2.workshop
       - --txt-prefix=txt
       - --provider=aws
       - --aws-zone-type=public
