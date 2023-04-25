@@ -64,6 +64,9 @@ tap_install:
         - name: workload-git-auth
           namespace: tap-install
           create_export: true
+        - name: workload-git-token
+          namespace: tap-install
+          create_export: true
       overlay_secrets:
         - name: workload-git-auth-overlay
           namespace: tap-install
