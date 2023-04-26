@@ -1,0 +1,10 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: acme-tanzu-java-web
+spec:
+  git:
+    ref:
+      branch: main
+    url: https://github.com/jeffellin/application-accelerator-samples
+    subPath: tanzu-java-web-app
