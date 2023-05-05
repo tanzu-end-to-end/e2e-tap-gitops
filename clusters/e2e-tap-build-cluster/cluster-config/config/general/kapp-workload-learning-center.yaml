@@ -2,7 +2,7 @@ apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
   name: workload-learning-center
-  namespace: workloads
+  namespace: default
 spec:
   deploy:
     - kapp:
