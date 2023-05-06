@@ -1,17 +1,17 @@
-#apiVersion: kappctrl.k14s.io/v1alpha1
-#kind: App
-#metadata:
-#  name: workload-learning-center
-#  namespace: workloads
-#spec:
-#  deploy:
-#    - kapp:
-#        rawOptions:
-#          - --dangerous-allow-empty-list-of-resources=true
-#  fetch:
-#    - git:
-#        ref: origin/main
-#        url: https://gitea.tap.corby.cc/gitea_admin/gitops-workloads
-#  serviceAccountName: default
-#  template:
-#    - ytt: {}
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: workload-learning-center
+  namespace: workloads
+spec:
+  deploy:
+    - kapp:
+        rawOptions:
+          - --dangerous-allow-empty-list-of-resources=true
+  fetch:
+    - git:
+        ref: origin/main
+        url: https://gitea.tap.corby.cc/gitea_admin/gitops-workloads
+  serviceAccountName: default
+  template:
+    - ytt: {}
