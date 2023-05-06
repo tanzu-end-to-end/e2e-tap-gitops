@@ -11,6 +11,8 @@ spec:
     name: serviceAccount
   - default: go-git
     name: gitImplementation
+  - default: git-token
+    name: gitsource_secret
   revisionPath: .status.artifact.revision
   urlPath: .status.artifact.url
   ytt: |
