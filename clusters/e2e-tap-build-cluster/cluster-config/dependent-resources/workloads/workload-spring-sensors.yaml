@@ -14,7 +14,7 @@ spec:
         value: "17"
   source:
     git:
-      url: https://gitea.tap.corby.cc/gitea_admin/tap-demos-w06-s732-1678809861.git
+      url: https://gitea.tap.corby.cc/gitea_admin/tap-demos-w06-s1039-1682437880.git
       ref:
         branch: main
   params:
