@@ -16,8 +16,6 @@ spec:
     name: gitops_commit_message
   - default: git-ssh
     name: gitops_ssh_secret
-  - default: git-token
-    name: gitsource_secret
   - default: ssh://git@github.com/cpage-pivotal/
     name: gitops_repository_prefix
   resources:
@@ -27,6 +25,8 @@ spec:
       name: serviceAccount
     - default: go-git
       name: gitImplementation
+    - default: git-token
+      name: gitsource_secret
     templateRef:
       kind: ClusterSourceTemplate
       name: source-template-git-creds
