@@ -27,7 +27,7 @@ spec:
       name: gitImplementation
     templateRef:
       kind: ClusterSourceTemplate
-      name: source-template
+      name: source-template-git-creds
   - name: source-scanner
     params:
     - default: scan-policy
