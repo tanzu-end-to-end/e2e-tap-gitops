@@ -31,6 +31,7 @@ metadata:
   labels:
     apps.tanzu.vmware.com/workload-type: web-custom-hostname
     app.kubernetes.io/part-of: waas
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   build:
     env:
