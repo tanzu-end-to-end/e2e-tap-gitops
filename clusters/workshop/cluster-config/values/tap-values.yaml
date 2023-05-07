@@ -44,6 +44,7 @@ tap_install:
     learningcenter:
       ingressSecret:
         secretName: default/default-cert
+      ingressDomain: workshop.amer.end2end.link
 
     tap_gui:
       service_type: ClusterIP
