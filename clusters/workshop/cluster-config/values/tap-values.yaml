@@ -43,7 +43,7 @@ tap_install:
           replicas: 3
     learningcenter:
       ingressSecret:
-        secretName: default-cert
+        secretName: default/default-cert
 
     tap_gui:
       service_type: ClusterIP
