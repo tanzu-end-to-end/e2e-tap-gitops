@@ -17,6 +17,12 @@ spec:
       url: https://gitea.tap.corby.cc/gitea_admin/tap-demos-w06-s1039-1682437880.git
       ref:
         branch: main
+  serviceClaims:
+    - name: db
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ClassClaim
+        name: sensors-mysql
   params:
     - name: annotations
       value:
