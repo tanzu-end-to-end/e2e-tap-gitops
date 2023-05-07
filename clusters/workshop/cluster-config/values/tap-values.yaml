@@ -5,7 +5,7 @@ tap_install:
     profile: full
     ceip_policy_disclosed: true
     shared:
-      ingress_domain: "foo.workshop.amer.end2end.link"
+      ingress_domain: "workshop.amer.end2end.link"
       ingress_issuer: ""
       image_registry:
         project_path: "gcr.io/pa-cdelashmutt/tap/supply-chain"
@@ -53,7 +53,7 @@ tap_install:
         secretName: default-cert
       app_config:
         app:
-          baseUrl: https://tap-gui.foo.workshop.amer.end2end.link
+          baseUrl: https://tap-gui.workshop.amer.end2end.link
         catalog:
           locations:
             - type: url
