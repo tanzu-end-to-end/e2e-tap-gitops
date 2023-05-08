@@ -19,6 +19,10 @@ tap_install:
         namespace: default
         secret_name: default-cert
 
+    appliveview_connector:
+      activateAppLiveViewSecureAccessControl: false
+      activateSensitiveOperations: true
+
     cnrs:
       default_tls_secret: default/default-cert
       domain_template: |-
