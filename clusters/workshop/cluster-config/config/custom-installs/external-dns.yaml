@@ -33,8 +33,6 @@ stringData:
     deployment:
       args:
       - --source=service
-      - --source=ingress
-      - --source=contour-httpproxy
       - --domain-filter=amer.end2end.link
       - --policy=upsert-only
       - --registry=txt
