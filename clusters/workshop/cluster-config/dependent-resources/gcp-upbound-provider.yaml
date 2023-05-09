@@ -1,6 +1,8 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
+  annotations:
+    kapp.k14s.io/change-group: provider-gcp
   name: upbound-provider-gcp
 spec:
   package: xpkg.upbound.io/upbound/provider-gcp:v0.28.0
@@ -8,6 +10,9 @@ spec:
 apiVersion: gcp.upbound.io/v1beta1
 kind: ProviderConfig
 metadata:
+  annotations:
+    kapp.k14s.io/change-rule.0: "upsert after upserting provider-gcp"
+    kapp.k14s.io/change-rule.1: "delete before deleting provider-gcp"
   name: default-gcp
 spec:
   credentials:
