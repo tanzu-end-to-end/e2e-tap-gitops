@@ -14,6 +14,6 @@ data:
       username: system:node:{{EC2PrivateDNSName}}
     - groups:
       - eks-console-dashboard-full-access-group
-      - cluster-admin
+      - system:masters
       rolearn: arn:aws:iam::377668981663:role/PowerUser
       username: cloudgate-poweruser
