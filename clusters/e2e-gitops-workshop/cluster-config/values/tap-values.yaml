@@ -2,125 +2,71 @@
 tap_install:
   values:
     profile: full
-    excluded_packages:
-      - learningcenter.tanzu.vmware.com
-      - workshops.learningcenter.tanzu.vmware.com
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
     shared:
-      ingress_domain: contour.e2e.corby.cc
-      ingress_issuer: ""
+      ingress_domain: "INGRESS-DOMAIN"
+      ingress_issuer: # Optional, can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned".
+
       image_registry:
         project_path: gcr.io/fe-cpage/tap
-      activateAppLiveViewSecureAccessControl: false
+#        secret:
+#          name: "KP-DEFAULT-REPO-SECRET"
+#          namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 
-    buildservice:
-      kp_default_repository: "gcr.io/fe-cpage/build"
+#      kubernetes_distribution: "K8S-DISTRO" # Only required if the distribution is OpenShift and must be used with the following kubernetes_version key.
 
-    accelerator:
-      ingress:
-        include: true
-        enable_tls: true
-      tls:
-        namespace: contour-tls
-        secret_name: tls
-      domain: contour.e2e.corby.cc
-      samples:
-        include: true
+#      kubernetes_version: "K8S-VERSION" # Required regardless of distribution when Kubernetes version is 1.25 or later.
 
-    appliveview:
-      ingressEnabled: true
-      tls:
-        namespace: contour-tls
-        secretName: tls
+#      ca_cert_data: | # To be passed if using custom certificates.
+#        -----BEGIN CERTIFICATE-----
+#        MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+#        -----END CERTIFICATE-----
 
-    supply_chain: testing_scanning
+    supply_chain: basic # Can take testing, testing_scanning.
 
-    ootb_supply_chain_testing_scanning:
+    ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
       registry:
-        server: "gcr.io/fe-cpage"
-        repository: "tap/supply-chain"
+        server: "gcr.io/fe-cpage" # Takes the value from the shared section by default, but can be overridden by setting a different value.
+        repository: "tap/supply-chain" # Takes the value from the shared section by default, but can be overridden by setting a different value.
       gitops:
-        ssh_secret: git-ssh
-        username: cpage-pivotal
-        branch: main
-        commit_message: "Update from TAP Supply Chain Choreographer"
-        email: pcorby@vmware.com
-        repository_prefix: ssh://git@github.com/cpage-pivotal/
-
-    namespace_provisioner:
-      controller: false
-      gitops_install:
-        ref: origin/main
-        subPath: clusters/e2e-gitops-workshop/cluster-config/namespace-provisioner/namespaces
-        url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-      additional_sources:
-        - git:
-            ref: origin/main
-            subPath: clusters/e2e-gitops-workshop/cluster-config/namespace-provisioner/namespace-resources
-            url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-          path: _ytt_lib/namespace-resources
-      import_data_values_secrets:
-        - name: workload-git-auth
-          namespace: tap-install
-          create_export: true
-        - name: workload-git-token
-          namespace: tap-install
-          create_export: true
-      overlay_secrets:
-        - name: workload-git-auth-overlay
-          namespace: tap-install
-          create_export: true
+        ssh_secret: "git-ssh" # Takes "" as value by default; but can be overridden by setting a different value.
 
     contour:
       envoy:
         service:
-          type: LoadBalancer
+          type: LoadBalancer # This is set by default, but can be overridden by setting a different value.
 
-    cnrs:
-      default_tls_secret: contour-tls/tls
-      domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+    buildservice:
+      # Takes the value from the shared section by default, but can be overridden by setting a different value.
+      kp_default_repository: "gcr.io/fe-cpage/build"
+#      kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+#        name: "KP-DEFAULT-REPO-SECRET"
+#        namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 
     tap_gui:
-      service_type: ClusterIP
-      metadataStoreAutoconfiguration: true
-      ingressEnabled: "true"
-      tls:
-        namespace: contour-tls
-        secretName: tls
+      service_type: ClusterIP # If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
+      metadataStoreAutoconfiguration: true # Create a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store.
       app_config:
-        app:
-          baseUrl: https://tap-gui.contour.e2e.corby.cc
         catalog:
           locations:
             - type: url
               target: https://github.com/cpage-pivotal/spring-sensors/blob/main/catalog/catalog-info.yaml
-            - type: url
-              target: https://github.com/cpage-pivotal/tanzu-java-web-app/blob/main/catalog-info.yaml
-        backend:
-          baseUrl: https://tap-gui.contour.e2e.corby.cc
-          cors:
-            origin: https://tap-gui.contour.e2e.corby.cc
-        kubernetes:
-          serviceLocatorMethod:
-            type: 'multiTenant'
-        techdocs:
-          builder: 'external'
-          publisher:
-            type: 'awsS3'
-            awsS3:
-              bucketName: e2e-tap-techdocs
-              credentials:
-                roleArn: arn:aws:iam::377668981663:role/ReadTapTechdocs
 
     metadata_store:
-      app_service_type: ClusterIP # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
-      ns_for_export_app_cert: "*"
+#      ns_for_export_app_cert: "MY-DEV-NAMESPACE"
+      app_service_type: ClusterIP # Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
 
     scanning:
       metadataStore:
-        url: "" # Disable embedded integration since it's deprecated
+        url: "" # Configuration is moved, so set this string to empty.
 
     grype:
-      namespace: "default" # (optional) Defaults to default namespace.
+      namespace: "default"
       targetImagePullSecret: "registry-credentials"
+      # In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store.
+
+    policy:
+      tuf_enabled: false # By default, TUF initialization and keyless verification are deactivated.
+#    tap_telemetry:
+#      customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating the Tanzu Application Platform usage reports.
