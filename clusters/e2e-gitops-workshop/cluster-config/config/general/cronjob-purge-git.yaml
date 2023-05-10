@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: purge-git
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: purge-gitops-workloads
+  namespace: purge-git
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: purge
+              image: gcr.io/fe-cpage/purge-gitrepo:latest
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: GITEA_PASSWORD
+                  value: "VMware1!"
+                - name: INGRESS_DOMAIN
+                  value: "tap.corby.cc"
+                - name: NUM_DAYS
+                  value: "1"
+              command:
+                - /bin/sh
+                - -c
+                - ./purge-git.sh gitops-workloads; ./purge-git.sh gitops-workloads
+  schedule: "0 * * * *"
