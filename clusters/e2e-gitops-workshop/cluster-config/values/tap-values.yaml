@@ -5,7 +5,7 @@ tap_install:
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
     shared:
-      ingress_domain: "INGRESS-DOMAIN"
+      ingress_domain: "tap.corby.page"
       ingress_issuer: "" # Optional, can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned".
 
       image_registry:
