@@ -41,6 +41,15 @@ spec:
       connectionDetails:
         - fromConnectionSecretKey: privateKey
           name: .dockerconfigjson
+      patches:
+      - fromFieldPath: metadata.uid
+        toFieldPath: spec.writeConnectionSecretToRef.name
+        transforms:
+        - string:
+            fmt: '%s-serviceaccountkey'
+            type: Format
+          type: string
+        type: FromCompositeFieldPath
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
@@ -54,6 +63,8 @@ spec:
   claimNames:
     kind: GcrCredential
     plural: gcrcredentials
+  connectionSecretKeys:
+  - .dockerconfigjson
   versions:
   - name: v1alpha1
     served: true
