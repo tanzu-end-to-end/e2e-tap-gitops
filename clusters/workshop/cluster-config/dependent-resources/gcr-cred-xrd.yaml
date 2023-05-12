@@ -23,6 +23,7 @@ spec:
             publicKeyType: TYPE_X509_PEM_FILE
             serviceAccountIdSelector:
               matchControllerRef: true
+        publishConnectionDetailsToStoreConfigRef: default            
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
