@@ -24,7 +24,6 @@ spec:
             serviceAccountIdSelector:
               matchControllerRef: true
         publishConnectionDetailsTo: 
-          name: .dockerconfigjson
           metadata:
             type: kubernetes.io/dockerconfigjson
 ---
