@@ -12,8 +12,19 @@ spec:
         apiVersion: cloudplatform.gcp.upbound.io/v1beta1
         kind: ServiceAccount
         spec:
-          forProvider:
-            displayName: Service account for WaaS
+          forProvider: {}
+      patches:
+      - type: CombineFromComposite
+        toFieldPath: spec.forProvider.description
+        policy:
+          fromFieldPath: Required
+        combine:
+          variables:
+            - fromFieldPath: spec.claimRef.namespace
+            - fromFieldPath: spec.claimRef.name
+          strategy: string
+          string:
+            fmt: "WaaS Cluster claim %s/%s"
     - name: google-serviceaccount-key
       base:
         apiVersion: cloudplatform.gcp.upbound.io/v1beta1
@@ -26,9 +37,20 @@ spec:
           publishConnectionDetailsTo:
             configRef:
               name: default
+      patches:
+        - type: CombineFromComposite
+          combine:
+            variables:
+              - fromFieldPath: metadata.uid
+            strategy: string
+            string:
+              fmt: "%s-serviceaccountkey"
+          toFieldPath: spec.publishConnectionDetailsTo.name
+          policy:
+            fromFieldPath: Required
       connectionDetails:
-      - fromConnectionSecretKey: private_key
-        name: key.json
+        - fromConnectionSecretKey: private_key
+          name: key.json
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
