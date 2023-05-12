@@ -37,17 +37,6 @@ spec:
           publishConnectionDetailsTo:
             configRef:
               name: default
-      patches:
-        - type: CombineFromComposite
-          combine:
-            variables:
-              - fromFieldPath: metadata.uid
-            strategy: string
-            string:
-              fmt: "%s-serviceaccountkey"
-          toFieldPath: spec.publishConnectionDetailsTo.name
-          policy:
-            fromFieldPath: Required
       connectionDetails:
         - fromConnectionSecretKey: private_key
           name: key.json
