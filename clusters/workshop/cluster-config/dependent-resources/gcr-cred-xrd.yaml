@@ -1,0 +1,43 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: gcr-cred
+spec:
+  compositeTypeRef:
+    apiVersion: se.tanzu.vmware.com/v1alpha1
+    kind: XGcrCredential
+  resources:
+    - name: google-serviceaccount
+      base:
+        apiVersion: storage.gcp.upbound.io/v1beta1
+        kind: Bucket
+        spec:
+          forProvider:
+            location: US
+    - name: google-serviceaccount-key
+      base:
+        apiVersion: cloudplatform.gcp.upbound.io/v1beta1
+        kind: ServiceAccountKey
+        spec:
+          forProvider:
+            publicKeyType: TYPE_X509_PEM_FILE
+            serviceAccountIdSelector:
+              matchLabels:
+                testing.upbound.io/example-name: example-service-account-key
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xgcrcredential.se.tanzu.vmware.com
+spec:
+  group: se.tanzu.vmware.com
+  names:
+    kind: XGcrCredential
+    plural: xgcrcredentials
+  claimNames:
+    kind: GcrCredential
+    plural: gcrcredentials
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
