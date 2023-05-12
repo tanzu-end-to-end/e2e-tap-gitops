@@ -24,8 +24,9 @@ spec:
             serviceAccountIdSelector:
               matchControllerRef: true
         publishConnectionDetailsTo: 
-          configRef: 
-            name: default            
+          name: .dockerconfigjson
+          metadata:
+            type: kubernetes.io/dockerconfigjson
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
