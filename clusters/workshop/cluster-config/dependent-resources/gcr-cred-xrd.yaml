@@ -23,9 +23,12 @@ spec:
             publicKeyType: TYPE_X509_PEM_FILE
             serviceAccountIdSelector:
               matchControllerRef: true
-        publishConnectionDetailsTo: 
-          metadata:
-            type: kubernetes.io/dockerconfigjson
+          publishConnectionDetailsTo:
+            configRef:
+              name: default
+      connectionDetails:
+      - fromConnectionSecretKey: private_key
+        name: key.json
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
