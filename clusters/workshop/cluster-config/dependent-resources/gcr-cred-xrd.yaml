@@ -27,7 +27,7 @@ spec:
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xgcrcredential.se.tanzu.vmware.com
+  name: xgcrcredentials.se.tanzu.vmware.com
 spec:
   group: se.tanzu.vmware.com
   names:
