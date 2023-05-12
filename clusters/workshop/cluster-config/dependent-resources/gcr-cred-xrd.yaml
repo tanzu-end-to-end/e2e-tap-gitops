@@ -9,11 +9,11 @@ spec:
   resources:
     - name: google-serviceaccount
       base:
-        apiVersion: storage.gcp.upbound.io/v1beta1
-        kind: Bucket
+        apiVersion: cloudplatform.gcp.upbound.io/v1beta1
+        kind: ServiceAccount
         spec:
           forProvider:
-            location: US
+            displayName: Service account for WaaS
     - name: google-serviceaccount-key
       base:
         apiVersion: cloudplatform.gcp.upbound.io/v1beta1
