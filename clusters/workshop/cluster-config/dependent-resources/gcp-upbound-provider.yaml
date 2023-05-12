@@ -28,7 +28,7 @@ metadata:
   annotations:
     kapp.k14s.io/change-rule.0: "upsert after upserting provider-gcp"
     kapp.k14s.io/change-rule.1: "delete before deleting provider-gcp"
-  name: default-gcp
+  name: default
 spec:
   credentials:
     secretRef:
