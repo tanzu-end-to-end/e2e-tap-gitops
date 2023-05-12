@@ -40,7 +40,6 @@ spec:
             namespace: crossplane-system
       connectionDetails:
         - fromConnectionSecretKey: private_key
-          name: .dockerconfigjson
       patches:
       - fromFieldPath: metadata.uid
         toFieldPath: spec.writeConnectionSecretToRef.name
@@ -64,7 +63,7 @@ spec:
     kind: GcrCredential
     plural: gcrcredentials
   connectionSecretKeys:
-  - .dockerconfigjson
+  - private_key
   versions:
   - name: v1alpha1
     served: true
