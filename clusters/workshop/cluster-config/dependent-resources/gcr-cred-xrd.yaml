@@ -42,6 +42,8 @@ spec:
   claimNames:
     kind: GcrCredential
     plural: gcrcredentials
+  connectionSecretKeys:
+    - key.json
   versions:
   - name: v1alpha1
     served: true
