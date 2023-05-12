@@ -34,9 +34,6 @@ spec:
             publicKeyType: TYPE_X509_PEM_FILE
             serviceAccountIdSelector:
               matchControllerRef: true
-          publishConnectionDetailsTo:
-            configRef:
-              name: default
       connectionDetails:
         - fromConnectionSecretKey: private_key
           name: key.json
