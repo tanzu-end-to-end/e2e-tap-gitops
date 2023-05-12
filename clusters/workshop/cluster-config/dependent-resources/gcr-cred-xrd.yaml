@@ -6,6 +6,8 @@ spec:
   compositeTypeRef:
     apiVersion: se.tanzu.vmware.com/v1alpha1
     kind: XGcrCredential
+  publishConnectionDetailsWithStoreConfigRef:
+    name: default
   resources:
     - name: google-serviceaccount
       base:
@@ -34,6 +36,8 @@ spec:
             publicKeyType: TYPE_X509_PEM_FILE
             serviceAccountIdSelector:
               matchControllerRef: true
+          writeConnectionSecretToRef:
+            namespace: crossplane-system
       connectionDetails:
         - fromConnectionSecretKey: privateKey
           name: .dockerconfigjson
@@ -50,8 +54,6 @@ spec:
   claimNames:
     kind: GcrCredential
     plural: gcrcredentials
-  connectionSecretKeys:
-    - key.json
   versions:
   - name: v1alpha1
     served: true
