@@ -35,8 +35,8 @@ spec:
             serviceAccountIdSelector:
               matchControllerRef: true
       connectionDetails:
-        - fromConnectionSecretKey: private_key
-          name: key.json
+        - fromConnectionSecretKey: privateKey
+          name: .dockerconfigjson
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
