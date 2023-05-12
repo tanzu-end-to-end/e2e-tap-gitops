@@ -22,8 +22,7 @@ spec:
           forProvider:
             publicKeyType: TYPE_X509_PEM_FILE
             serviceAccountIdSelector:
-              matchLabels:
-                testing.upbound.io/example-name: example-service-account-key
+              matchControllerRef: true
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
