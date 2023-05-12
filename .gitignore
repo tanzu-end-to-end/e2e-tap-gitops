@@ -4,3 +4,4 @@ apply.sh
 params.yaml
 .DS_Store
 clusters/hack/**
+.sops.yaml
