@@ -39,7 +39,7 @@ spec:
           writeConnectionSecretToRef:
             namespace: crossplane-system
       connectionDetails:
-        - fromConnectionSecretKey: privateKey
+        - fromConnectionSecretKey: private_key
           name: .dockerconfigjson
       patches:
       - fromFieldPath: metadata.uid
