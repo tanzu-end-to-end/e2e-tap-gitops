@@ -74,4 +74,9 @@ spec:
         properties:
           spec:
             type: object
+            properties:
+              parameters:
+                type: object
+            required:
+            - parameters
 
