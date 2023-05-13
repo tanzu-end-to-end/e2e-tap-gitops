@@ -1,7 +1,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: gcr-cred
+  name: xgcrcredentials.se.tanzu.vmware.com
 spec:
   compositeTypeRef:
     apiVersion: se.tanzu.vmware.com/v1alpha1
