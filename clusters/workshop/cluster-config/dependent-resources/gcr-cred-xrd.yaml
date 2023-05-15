@@ -36,14 +36,13 @@ spec:
             publicKeyType: TYPE_X509_PEM_FILE
             serviceAccountIdSelector:
               matchControllerRef: true
-          publishConnectionDetailsTo:
-            metadata:
-              type: kubernetes.io/dockerconfigjson
+          writeConnectionSecretToRef:
+            namespace: crossplane-system
       connectionDetails:
         - fromConnectionSecretKey: private_key
       patches:
       - fromFieldPath: metadata.uid
-        toFieldPath: spec.publishConnectionDetailsTo.name
+        toFieldPath: spec.writeConnectionSecretToRef.name
         transforms:
         - string:
             fmt: '%s-serviceaccountkey'
