@@ -1,0 +1,47 @@
+---
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: irsa-controllerconfig
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/eksctl-workshop-addon-iamserviceaccount-cros-Role1-191D6ZPU19ZAB
+    kapp.k14s.io/change-group: provider-aws-controller-config
+spec: {}
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: upbound-provider-aws
+  annotations:
+    kapp.k14s.io/change-rule.0: "upsert after upserting provider-aws-controller-config"
+    kapp.k14s.io/change-rule.1: "delete before deleting provider-aws-controller-config"
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws:v0.35.0
+  controllerConfigRef:
+    name: irsa-controllerconfig
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    kapp.k14s.io/exists: ""
+    kapp.k14s.io/change-group: provider-aws-crd
+  name: providerconfigs.aws.upbound.io
+spec:
+  group: aws.upbound.io
+  names:
+    kind: ProviderConfig
+  scope: Cluster
+  versions:
+  - name: v1beta1
+---
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  annotations:
+    kapp.k14s.io/change-rule.0: "upsert after upserting provider-aws"
+    kapp.k14s.io/change-rule.1: "delete before deleting provider-aws"
+  name: default
+spec:
+  credentials:
+    source: IRSA
