@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: learning-overlay
+  name: learningcenter-overlay
   namespace: tap-install
 type: Opaque
 stringData:
