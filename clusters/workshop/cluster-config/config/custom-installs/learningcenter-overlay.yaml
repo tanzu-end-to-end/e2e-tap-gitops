@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: learning-overlay
+  namespace: tap-install
+type: Opaque
+stringData:
+  overlay.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind": "CustomResourceDefinition", "metadata": {"name": "trainingportals.learningcenter.tanzu.vmware.com"}})
+    ---
+    spec:
+      versions:
+      - name: v1beta1
+        additionalPrinterColumns:
+        - description: Owner short name
+          jsonPath: .metadata.labels.waas/owner-email-prefix
+          name: Owner
+          priority: 1
+          type: string
+        - description: Expiry
+          jsonPath: .metadata.annotations.janitor/expires
+          name: Expires
+          priority: 1
+          type: string
+
