@@ -12,6 +12,7 @@ stringData:
     ---
     spec:
       versions:
+      #@overlay/match by="name"
       - name: v1beta1
         additionalPrinterColumns:
         - description: Owner short name
