@@ -14,7 +14,7 @@ spec:
         value: "17"
   source:
     git:
-      url: https://gitea.tap.corby.cc/gitea_admin/tap-demos-w06-s1039-1682437880.git
+      url: https://gitea.workshop.amer.end2end.link/gitea_admin/pcorby-1684438690-w01-s001-1684438744.git
       ref:
         branch: main
   serviceClaims:
@@ -30,4 +30,4 @@ spec:
     - name: gitops_repository
       value: ssh://git@github.com/cpage-pivotal/tap-gitops
     - name: gitops_branch
-      value: spring-sensors-tap-demos-w06-s722
+      value: spring-sensors-test
