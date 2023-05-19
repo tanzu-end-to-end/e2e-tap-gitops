@@ -91,3 +91,6 @@ tap_install:
     - name: cert-manager
       secrets:
       - name: cert-manager-overlay
+    - name: learningcenter
+      secrets:
+      - name: learningcenter-overlay
