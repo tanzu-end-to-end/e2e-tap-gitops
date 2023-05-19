@@ -3,7 +3,8 @@ tap_install:
   values:
     profile: full
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
-
+    excluded_packages:
+      - eventing.tanzu.vmware.com
     shared:
       ingress_domain: "tap.corby.page"
       ingress_issuer: "" # Optional, can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned".
