@@ -1,7 +1,0 @@
----
-git:
-  url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-  ref: origin/main
-  sub_path: clusters/e2e-gitops-workshop/cluster-config
-tap_package_repository:
-  oci_repository: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
