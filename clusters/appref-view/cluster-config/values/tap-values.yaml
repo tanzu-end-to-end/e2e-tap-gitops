@@ -128,7 +128,8 @@ tap_install:
           baseUrl: https://tap-gui.view.amer.end2end.link
           cors:
             origin: https://tap-gui.view.amer.en2end.link
-
+        app:
+          baseIrl: https://tap-gui.view.amer.end2end.link
  
 
     metadata_store:
