@@ -12,6 +12,17 @@ stringData:
       #@overlay/match missing_ok=True
       virtualhost:
         #@overlay/match missing_ok=True
-        corspolicy:
+        corsPolicy:
           allowOrigin:
-              - "*" 
+          - "*" 
+          allowMethods:
+          - GET
+          - POST
+          - OPTIONS
+          allowHeaders:
+          - authorization
+          - cache-control
+          exposeHeaders:
+          - Content-Length
+          - Content-Range
+          maxAge: "10m" 
