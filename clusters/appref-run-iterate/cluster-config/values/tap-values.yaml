@@ -76,9 +76,6 @@ tap_install:
    #!   domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 
     package_overlays:
-    - name:  tap-gui
-      secrets:
-      - name: tap-gui-contour-overlay
     - name:  cnrs
       secrets:
       - name: cnrs-network-config-overlay

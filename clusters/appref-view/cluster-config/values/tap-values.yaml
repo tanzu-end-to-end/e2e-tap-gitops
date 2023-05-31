@@ -146,6 +146,9 @@ tap_install:
       targetImagePullSecret: "registry-credentials"
 
     package_overlays:
+    - name:  tap-gui
+      secrets:
+      - name: tap-gui-contour-overlay
     - name:  cert-manager
       secrets:
       - name: cert-manager-overlay
