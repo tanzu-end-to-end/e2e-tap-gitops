@@ -6,7 +6,7 @@ metadata:
 stringData:
   workload-git-auth-overlay.yaml: |
     #@ load("@ytt:overlay", "overlay")
-    #@overlay/match by=overlay.subset({"kind":"HTTPProxy", "metadata": {"name":"tap-gui"}}),expects="1+"
+    #@overlay/match by=overlay.subset({"kind":"HTTPProxy", "metadata": {"name":"tap-guwi"}}),expects="1+"
     ---
     spec:
       #@overlay/match missing_ok=True
