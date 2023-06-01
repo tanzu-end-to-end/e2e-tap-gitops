@@ -114,7 +114,7 @@ tap_install:
               region: us-east-2
         backend:
           csp:
-            default-src: ["'self'"]
+            default-src: ['self', "https:", "data:"]
             base-uri: ["'self'"]
             font-src: ['self', "https:", "data:"]
             form-action: ['self']
