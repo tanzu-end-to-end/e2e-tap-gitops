@@ -9,6 +9,7 @@ tap_install:
       ingress_issuer: ""
       image_registry:
         project_path: "gcr.io/pa-cdelashmutt/tap/supply-chain"
+      kubernetes_version: "1.25.9"
     supply_chain: basic
 
     accelerator:
@@ -23,6 +24,23 @@ tap_install:
       activateAppLiveViewSecureAccessControl: false
       activateSensitiveOperations: true
 
+    cartographer:
+      cartographer:
+        concurrency:
+          max_deliveries: 10
+          max_runnables: 10
+          max_workloads: 10
+        resources:
+          limits:
+            cpu: "3"
+            memory: 10Gi
+          requests:
+            cpu: 1.5
+            memory: 10Gi
+      conventions:
+        resources:
+          limits:
+            memory: 600Mi
     cnrs:
       default_tls_secret: default/default-cert
       domain_template: |-
@@ -53,6 +71,15 @@ tap_install:
         secretName: default/default-cert
       ingressDomain: workshop.amer.end2end.link
 
+    scanning:
+      resources:
+        limits:
+          cpu: "500m"
+          memory: 3Gi
+        requests:
+          cpu: 200m
+          memory: 1Gi
+          
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"
