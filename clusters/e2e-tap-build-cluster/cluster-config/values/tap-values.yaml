@@ -8,6 +8,7 @@ tap_install:
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
     shared:
+      kubernetes_version: "1.25.9"
       ingress_domain: contour.e2e.corby.cc
       ingress_issuer: ""
       image_registry:
