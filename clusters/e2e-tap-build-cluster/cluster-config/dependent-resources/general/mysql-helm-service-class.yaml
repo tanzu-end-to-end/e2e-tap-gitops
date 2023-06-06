@@ -5,6 +5,8 @@ metadata:
     provider: tap-overview
     type: mysql
   name: xmysqlinstances.overview.tap.vmware.com
+  annotations:
+    kapp.k14s.io/change-group: "mysql-crossplane"
 spec:
   compositeTypeRef:
     apiVersion: overview.tap.vmware.com/v1alpha1
@@ -241,6 +243,8 @@ apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
   name: xmysqlinstances.overview.tap.vmware.com
+  annotations:
+    kapp.k14s.io/change-group: "mysql-crossplane"
 spec:
   connectionSecretKeys:
   - provider
@@ -275,6 +279,10 @@ apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ClusterInstanceClass
 metadata:
   name: mysql-high-connection
+  annotations:
+    kapp.k14s.io/change-group: "mysql-clusterinstanceclass"
+    kapp.k14s.io/change-rule.0: "upsert after upserting mysql-crossplane"
+    kapp.k14s.io/change-rule.1: "delete before deleting mysql-crossplane"
 spec:
   description:
     short: MySQL Config for High Connection Counts

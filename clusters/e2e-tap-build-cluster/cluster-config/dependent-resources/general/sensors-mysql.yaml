@@ -1,0 +1,13 @@
+apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+kind: ClassClaim
+metadata:
+  name: sensors-mysql
+  namespace: workloads
+  annotations:
+    kapp.k14s.io/change-rule.0: "upsert after upserting mysql-clusterinstanceclass"
+    kapp.k14s.io/change-rule.1: "delete before deleting mysql-clusterinstanceclass"
+spec:
+  classRef:
+    name: mysql-high-connection
+  parameters:
+    storageGB: 5
