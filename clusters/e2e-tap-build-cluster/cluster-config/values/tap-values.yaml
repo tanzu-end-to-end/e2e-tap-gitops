@@ -74,9 +74,14 @@ tap_install:
           create_export: true
 
     contour:
+      contour:
+        replicas: 3
       envoy:
         service:
           type: LoadBalancer
+        workload:
+          type: Deployment
+          replicas: 3
 
     cnrs:
       default_tls_secret: contour-tls/tls
