@@ -1,0 +1,46 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: external-dns
+    kapp.k14s.io/change-rule.cert-manager: "upsert after upserting cert-manager" 
+    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting tanzu-sync"
+  name: external-dns
+  namespace: tanzu-sync
+spec:
+  packageRef:
+    refName: external-dns.tanzu.vmware.com
+    versionSelection:
+      constraints: ">0.8.0"
+      prereleases: {}
+  serviceAccountName: sync-sa
+  values:
+  - secretRef:
+      name: external-dns-values
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: external-dns-values
+  namespace: tanzu-sync
+stringData:
+  #@yaml/text-templated-strings
+  values.yaml: |
+    namespace: tanzu-system-service-discovery
+    deployment:
+      args:
+      - --source=service
+      - --domain-filter=amer.end2end.link
+      - --policy=upsert-only
+      - --registry=txt
+      - --txt-owner-id=eks.map-pas-global-house-worldwide-sales.us-east-2.e2e-tap-build-view
+      - --txt-prefix=txt
+      - --provider=aws
+      - --aws-zone-type=public
+      - --aws-prefer-cname
+    serviceaccount:
+      annotations:
+        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/e2e-tap-build-view-external-dns
