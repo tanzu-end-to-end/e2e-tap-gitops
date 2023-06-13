@@ -78,6 +78,8 @@ tap_install:
         replicas: 3
       envoy:
         service:
+          annotations:
+            external-dns.alpha.kubernetes.io/hostname: '*.build-view-run.amer.end2end.link'
           type: LoadBalancer
         workload:
           type: Deployment
