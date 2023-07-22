@@ -1,0 +1,7 @@
+---
+git:
+  url: https://github.com/cdelashmutt-pivotal/e2e-tap-gitops.git
+  ref: origin/main
+  sub_path: clusters/e2e-acme/cluster-config
+tap_package_repository:
+  oci_repository: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
