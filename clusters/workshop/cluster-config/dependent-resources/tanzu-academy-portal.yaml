@@ -1,0 +1,80 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+kind: TrainingPortal
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: tanzu-academy-portal
+    kapp.k14s.io/change-rule.contour: "upsert after upserting waas-catalog"
+    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting serviceaccount"
+  name: tanzu-academy
+spec:
+  portal:
+    password: #@ data.values.tanzu-academy-portal.portal.password
+    registration:
+      enabled: false
+      type: anonymous
+    clients:
+      robot:
+        id: #@ data.values.tanzu-academy-portal.clients.robot.id
+        secret: #@ data.values.tanzu-academy-portal.clients.robot.secret
+    credentials:
+      admin:
+        password: #@ data.values.tanzu-academy-portal.credentials.admin.password
+        username: #@ data.values.tanzu-academy-portal.credentials.admin.username
+      robot:
+        password: #@ data.values.tanzu-academy-portal.credentials.robot.password
+        username: #@ data.values.tanzu-academy-portal.credentials.robot.username
+    theme:
+      frame:
+        ancestors:
+          - https://tanzu.academy
+          - https://*.tanzu.academy
+          - https://labs.tanzu.academy
+          - https://*.labs.tanzu.academy
+          - https://laratanzu.valet
+          - https://tanzu.valet
+          - https://*.fixeldev.com
+          - https://*.tanzuacademy.fixeldev.com
+          - http://localhost:8080
+  workshops:
+    - capacity: 20
+      expires: 60m
+      name: cartographer-workshop
+      orphaned: 20m
+      reserved: 2
+    - capacity: 20
+      expires: 60m
+      name: function-workshop
+      orphaned: 20m
+      reserved: 2
+    - capacity: 20
+      expires: 60m
+      name: lab-container-basics
+      orphaned: 20m
+      reserved: 2
+    - capacity: 20
+      expires: 60m
+      name: lab-getting-started-with-carvel
+      orphaned: 20m
+      reserved: 2
+    - capacity: 20
+      expires: 60m
+      name: lab-spring-boot-k8s-gs
+      orphaned: 20m
+      reserved: 2
+    - capacity: 20
+      expires: 60m
+      name: scc-workshop-dev
+      orphaned: 20m
+      reserved: 2
+    - capacity: 20
+      expires: 60m
+      name: tap-carvel-workshop
+      orphaned: 20m
+      reserved: 2
+    - capacity: 20
+      expires: 60m
+      name: tap-overview
+      orphaned: 20m
+      reserved: 2
