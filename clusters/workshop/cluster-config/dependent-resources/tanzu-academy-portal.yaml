@@ -10,21 +10,21 @@ metadata:
   name: tanzu-academy
 spec:
   portal:
-    password: #@ data.values.tanzu-academy-portal.portal.password
+    password: #@ data.values.tanzu_academy_portal.portal.password
     registration:
       enabled: false
       type: anonymous
     clients:
       robot:
-        id: #@ data.values.tanzu-academy-portal.clients.robot.id
-        secret: #@ data.values.tanzu-academy-portal.clients.robot.secret
+        id: #@ data.values.tanzu_academy_portal.clients.robot.id
+        secret: #@ data.values.tanzu_academy_portal.clients.robot.secret
     credentials:
       admin:
-        password: #@ data.values.tanzu-academy-portal.credentials.admin.password
-        username: #@ data.values.tanzu-academy-portal.credentials.admin.username
+        password: #@ data.values.tanzu_academy_portal.credentials.admin.password
+        username: #@ data.values.tanzu_academy_portal.credentials.admin.username
       robot:
-        password: #@ data.values.tanzu-academy-portal.credentials.robot.password
-        username: #@ data.values.tanzu-academy-portal.credentials.robot.username
+        password: #@ data.values.tanzu_academy_portal.credentials.robot.password
+        username: #@ data.values.tanzu_academy_portal.credentials.robot.username
     theme:
       frame:
         ancestors:
