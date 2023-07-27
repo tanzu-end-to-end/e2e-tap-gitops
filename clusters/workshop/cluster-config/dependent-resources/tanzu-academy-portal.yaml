@@ -7,13 +7,13 @@ metadata:
     kapp.k14s.io/change-group: tanzu-academy-portal
     kapp.k14s.io/change-rule.contour: "upsert after upserting waas-catalog"
     kapp.k14s.io/change-rule.serviceaccount: "delete before deleting serviceaccount"
+    kapp.k14s.io/update-strategy: always-replace
   name: tanzu-academy
 spec:
   portal:
-    password: #@ data.values.tanzu_academy_portal.portal.password
     registration:
+      type: one-step
       enabled: false
-      type: anonymous
     clients:
       robot:
         id: #@ data.values.tanzu_academy_portal.clients.robot.id
