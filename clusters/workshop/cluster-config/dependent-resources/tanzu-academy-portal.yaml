@@ -2,14 +2,21 @@
 ---
 apiVersion: kapp.k14s.io/v1alpha1
 kind: Config
-rebaseRules:
-- paths: 
-  - [annotations, kopf.zalando.org/learningcenter]
-  - [annotations, kopf.zalando.org/last-handled-configuration]
-  type: copy
-  sources: [new, existing]
+diffAgainstLastAppliedFieldExclusionRules:
+- path: [metadata, annotations, "kopf.zalando.org/last-handled-configuration"]
   resourceMatchers:
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1, kind: TrainingPortal}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1, kind: Workshop}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1, kind: WorkshopSession}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1, kind: WorkshopEnvironment}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1, kind: WorkshopRequest}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1, kind: SystemProfile}
   - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1beta1, kind: TrainingPortal}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1beta1, kind: Workshop}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1beta1, kind: WorkshopSession}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1beta1, kind: WorkshopEnvironment}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1beta1, kind: WorkshopRequest}
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1beta1, kind: SystemProfile}
 ---
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
