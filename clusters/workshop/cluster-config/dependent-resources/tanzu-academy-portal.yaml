@@ -1,5 +1,16 @@
 #@ load("@ytt:data", "data")
 ---
+apiVersion: kapp.k14s.io/v1alpha1
+kind: Config
+rebaseRules:
+- paths: 
+  - [annotations, kopf.zalando.org/learningcenter]
+  - [annotations, kopf.zalando.org/last-handled-configuration]
+  type: copy
+  sources: [new, existing]
+  resourceMatchers:
+  - apiVersionKindMatcher: {apiVersion: learningcenter.tanzu.vmware.com/v1beta1, kind: TrainingPortal}
+---
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
