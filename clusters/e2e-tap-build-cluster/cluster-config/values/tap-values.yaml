@@ -9,7 +9,7 @@ tap_install:
 
     shared:
       kubernetes_version: "1.25.9"
-      ingress_domain: contour.e2e.corby.cc
+      ingress_domain: e2e-build.amer.end2end.link
       ingress_issuer: ""
       image_registry:
         project_path: gcr.io/fe-cpage/tap
@@ -25,7 +25,7 @@ tap_install:
       tls:
         namespace: contour-tls
         secret_name: tls
-      domain: contour.e2e.corby.cc
+      domain: e2e-build.amer.end2end.link
       samples:
         include: true
 
@@ -79,7 +79,7 @@ tap_install:
       envoy:
         service:
           annotations:
-            external-dns.alpha.kubernetes.io/hostname: '*.build-view-run.amer.end2end.link'
+            external-dns.alpha.kubernetes.io/hostname: '*.e2e-build.amer.end2end.link'
           type: LoadBalancer
         workload:
           type: Deployment
@@ -98,7 +98,7 @@ tap_install:
         secretName: tls
       app_config:
         app:
-          baseUrl: https://tap-gui.contour.e2e.corby.cc
+          baseUrl: https://tap-gui.e2e-build.amer.end2end.link
         catalog:
           locations:
             - type: url
@@ -106,9 +106,9 @@ tap_install:
             - type: url
               target: https://github.com/cpage-pivotal/tanzu-java-web-app/blob/main/catalog-info.yaml
         backend:
-          baseUrl: https://tap-gui.contour.e2e.corby.cc
+          baseUrl: https://tap-gui.e2e-build.amer.end2end.link
           cors:
-            origin: https://tap-gui.contour.e2e.corby.cc
+            origin: https://tap-gui.e2e-build.amer.end2end.link
         kubernetes:
           serviceLocatorMethod:
             type: 'multiTenant'

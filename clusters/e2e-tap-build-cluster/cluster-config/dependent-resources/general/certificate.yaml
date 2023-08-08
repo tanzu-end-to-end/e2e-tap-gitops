@@ -19,11 +19,11 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: tls
-  namespace: tls-test # contour-tls
+  namespace: contour-tls
 spec:
-  commonName: "*.e2e-test.amer.end2end.link" # "*.e2e-build.amer.end2end.link"
+  commonName: "*.e2e-build.amer.end2end.link"
   dnsNames:
-    - "*.e2e-test.amer.end2end.link"
+    - "*.e2e-build.amer.end2end.link"
   duration: 2160h0m0s
   issuerRef:
     kind: ClusterIssuer
