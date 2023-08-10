@@ -155,6 +155,7 @@ tap_install:
     - name: tap-gui
       secrets:
       - name: tapgui-manager-overlay
-    - name: ootb-supply-chain-testing-scanning
-      secrets:
-      - name: supply-chain-overlay
+# supply chain overlay for techdocs is broken, disable for now.
+#    - name: ootb-supply-chain-testing-scanning
+#      secrets:
+#      - name: supply-chain-overlay
