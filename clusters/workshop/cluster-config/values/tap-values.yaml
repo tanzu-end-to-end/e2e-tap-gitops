@@ -23,9 +23,6 @@ tap_install:
     appliveview_connector:
       activateAppLiveViewSecureAccessControl: false
       activateSensitiveOperations: true
-      backend:
-        ingressEnabled: true
-        host: appliveview.e2e-build.amer.end2end.link
 
     cartographer:
       cartographer:
@@ -103,7 +100,7 @@ tap_install:
       app_service_type: ClusterIP
     appliveview_connector:
       backend:
-        host: appliveview.contour.e2e.corby.cc
+        host: appliveview.e2e-build.amer.end2end.link
         ingressEnabled: true
     namespace_provisioner:
       controller: false
