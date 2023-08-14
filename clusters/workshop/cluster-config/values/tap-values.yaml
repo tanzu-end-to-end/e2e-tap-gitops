@@ -25,6 +25,7 @@ tap_install:
       activateSensitiveOperations: true
       backend:
         ingressEnabled: true
+        host: appliveview.e2e-build.amer.end2end.link
 
     cartographer:
       cartographer:
