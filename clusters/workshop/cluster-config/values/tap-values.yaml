@@ -23,6 +23,8 @@ tap_install:
     appliveview_connector:
       activateAppLiveViewSecureAccessControl: false
       activateSensitiveOperations: true
+      backend:
+        ingressEnabled: true
 
     cartographer:
       cartographer:
