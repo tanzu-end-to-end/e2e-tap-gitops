@@ -63,4 +63,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-server
-    namespace: "workloads"
+    namespace: prometheus

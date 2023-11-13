@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: "prometheus-alertmanager"
-  namespace: "workloads"
+  namespace: prometheus
   labels:
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/managed-by: Helm
@@ -20,7 +20,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: prometheus-server
-  namespace: "workloads"
+  namespace: prometheus
   labels:
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/managed-by: Helm

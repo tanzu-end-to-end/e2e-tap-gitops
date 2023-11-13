@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: "prometheus-alertmanager"
-  namespace: "workloads"
+  namespace: prometheus
   labels:
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/managed-by: Helm
