@@ -1,0 +1,32 @@
+---
+# Source: prometheus/templates/alertmanager/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: "prometheus-alertmanager"
+  namespace: "workloads"
+  labels:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/version: 0.26.0
+    helm.sh/chart: prometheus-0.4.3
+    app.kubernetes.io/part-of: prometheus
+    app.kubernetes.io/component: alertmanager
+automountServiceAccountToken: true
+---
+# Source: prometheus/templates/server/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus-server
+  namespace: "workloads"
+  labels:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/version: 2.47.2
+    helm.sh/chart: prometheus-0.4.3
+    app.kubernetes.io/part-of: prometheus
+    app.kubernetes.io/component: server
+automountServiceAccountToken: true

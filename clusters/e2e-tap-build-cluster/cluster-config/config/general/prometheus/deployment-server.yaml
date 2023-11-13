@@ -1,0 +1,122 @@
+---
+# Source: prometheus/templates/server/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-server
+  namespace: "workloads"
+  labels:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/version: 2.47.2
+    helm.sh/chart: prometheus-0.4.3
+    app.kubernetes.io/part-of: prometheus
+    app.kubernetes.io/component: server
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: prometheus
+      app.kubernetes.io/name: prometheus
+      app.kubernetes.io/part-of: prometheus
+      app.kubernetes.io/component: server
+  template:
+    metadata:
+      annotations:
+        checksum/configmap: 30e2e1b2c3a66b2830e8c58a26acf7e15c4b2039f6e3d9d5749b12d7f318d057
+      labels:
+        app.kubernetes.io/instance: prometheus
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: prometheus
+        app.kubernetes.io/version: 2.47.2
+        helm.sh/chart: prometheus-0.4.3
+        app.kubernetes.io/part-of: prometheus
+        app.kubernetes.io/component: server
+    spec:
+      serviceAccountName: prometheus-server
+      
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: prometheus
+                    app.kubernetes.io/name: prometheus
+                    app.kubernetes.io/component: server
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      securityContext:
+        fsGroup: 1001
+      initContainers:
+      containers:
+        - name: prometheus
+          image: docker.io/bitnami/prometheus:2.47.2-debian-11-r2
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+            runAsUser: 1001
+            seccompProfile:
+              type: RuntimeDefault
+          args:
+            - "--config.file=/opt/bitnami/prometheus/conf/prometheus.yaml"
+            - "--storage.tsdb.path=/bitnami/prometheus/data"
+            - "--storage.tsdb.retention.time=10d"
+            - "--storage.tsdb.retention.size=0"
+            - "--log.level=info"
+            - "--log.format=logfmt"
+            - "--web.listen-address=:9090"
+            - "--web.console.libraries=/opt/bitnami/prometheus/conf/console_libraries"
+            - "--web.console.templates=/opt/bitnami/prometheus/conf/consoles"
+            - "--web.route-prefix=/"
+          env:
+          envFrom:
+          resources:
+            limits: {}
+            requests: {}
+          ports:
+            - name: http
+              containerPort: 9090
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 3
+            httpGet:
+              path: /-/healthy
+              port: http
+          readinessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+            httpGet:
+              path: /-/ready
+              port: http
+          volumeMounts:
+            - name: config
+              mountPath: /opt/bitnami/prometheus/conf
+              readOnly: true
+            - name: data
+              mountPath: /bitnami/prometheus/data
+      volumes:
+        - name: config
+          configMap:
+            name: prometheus-server
+        - name: data
+          emptyDir: {}
