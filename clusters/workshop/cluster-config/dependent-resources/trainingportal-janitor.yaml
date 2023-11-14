@@ -1,6 +1,19 @@
 #@ load("@ytt:data", "data")
 #@ load("@ytt:yaml", "yaml")
-
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: tap-pkgr
+  namespace: tap-install
+  annotations:
+    kapp.k14s.io/change-group: trainingportal-janitor-pkgr
+    kapp.k14s.io/change-rule.cert-manager: "upsert after upserting cert-manager" 
+    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting serviceaccount"
+spec:
+  fetch:
+    imgpkgBundle:
+      image: ghcr.io/tanzu-solutions-engineering/packagerepo:1.0.0
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
@@ -9,8 +22,8 @@ metadata:
   namespace: tanzu-sync
   annotations:
     kapp.k14s.io/change-group: trainingportal-janitor
-    kapp.k14s.io/change-rule.cert-manager: "upsert after upserting cert-manager" 
-    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting serviceaccount"
+    kapp.k14s.io/change-rule.cert-manager: "upsert after upserting trainingportal-janitor-pkgr" 
+    kapp.k14s.io/change-rule.serviceaccount: "delete before deleting trainingportal-janitor-pkgr"
 spec:
   serviceAccountName: sync-sa
   packageRef:
