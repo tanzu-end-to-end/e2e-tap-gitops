@@ -5,3 +5,4 @@ params.yaml
 .DS_Store
 clusters/hack/**
 .sops.yaml
+.vscode/settings.json
