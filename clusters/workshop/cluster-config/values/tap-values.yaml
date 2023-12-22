@@ -3,6 +3,8 @@ tap_install:
   values:
     # Non-sensitive TAP Values go here
     profile: full
+    excluded_packages:
+    - workshops.learningcenter.tanzu.vmware.com 
     ceip_policy_disclosed: true
     shared:
       ingress_domain: "workshop.amer.end2end.link"
