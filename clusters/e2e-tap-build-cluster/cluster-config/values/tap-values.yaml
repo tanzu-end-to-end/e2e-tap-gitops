@@ -99,6 +99,8 @@ tap_install:
       app_config:
         app:
           baseUrl: https://tap-gui.e2e-build.amer.end2end.link
+        auth:
+          allowGuestAccess: true
         catalog:
           locations:
             - type: url
