@@ -1,0 +1,29 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: prometheus-server
+  namespace: prometheus
+spec:
+  routes:
+  - services:
+    - name: prometheus-server
+      port: 80
+  virtualhost:
+    fqdn: prometheus-server.e2e-build.amer.end2end.link
+    tls:
+      secretName: contour-tls/tls
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: prometheus-alertmanager
+  namespace: prometheus
+spec:
+  routes:
+  - services:
+    - name: prometheus-alertmanager
+      port: 80
+  virtualhost:
+    fqdn: prometheus-alertmanager.e2e-build.amer.end2end.link
+    tls:
+      secretName: contour-tls/tls
