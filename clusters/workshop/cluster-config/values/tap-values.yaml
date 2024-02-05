@@ -123,3 +123,8 @@ tap_install:
     - name: learningcenter
       secrets:
       - name: learningcenter-overlay
+    local_source_proxy:
+      push_secret:
+        name: registry-credentials
+        namespace: tap-install
+        create_export: false
