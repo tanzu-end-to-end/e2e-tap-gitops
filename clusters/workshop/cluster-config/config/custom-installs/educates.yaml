@@ -97,3 +97,91 @@ spec:
   values:
   - secretRef:
       name: educates-cluster-essentials-educates-package-values
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    packaging.carvel.dev/package: educates-training-platform-educates-package
+    tkg.tanzu.vmware.com/tanzu-package: educates-training-platform-educates-package
+  name: educates-training-platform-educates-package-sa
+  namespace: educates-package
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    packaging.carvel.dev/package: educates-training-platform-educates-package
+    tkg.tanzu.vmware.com/tanzu-package: educates-training-platform-educates-package
+  name: educates-training-platform-educates-package-cluster-role
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    packaging.carvel.dev/package: educates-training-platform-educates-package
+    tkg.tanzu.vmware.com/tanzu-package: educates-training-platform-educates-package
+  name: educates-training-platform-educates-package-cluster-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: educates-training-platform-educates-package-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: educates-training-platform-educates-package-sa
+  namespace: educates-package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    packaging.carvel.dev/package: educates-training-platform-educates-package
+    tkg.tanzu.vmware.com/tanzu-package: educates-training-platform-educates-package
+  name: educates-training-platform-educates-package-values
+  namespace: educates-package
+stringData:
+  values.yaml: |
+    clusterIngress:
+      domain: "workshop.amer.end2end.link"
+      tlsCertificateRef:
+        namespace: "default"
+        name: "default-cert"
+
+    clusterSecurity:
+      policyEngine: "kyverno"
+
+    workshopSecurity:
+      rulesEngine: "kyverno"
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    packaging.carvel.dev/package-ClusterRole: educates-training-platform-educates-package-cluster-role
+    packaging.carvel.dev/package-ClusterRoleBinding: educates-training-platform-educates-package-cluster-rolebinding
+    packaging.carvel.dev/package-Secret: educates-training-platform-educates-package-values
+    packaging.carvel.dev/package-ServiceAccount: educates-training-platform-educates-package-sa
+    tkg.tanzu.vmware.com/tanzu-package-ClusterRole: educates-training-platform-educates-package-cluster-role
+    tkg.tanzu.vmware.com/tanzu-package-ClusterRoleBinding: educates-training-platform-educates-package-cluster-rolebinding
+    tkg.tanzu.vmware.com/tanzu-package-Secret: educates-training-platform-educates-package-values
+    tkg.tanzu.vmware.com/tanzu-package-ServiceAccount: educates-training-platform-educates-package-sa
+  creationTimestamp: null
+  name: educates-training-platform
+  namespace: educates-package
+spec:
+  packageRef:
+    refName: training-platform.educates.dev
+    versionSelection:
+      constraints: 2.6.16
+      prereleases: {}
+  serviceAccountName: educates-training-platform-educates-package-sa
+  values:
+  - secretRef:
+      name: educates-training-platform-educates-package-values
