@@ -13,3 +13,87 @@ spec:
   fetch:
     imgpkgBundle:
       image: ghcr.io/vmware-tanzu-labs/educates-packages:2.6.16
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    packaging.carvel.dev/package: educates-cluster-essentials-educates-package
+    tkg.tanzu.vmware.com/tanzu-package: educates-cluster-essentials-educates-package
+  name: educates-cluster-essentials-educates-package-sa
+  namespace: educates-package
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    packaging.carvel.dev/package: educates-cluster-essentials-educates-package
+    tkg.tanzu.vmware.com/tanzu-package: educates-cluster-essentials-educates-package
+  name: educates-cluster-essentials-educates-package-cluster-role
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    packaging.carvel.dev/package: educates-cluster-essentials-educates-package
+    tkg.tanzu.vmware.com/tanzu-package: educates-cluster-essentials-educates-package
+  name: educates-cluster-essentials-educates-package-cluster-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: educates-cluster-essentials-educates-package-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: educates-cluster-essentials-educates-package-sa
+  namespace: educates-package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    packaging.carvel.dev/package: educates-cluster-essentials-educates-package
+    tkg.tanzu.vmware.com/tanzu-package: educates-cluster-essentials-educates-package
+  name: educates-cluster-essentials-educates-package-values
+  namespace: educates-package
+stringData:
+  values.yaml: |-
+    clusterPackages:
+      contour:
+        enabled: false
+      kyverno:
+        enabled: true
+
+    clusterSecurity:
+      policyEngine: "kyverno"
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    packaging.carvel.dev/package-ClusterRole: educates-cluster-essentials-educates-package-cluster-role
+    packaging.carvel.dev/package-ClusterRoleBinding: educates-cluster-essentials-educates-package-cluster-rolebinding
+    packaging.carvel.dev/package-Secret: educates-cluster-essentials-educates-package-values
+    packaging.carvel.dev/package-ServiceAccount: educates-cluster-essentials-educates-package-sa
+    tkg.tanzu.vmware.com/tanzu-package-ClusterRole: educates-cluster-essentials-educates-package-cluster-role
+    tkg.tanzu.vmware.com/tanzu-package-ClusterRoleBinding: educates-cluster-essentials-educates-package-cluster-rolebinding
+    tkg.tanzu.vmware.com/tanzu-package-Secret: educates-cluster-essentials-educates-package-values
+    tkg.tanzu.vmware.com/tanzu-package-ServiceAccount: educates-cluster-essentials-educates-package-sa
+  name: educates-cluster-essentials
+  namespace: educates-package
+spec:
+  packageRef:
+    refName: cluster-essentials.educates.dev
+    versionSelection:
+      constraints: 2.6.16
+      prereleases: {}
+  serviceAccountName: educates-cluster-essentials-educates-package-sa
+  values:
+  - secretRef:
+      name: educates-cluster-essentials-educates-package-values
