@@ -73,6 +73,26 @@ stringData:
     clusterSecurity:
       policyEngine: "kyverno"
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kyverno-overlay
+  namespace: educates-package
+stringData:
+  overlay.yaml: |-
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"kyverno"}}),expects=1
+    ---
+    spec:
+      template:
+        spec:
+          containers:
+          #@overlay/match by=overlay.map_key("name")
+          - name: kyverno
+            resources:                                                                                                                                                        │
+              limits:                                                                                                                                                         │
+                memory: 512Mi
+---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
@@ -85,6 +105,7 @@ metadata:
     tkg.tanzu.vmware.com/tanzu-package-ClusterRoleBinding: educates-cluster-essentials-educates-package-cluster-rolebinding
     tkg.tanzu.vmware.com/tanzu-package-Secret: educates-cluster-essentials-educates-package-values
     tkg.tanzu.vmware.com/tanzu-package-ServiceAccount: educates-cluster-essentials-educates-package-sa
+    ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: kyverno-overlay
   name: educates-cluster-essentials
   namespace: educates-package
 spec:
