@@ -2,3 +2,4 @@
 ---
 namespaces:
   - name: workloads
+  - name: cdd-test
