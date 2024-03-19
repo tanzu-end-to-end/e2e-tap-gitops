@@ -15,7 +15,7 @@ spec:
   packageRef:
     refName: trainingportal-janitor.vmware.com
     versionSelection:
-      constraints: "0.0.1"
+      constraints: "0.0.2"
       prereleases: {}
 ---
 apiVersion: v1
