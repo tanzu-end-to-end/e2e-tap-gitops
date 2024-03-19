@@ -62,7 +62,7 @@ metadata:
 rules:
 - apiGroups:
   - learningcenter.tanzu.vmware.com
-  - trainingportals.training.educates.dev
+  - training.educates.dev
   resources:
   - trainingportals
   - workshops
