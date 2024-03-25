@@ -117,9 +117,6 @@ tap_install:
     - name: cert-manager
       secrets:
       - name: cert-manager-overlay
-    - name: learningcenter
-      secrets:
-      - name: learningcenter-overlay
     local_source_proxy:
       push_secret:
         name: registry-credentials
