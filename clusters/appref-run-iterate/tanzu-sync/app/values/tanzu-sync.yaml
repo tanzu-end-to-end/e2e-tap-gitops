@@ -1,7 +1,0 @@
----
-git:
-  url: https://github.com/tanzu-end-to-end/e2e-tap-gitops
-  ref: origin/main
-  sub_path: clusters/appref-run-iterate/cluster-config
-tap_package_repository:
-  oci_repository: registry.gcp.ellin.net/tapbits/tap-packages

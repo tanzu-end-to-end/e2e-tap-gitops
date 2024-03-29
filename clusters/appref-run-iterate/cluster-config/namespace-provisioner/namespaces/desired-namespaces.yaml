@@ -1,9 +1,0 @@
-#@data/values
----
-namespaces:
-  - name: test
-  - name: prod
-  - name: canary-prod
-  - name: canary-test
-  - name: spring-petclinic
-  - name: jellin-dev

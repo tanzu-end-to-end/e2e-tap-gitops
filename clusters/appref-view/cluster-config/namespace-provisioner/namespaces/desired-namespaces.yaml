@@ -1,9 +1,0 @@
-#@data/values
----
-namespaces:
-  - name: workload-corby
-  - name: workloads
-  - name: canary
-  - name: dotnet-todos
-  - name: spring-petclinic
-    scanpolicy: lax
