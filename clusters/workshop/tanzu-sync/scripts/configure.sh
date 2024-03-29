@@ -56,10 +56,6 @@ source tanzu-sync/scripts/configure-secrets.sh
 
 cat << EOF
 
-Next steps:
-$ git add cluster-config/ tanzu-sync/
-$ git commit -m "Configure install of TAP 1.5.0"
-$ git push
-$ ./tanzu-sync/scripts/deploy.sh
+(refer to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/install-gitops-eso.html for next steps)
 
 EOF
