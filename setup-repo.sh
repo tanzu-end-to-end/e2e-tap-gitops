@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+##
+
 set -o errexit -o nounset -o pipefail
 #set -o xtrace
 
@@ -9,7 +11,7 @@ function usage() {
   echo ""
   echo "where:"
   echo "- cluster-name :: name of directory under ./clusters to place cluster configuration."
-  echo "- secrets-manager = {eso,sops} :: which manager to use to deploy secrets (External Secrets Operator, Secret OPerationS w/ Age)."
+  echo "- secrets-manager = {aws-secrets-manager,vault,sops} :: which secrets management system secrets are stored in."
   echo ""
 }
 
@@ -21,34 +23,34 @@ fi
 cluster_name="$1"
 secrets_manager="$2"
 catalog_dir=".catalog"
-tanzu_sync_version="0.0.2"
-tap_version="1.5.0"
+tanzu_sync_version="${TS_VERSION:-0.3.4}"
+tap_version="1.7.0"
 
-if [[ ! ",eso,sops," =~ (,${secrets_manager},) ]]; then
+if [[ ! ",aws-secrets-manager,vault,sops," =~ (,${secrets_manager},) ]]; then
   usage
-  echo "Error: (secrets-manager); wanted: one of [\"eso\", \"sops\"]; got: \"${secrets_manager}\"."
+  echo "Error: (secrets-manager); wanted: one of [\"aws-secrets-manager\", "\vault", \"sops\"]; got: \"${secrets_manager}\"."
   exit 2
 fi
 
+# remove old tanzu managed directories
+if [[ -d "clusters/${cluster_name}/tanzu-sync/app/config/.tanzu-managed" ]]; then
+  rm -r clusters/"${cluster_name}"/tanzu-sync/app/config/.tanzu-managed/*
+fi
+
+if [[ -d "clusters/${cluster_name}/cluster-config/config/tap-install/.tanzu-managed" ]]; then
+  rm -r clusters/"${cluster_name}"/cluster-config/config/tap-install/.tanzu-managed/*
+fi
+
 mkdir -p clusters/"${cluster_name}"
-cp -R ${catalog_dir}/tanzu-sync/${tanzu_sync_version}/${secrets_manager}/docs/ clusters/"${cluster_name}"/
 
 # Setup tanzu-sync directory
-mkdir -p clusters/"${cluster_name}"/tanzu-sync/{app,bootstrap,scripts}
-
-cp -R ${catalog_dir}/tanzu-sync/${tanzu_sync_version}/${secrets_manager}/scripts/* clusters/"${cluster_name}"/tanzu-sync/scripts/
-cp -R ${catalog_dir}/tanzu-sync/${tanzu_sync_version}/${secrets_manager}/bootstrap/* clusters/"${cluster_name}"/tanzu-sync/bootstrap/
-
-mkdir -p clusters/"${cluster_name}"/tanzu-sync/app/config/.tanzu-managed
-mkdir -p clusters/"${cluster_name}"/tanzu-sync/app/values
-
-cp -R ${catalog_dir}/tanzu-sync/${tanzu_sync_version}/${secrets_manager}/config/* clusters/"${cluster_name}"/tanzu-sync/app/config/.tanzu-managed
+cp -R ${catalog_dir}/tanzu-sync/${tanzu_sync_version}/${secrets_manager}/ clusters/"${cluster_name}"/tanzu-sync/
 
 # Setup cluster-config directory
 mkdir -p clusters/"${cluster_name}"/cluster-config/{config,values}
 mkdir -p clusters/"${cluster_name}"/cluster-config/config/tap-install/.tanzu-managed
 
-cp -R ${catalog_dir}/tap-install/${tap_version}/${secrets_manager}/config/* clusters/"${cluster_name}"/cluster-config/config/tap-install/.tanzu-managed
+cp -R ${catalog_dir}/tap-install/${tap_version}/${secrets_manager}/config/.tanzu-managed clusters/"${cluster_name}"/cluster-config/config/tap-install
 
 echo "Created cluster configuration in ./clusters/${cluster_name}."
 echo ""

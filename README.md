@@ -1,16 +1,8 @@
 # Tanzu GitOps Reference Implementation
 
-## Getting Started Quick
+Use this archive contains an opinionated approach to implementing GitOps workflows on Kubernetes clusters.
 
-For example, to initialize configuration for a cluster named "build-01" to use SOPS for secrets management:
-```
-$ ./setup-repo.sh build-01 sops
-```
+This reference implementation is pre-configured to install Tanzu Application Platform.
 
-## Overview
+For detailed documentation, refer to [VMware Tanzu Application Platform Product Documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/install-gitops-intro.html).
 
-```
-./.catalog/      # products that can be configure into one or more clusters
-./clusters/      # configuration for each cluster
-./setup-repo.sh  # helper script for setting up contents of ./clusters
-```
