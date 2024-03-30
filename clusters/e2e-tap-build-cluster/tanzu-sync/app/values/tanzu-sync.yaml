@@ -1,6 +1,6 @@
 ---
 git:
-  url: https://github.com/cdelashmutt-pivotal/e2e-tap-gitops.git
+  url: git@github.com:tanzu-end-to-end/e2e-tap-gitops.git
   ref: origin/main
   sub_path: clusters/e2e-tap-build-cluster/cluster-config
 tap_package_repository:
