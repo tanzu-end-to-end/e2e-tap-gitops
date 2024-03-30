@@ -12,7 +12,7 @@ tap_install:
       ingress_issuer: ""
       image_registry:
         project_path: "gcr.io/pa-cdelashmutt/tap/supply-chain"
-      kubernetes_version: "1.27"
+      kubernetes_version: "1.29"
     supply_chain: basic
 
     accelerator:

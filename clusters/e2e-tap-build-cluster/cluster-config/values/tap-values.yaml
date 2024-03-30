@@ -8,7 +8,7 @@ tap_install:
     ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
     shared:
-      kubernetes_version: "1.27"
+      kubernetes_version: "1.29"
       ingress_domain: e2e-build.amer.end2end.link
       ingress_issuer: ""
       image_registry:
