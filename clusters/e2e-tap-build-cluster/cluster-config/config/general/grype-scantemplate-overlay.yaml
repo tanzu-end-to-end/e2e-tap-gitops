@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grype-scantemplate-overlay
+  namespace: tap-install
+type: Opaque
+stringData:
+  overlay.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+
+    #@overlay/match by=overlay.subset({"kind": "ScanTemplate"})
+    ---
+    spec:
+      template:
+        initContainers:
+        #@overlay/match by=overlay.subset({"name": "repo"})
+        - image: gcr.io/pa-cdelashmutt/tanzu-e2e/source-scan-patch:latest
