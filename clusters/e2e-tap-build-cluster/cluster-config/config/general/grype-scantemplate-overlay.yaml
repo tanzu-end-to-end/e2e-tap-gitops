@@ -37,5 +37,5 @@ stringData:
     spec:
       template:
         initContainers:
-        #@overlay/match by=overlay.subset({"name": "repo"})
+        #@overlay/match by=overlay.subset({"image": "registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:5029e027832cdbbe2eec5cbb8e465b6b2f8ca7c590069af386ba7cfb0e8e4c8d"}),expects="1+"
         - image: gcr.io/pa-cdelashmutt/tanzu-e2e/source-scan-patch:latest
