@@ -32,7 +32,7 @@ stringData:
   overlay.yaml: |
     #@ load("@ytt:overlay", "overlay")
 
-    #@overlay/match by=overlay.subset({"kind": "ScanTemplate"}),expects="1+"
+    #@overlay/match by=overlay.or_op(overlay.subset({"kind": "ScanTemplate", {"metadata": {"name": "blob-source-scan-template"}}}),overlay.subset({"kind": "ScanTemplate", {"metadata": {"name": "public-source-scan-template"}}})),expects="1+"
     ---
     spec:
       template:
