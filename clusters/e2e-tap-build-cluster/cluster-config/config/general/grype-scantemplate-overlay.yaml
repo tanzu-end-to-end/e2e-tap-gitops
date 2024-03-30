@@ -31,8 +31,8 @@ type: Opaque
 stringData:
   overlay.yaml: |
     #@ load("@ytt:overlay", "overlay")
-    #@ blob_scans = overlay.subset({"kind": "ScanTemplate", {"metadata": {"name": "blob-source-scan-template"}}})
-    #@ public_source = overlay.subset({"kind": "ScanTemplate", {"metadata": {"name": "public-source-scan-template"}}})
+    #@ blob_scans = overlay.subset({"kind": "ScanTemplate", "metadata": {"name": "blob-source-scan-template"}})
+    #@ public_source = overlay.subset({"kind": "ScanTemplate", "metadata": {"name": "public-source-scan-template"}})
     #@overlay/match by=overlay.or_op(blob_scans, public_source), expects="1+"
     ---
     spec:
