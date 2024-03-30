@@ -72,6 +72,9 @@ tap_install:
         - name: workload-git-auth-overlay
           namespace: tap-install
           create_export: true
+        - name: grype-package-overlay
+          namespace: tap-install
+          create_export: true
 
     contour:
       contour:
@@ -135,6 +138,3 @@ tap_install:
       - name: cert-manager
         secrets:
           - name: cert-manager-overlay
-      - name: grype-scanner-workloads
-        secrets:
-          - name: grype-scantemplate-overlay

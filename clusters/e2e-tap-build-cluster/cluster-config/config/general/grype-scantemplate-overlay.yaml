@@ -2,6 +2,29 @@
 apiVersion: v1
 kind: Secret
 metadata:
+  name: grype-package-overlay
+  namespace: tap-install
+stringData:
+  grype-package-overlay.yaml: |
+    #@  load("@ytt:overlay", "overlay")
+    #@
+    #@  def matchGrypeScanners(index, left, right):
+    #@    if left["apiVersion"] != "packaging.carvel.dev/v1alpha1" or left["kind"] != "PackageInstall":
+    #@      return False
+    #@    end
+    #@    return "metadata" in left and "name" in left["metadata"] and left["metadata"]["name"].startswith("grype-scanner")
+    #@  end
+
+    #@overlay/match by=matchGrypeScanners, expects="0+"
+    ---
+    metadata:
+      annotations:
+        #@overlay/match expects="0+"
+        ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: grype-scantemplate-overlay
+---
+apiVersion: v1
+kind: Secret
+metadata:
   name: grype-scantemplate-overlay
   namespace: tap-install
 type: Opaque
