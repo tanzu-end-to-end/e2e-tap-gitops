@@ -48,6 +48,8 @@ tap_install:
         commit_message: "Update from TAP Supply Chain Choreographer"
         email: pcorby@vmware.com
         repository_prefix: ssh://git@github.com/cpage-pivotal/
+      image_scanning_cli:
+        image: gcr.io/pa-cdelashmutt/tanzu-e2e/source-scan-patch:latest
 
     namespace_provisioner:
       controller: false
