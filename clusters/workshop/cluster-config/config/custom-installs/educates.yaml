@@ -12,7 +12,7 @@ metadata:
 spec:
   fetch:
     imgpkgBundle:
-      image: ghcr.io/vmware-tanzu-labs/educates-packages:2.6.16
+      image: ghcr.io/vmware-tanzu-labs/educates-packages:2.7.0
 ---
 apiVersion: v1
 kind: ServiceAccount
