@@ -112,7 +112,7 @@ spec:
   packageRef:
     refName: cluster-essentials.educates.dev
     versionSelection:
-      constraints: 2.6.16
+      constraints: 2.7.0
       prereleases: {}
   serviceAccountName: educates-cluster-essentials-educates-package-sa
   values:
@@ -200,7 +200,7 @@ spec:
   packageRef:
     refName: training-platform.educates.dev
     versionSelection:
-      constraints: 2.6.16
+      constraints: 2.7.0
       prereleases: {}
   serviceAccountName: educates-training-platform-educates-package-sa
   values:
