@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: default-team
+  description: The team managing Workshops as a Service
+spec:
+  type: team
+  profile:
+    displayName: Workshops as a Service Team
+    email: chris.delashmutt@broadcom.com
+    picture: https://avatars.githubusercontent.com/u/54452117?s=280&v=4
+  children: []
+  members: [chris.delashmutt]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: chris.delashmutt
+spec:
+  profile:
+    displayName: Chris DeLashmutt
+    email: chris.delashmutt@broadcom.com
+    picture: https://gravatar.com/avatar/94714a870040000456efaf2e45f9ccf83c4e82771b39f1acfe329a4487222b33
+  memberOf: [default-team]
