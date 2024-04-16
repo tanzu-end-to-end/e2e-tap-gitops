@@ -40,10 +40,7 @@ tap_install:
           requests:
             cpu: 1.5
             memory: 10Gi
-      conventions:
-        resources:
-          limits:
-            memory: 600Mi
+
     cnrs:
       default_tls_secret: default/default-cert
       domain_template: |-
