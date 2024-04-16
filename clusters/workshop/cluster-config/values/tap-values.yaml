@@ -41,6 +41,11 @@ tap_install:
             cpu: 1.5
             memory: 10Gi
 
+    cartographer_conventions:
+      resources:
+        limits:
+          memory: 1.8Gi
+          
     cnrs:
       default_tls_secret: default/default-cert
       domain_template: |-
