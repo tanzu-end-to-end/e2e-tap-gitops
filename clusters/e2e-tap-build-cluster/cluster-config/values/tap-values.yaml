@@ -110,6 +110,8 @@ tap_install:
               target: https://github.com/cpage-pivotal/spring-sensors/blob/main/catalog/catalog-info.yaml
             - type: url
               target: https://github.com/cpage-pivotal/tanzu-java-web-app/blob/main/catalog-info.yaml
+            - type: url
+              target: https://github.com/tanzu-end-to-end/e2e-tap-gitops/blob/main/clusters/e2e-tap-build-cluster/catalog/catalog-info.yaml
         backend:
           baseUrl: https://tap-gui.e2e-build.amer.end2end.link
           cors:
