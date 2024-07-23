@@ -63,7 +63,7 @@ spec:
       apiVersion: v1
       kind: Secret
       name: waas-portal-values
-  - name: broadcom_prod
+  - name: broadcom-prod
     ref:
       apiVersion: v1
       kind: Secret
