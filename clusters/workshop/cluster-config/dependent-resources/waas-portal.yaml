@@ -34,7 +34,7 @@ stringData:
   client-secret: #@ data.values.waas_portal.broadcom_client_secret
   issuer-uri: https://broadcom.okta.com/oauth2/default
   provider: okta
-  scope: openid, email, profile, user
+  scope: openid, email, profile
   type: oauth2
   #!user-info-uri: https://broadcom.okta.com/oauth2/v1/userinfo
 ---
