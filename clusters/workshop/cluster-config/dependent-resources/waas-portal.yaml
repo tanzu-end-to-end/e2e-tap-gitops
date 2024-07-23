@@ -23,6 +23,21 @@ stringData:
   type: oauth2
   user-info-uri: https://myvmware.workspaceair.com/SAAS/jersey/manager/api/userinfo
 ---
+apiVersion: v1
+kind: Secret
+type: servicebinding.io/oauth2
+metadata:
+  name: broadcom-prod-values
+  namespace: waas-portal
+stringData:
+  client-id: #@ data.values.waas_portal.broadcom_client_id
+  client-secret: #@ data.values.waas_portal.broadcom_client_secret
+  issuer-uri: https://broadcom.okta.com/oauth2/default
+  provider: okta
+  scope: openid, email, profile, user
+  type: oauth2
+  #!user-info-uri: https://broadcom.okta.com/oauth2/v1/userinfo
+---
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -48,6 +63,11 @@ spec:
       apiVersion: v1
       kind: Secret
       name: waas-portal-values
+  - name: broadcom_prod
+    ref:
+      apiVersion: v1
+      kind: Secret
+      name: broadcom-prod-values
   params:
     - name: annotations
       value:
