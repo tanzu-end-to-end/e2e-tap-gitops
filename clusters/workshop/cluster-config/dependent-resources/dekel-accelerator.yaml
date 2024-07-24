@@ -1,0 +1,10 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: genai-client
+  namespace: accelerator-system
+spec:
+  git:
+    url: https://github.com/0pens0/spring-metal/blob/main/accelerator.yaml
+    ref:
+      branch: main
