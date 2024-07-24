@@ -5,6 +5,6 @@ metadata:
   namespace: accelerator-system
 spec:
   git:
-    url: https://github.com/0pens0/spring-metal/blob/main/accelerator.yaml
+    url: https://github.com/0pens0/spring-metal
     ref:
       branch: main
