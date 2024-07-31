@@ -9,7 +9,7 @@ metadata:
 spec:
   fetch:
     imgpkgBundle:
-      image: registry.tanzu.vmware.com/p-rabbitmq-for-kubernetes/tanzu-rabbitmq-package-repo:1.2.0
+      image: rabbitmq-kubernetes.packages.broadcom.com/tanzu-rabbitmq-package-repo:1.2.0
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
