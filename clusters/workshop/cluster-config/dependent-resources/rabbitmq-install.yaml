@@ -6,6 +6,8 @@ kind: PackageRepository
 metadata:
   name: tanzu-rabbitmq-repo
   namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-group: rabbit-pkgr
 spec:
   fetch:
     imgpkgBundle:
@@ -18,6 +20,11 @@ metadata:
   namespace: tanzu-sync
   annotations:
     ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: rabbit-overlay
+    kapp.k14s.io/change-group: rabbit-pkgi
+    kapp.k14s.io/change-rule.0: "upsert after upserting rabbit-pkgr"
+    kapp.k14s.io/change-rule.1: "delete before deleting rabbit-pkgr"
+    kapp.k14s.io/change-rule.0: "upsert after upserting rabbit-pkg-overlay"
+    kapp.k14s.io/change-rule.1: "delete before deleting rabbit-pkg-overlay"
 spec:
   serviceAccountName: sync-sa
   packageRef:
@@ -47,6 +54,8 @@ kind: Secret
 metadata:
   name: rabbit-overlay
   namespace: tanzu-sync
+  annotations:
+      kapp.k14s.io/change-group: rabbit-pkg-overlay
 stringData:
   fix-validating-webhook.yaml: |
     #@ load("@ytt:overlay", "overlay")
