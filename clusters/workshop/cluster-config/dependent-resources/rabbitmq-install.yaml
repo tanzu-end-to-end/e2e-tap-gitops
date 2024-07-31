@@ -23,8 +23,8 @@ metadata:
     kapp.k14s.io/change-group: rabbit-pkgi
     kapp.k14s.io/change-rule.0: "upsert after upserting rabbit-pkgr"
     kapp.k14s.io/change-rule.1: "delete before deleting rabbit-pkgr"
-    kapp.k14s.io/change-rule.0: "upsert after upserting rabbit-pkg-overlay"
-    kapp.k14s.io/change-rule.1: "delete before deleting rabbit-pkg-overlay"
+    kapp.k14s.io/change-rule.2: "upsert after upserting rabbit-pkg-overlay"
+    kapp.k14s.io/change-rule.3: "delete before deleting rabbit-pkg-overlay"
 spec:
   serviceAccountName: sync-sa
   packageRef:
