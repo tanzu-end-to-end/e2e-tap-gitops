@@ -1,6 +1,17 @@
 #@ load("@ytt:data", "data")
 #@ load("@ytt:yaml", "yaml")
 ---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretExport
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: rabbit-secret
+  name: rabbitmq-registry-secret
+  namespace: tanzu-sync
+spec:
+  toNamespaces:
+  - "*"
+---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
