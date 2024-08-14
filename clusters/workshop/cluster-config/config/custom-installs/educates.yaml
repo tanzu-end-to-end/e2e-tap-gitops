@@ -72,11 +72,6 @@ stringData:
 
     clusterSecurity:
       policyEngine: "kyverno"
-
-    clusterSecrets:
-      pullSecretRefs:
-      - namespace: "educates-package"
-        name: "tanzu-solutions-engineering-pull-secret"
 ---
 apiVersion: v1
 kind: Secret
@@ -185,6 +180,11 @@ stringData:
 
     workshopSecurity:
       rulesEngine: "kyverno"
+
+    clusterSecrets:
+      pullSecretRefs:
+      - namespace: "educates-package"
+        name: "tanzu-solutions-engineering-pull-secret"
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
