@@ -72,6 +72,11 @@ stringData:
 
     clusterSecurity:
       policyEngine: "kyverno"
+
+    clusterSecrets:
+      pullSecretRefs:
+      - namespace: "educates-package"
+        name: "tanzu-solutions-engineering-pull-secret"
 ---
 apiVersion: v1
 kind: Secret
