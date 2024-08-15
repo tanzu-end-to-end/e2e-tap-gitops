@@ -43,4 +43,4 @@ stringData:
       - --aws-prefer-cname
     serviceaccount:
       annotations:
-        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/e2e-tap-build-view-external-dns
+        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/e2e-tap-build-view.tanzu-system-service-discovery.external-dns

@@ -15,4 +15,4 @@ stringData:
     #@overlay/match-child-defaults missing_ok=True
     metadata:
       annotations:
-        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/e2e-tap-build-view-cert-manager
+        eks.amazonaws.com/role-arn: arn:aws:iam::377668981663:role/e2e-tap-build-view.cert-manager.cert-manager
