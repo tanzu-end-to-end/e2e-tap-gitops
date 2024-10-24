@@ -1,0 +1,41 @@
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretExport
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: tds-secret
+  name: tanzu-data-services-secret
+  namespace: tanzu-sync
+spec:
+  toNamespaces:
+  - "*"
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: tanzu-data-services-repository
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-group: tds-pkgr
+    kapp.k14s.io/change-rule.0: "upsert after upserting tds-secret"
+    kapp.k14s.io/change-rule.1: "delete before deleting tds-secret"
+spec:
+  fetch:
+    imgpkgBundle:
+      image: tanzu-sql-postgres.packages.broadcom.com/tds-packages:v3.0.0
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: tanzu-mysql-operator
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-group: mysql-pkgi
+    kapp.k14s.io/change-rule.0: "upsert after upserting tds-pkgr"
+    kapp.k14s.io/change-rule.1: "delete before deleting tds-pkgr"
+spec:
+  serviceAccountName: sync-sa
+  packageRef:
+    refName: mysql-operator.with.sql.tanzu.vmware.com
+    versionSelection:
+      constraints: ">=1.5.0 <1.6.0"

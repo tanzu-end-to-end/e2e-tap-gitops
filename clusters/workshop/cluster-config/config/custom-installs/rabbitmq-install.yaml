@@ -20,7 +20,7 @@ metadata:
   annotations:
     kapp.k14s.io/change-group: rabbit-pkgr
     kapp.k14s.io/change-rule.0: "upsert after upserting rabbit-secret"
-    kapp.k14s.io/change-rule.1: "delete before deleting rabbit-secert"
+    kapp.k14s.io/change-rule.1: "delete before deleting rabbit-secret"
 spec:
   fetch:
     imgpkgBundle:
