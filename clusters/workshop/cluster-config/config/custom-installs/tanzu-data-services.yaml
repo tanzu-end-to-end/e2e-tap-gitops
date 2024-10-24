@@ -22,7 +22,7 @@ metadata:
 spec:
   fetch:
     imgpkgBundle:
-      image: tanzu-sql-postgres.packages.broadcom.com/tds-packages:v3.0.0
+      image: tanzu-sql-postgres.packages.broadcom.com/carvel/tanzu-postgres-operator-bundle:v3.0.0
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
